@@ -5,24 +5,24 @@ Let's Assume we want to inherit Class1 and Class2 to Class3 so we can use Method
 C# Don't allow multiple inheritance so we need to implement separate Interfaces to get access to Class1 and Class2
 
     
-    ```mermaid
-    classDiagram
-    
-     class Class1{
-      +Method1() void
-          }
-    
-      class Class2{
-      +Method2() void
-          }
-    
-            class Class3{
-      +Method3() void
-          }
-    
-    Class1 <|--Class3
-    Class2 <|--Class3
-    ```
+```mermaid
+classDiagram
+
+class Class1{
++Method1() void
+}
+
+class Class2{
++Method2() void
+}
+
+class Class3{
++Method3() void
+}
+
+Class1 <|--Class3
+Class2 <|--Class3
+```
     
 
 ### Code
