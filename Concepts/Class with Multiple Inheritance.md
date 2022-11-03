@@ -8,7 +8,7 @@ C# Don't allow multiple inheritance so we need to implement separate Interfaces 
 
 - Mermaid Code
     
-    ```csharp
+    ```mermaid
     classDiagram
     
      class Class1{
