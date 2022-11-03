@@ -83,3 +83,84 @@ namespace RegExApplication {
 Original String: Hello World   
 Replacement String: Hello World
 ```
+### Code Check if string is valid prefix for file name
+
+```csharp
+string[] prefixs = { "M1","1","-" , "M1-"," ","M1_M2", "M1_" };
+                foreach (string prefix in prefixs)
+                {
+					//\W check if string contain any non word character
+					//|is used to combine two checks
+					//_$ check if string end with Underscore
+                    var match = Regex.IsMatch(prefix, @"\W|_$");
+                    Console.WriteLine(prefix + " is " + (match ? "InValid" : "Valid"));
+                }
+```
+
+```csharp
+public class PrefixValidationTest
+    {
+        [Theory]
+        [InlineData("M1", true)]
+        [InlineData("1", true)]
+        [InlineData("-", false)]
+        [InlineData("M1-", false)]
+        [InlineData("M1_M2", true)]
+        [InlineData("M1_", false)]
+        public void IsValid(string input, bool expected)
+        {
+            var actual = PrefixValidation.IsValid(input);
+            Assert.Equal(expected, actual);
+        }
+    }
+```
+
+### Coordinate Data validation
+
+```csharp
+public static class CoordinateDataValidation
+    {
+        public static bool IsValid(string data)
+        {
+            //Must Only Contain one comma
+            if (Regex.Matches(data, ",{1}").Count!=1)
+            {
+                return false;   
+            }
+            //Must not contain any symbol except comma
+            if (Regex.Matches(data, @"[^\d,-]").Count>0)
+            {
+                return false;
+            }
+            if (Regex.Matches(data, @"[\d-][\d]*,[\d-][\d]*").Count!=1)
+            {
+                return false;
+            }
+            return true;
+        }
+    }
+```
+
+```csharp
+public class CoordinateDataValidationTest
+    {
+        [Theory]
+        [InlineData("0,0", true)]
+        [InlineData("00", false)]
+        [InlineData(",00", false)]
+        [InlineData(",", false)]
+        [InlineData("0,,0", false)]
+        [InlineData("10,10", true)]
+        [InlineData("10,-10", true)]
+        [InlineData("-10,10", true)]
+        [InlineData("+10,10", false)]
+        [InlineData("10,+10", false)]
+        [InlineData("10.10", false)]
+        [InlineData("10*10", false)]
+        public void IsValid(string input, bool expected)
+        {
+            var actual = CoordinateDataValidation.IsValid(input);
+            Assert.Equal(expected, actual);
+        }
+    }
+```
