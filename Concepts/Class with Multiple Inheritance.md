@@ -4,9 +4,6 @@ Let's Assume we want to inherit Class1 and Class2 to Class3 so we can use Method
 
 C# Don't allow multiple inheritance so we need to implement separate Interfaces to get access to Class1 and Class2
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c6434db9-c966-44f1-a2b0-79450dd590db/mermaid-diagram-20200919170124.svg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c6434db9-c966-44f1-a2b0-79450dd590db/mermaid-diagram-20200919170124.svg)
-
-- Mermaid Code
     
     ```mermaid
     classDiagram
