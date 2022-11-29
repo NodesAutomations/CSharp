@@ -14,3 +14,8 @@
                 rng.Value2 = "Staad is not Detected";
             }
 ```
+
+### Name Range
+
+
+### Loop Through Range
