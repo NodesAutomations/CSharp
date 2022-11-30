@@ -16,6 +16,7 @@ catch (System.Exception)
 ```
 
 ### Name Range
+- Use `convert.To` instead of direct casting `(int)`
 ```CSharp
 int numOfSpan =Convert.ToInt32( Globals.StaadSheet.StaadSheet_NumberOfSpan.Value2);
 ```
