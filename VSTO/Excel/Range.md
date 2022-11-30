@@ -17,7 +17,7 @@ catch (System.Exception)
 
 ### Name Range
 ```CSharp
-NumberOfSpan = (int)Globals.StaadSheet.StaadSheet_NumberOfSpan.Value2;
+int numOfSpan =Convert.ToInt32( Globals.StaadSheet.StaadSheet_NumberOfSpan.Value2);
 ```
 
 ### Loop Through Range
