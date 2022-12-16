@@ -1,3 +1,15 @@
+## Basic Syntax
+
+```csharp
+var names = new List<String> { "Vivek", "Ketul" };
+foreach (var name in names)
+{
+    Console.WriteLine(name);
+}
+```
+
+## Linq Quaries
+
 ### Find Specific Item From List
 
 ```csharp
