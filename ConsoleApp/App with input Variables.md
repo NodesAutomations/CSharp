@@ -33,7 +33,7 @@ The following example shows how to use command-line arguments in a console appli
     > 
 - to run this application using CMD just use below command
 
-```csharp
+```
 C:\Users\Ryzen2600x\source\repos\Template_ConsoleApp_CSharp\ConsoleAppTest\bin\Debug>ConsoleAppTest.exe 3
 The Factorial of 3 is 6.
 Press any key to exit.
