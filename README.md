@@ -10,3 +10,6 @@ Repo To Keep Things to Learn, Resources and Code Samples Related to C#
 > Some important warning
 >> **Note**
 >> With a nested note
+
+> ✅ Check
+> This is OK
