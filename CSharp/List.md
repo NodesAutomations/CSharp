@@ -1,11 +1,19 @@
 ## Basic Syntax
 
 ```csharp
-var names = new List<String> { "Vivek", "Ketul" };
-foreach (var name in names)
-{
-    Console.WriteLine(name);
-}
+ //Create New List
+var books = new List<String> { "The Way of Kings", "Words of Radiance","Oathbringer","Rhythm of War" };
+```
+### Loop Through List Items
+```csharp
+            //Create New List
+            var books = new List<String> { "The Way of Kings", "Words of Radiance","Oathbringer","Rhythm of War" };
+
+            //Loop Through List Items
+            foreach (var book in books)
+            {
+                Console.WriteLine(book);
+            }
 ```
 
 ## Linq Quaries
