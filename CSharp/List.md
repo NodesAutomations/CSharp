@@ -29,6 +29,23 @@ var selfHelpBooks = new List<string> { "Atomic Habits", "Power of Habits" };
 //Insert new list at start
 books.InsertRange(0, selfHelpBooks);
 ```
+### Remove Items from list or Remove item from specific Index
+```csharp
+//Create New List
+var books = new List<String> { "The Way of Kings", "Words of Radiance", "Oathbringer", "Rhythm of War" };
+
+//Remove Item from List
+books.Remove("Oathbringer");
+
+//Remove First Item
+books.RemoveAt(0);
+
+//Remove Range
+books.RemoveRange(0, 1);
+
+//Remove All
+books.Clear();
+```
 
 ### Loop Through List Items
 ```csharp
