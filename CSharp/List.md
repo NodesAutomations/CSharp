@@ -1,4 +1,4 @@
-## Basic Syntax
+### Basic Syntax
 
 ```csharp
  //Create New List
@@ -47,9 +47,7 @@ for (int i = 0; i < books.Count; i++)
     Console.WriteLine(books[i]);
 }
 ```
-
-## Linq Quaries
-
+ 
 ### Find Specific Item From List
 
 ```csharp
