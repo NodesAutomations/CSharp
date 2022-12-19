@@ -1,3 +1,25 @@
+### Sort List
+```csharp
+//Create New List
+var books = new List<String> { "The Way of Kings", "Words of Radiance", "Oathbringer", "Rhythm of War" };
+
+//Sort Items from List
+books.Sort();
+
+foreach (var book in books)
+{
+    Console.WriteLine(book);
+}
+
+//Reverse Sort
+books.Reverse();
+
+foreach (var book in books)
+{
+    Console.WriteLine(book);
+}
+```
+
 ### Find Items from List
 ```csharp
 //Create New List
