@@ -8,5 +8,5 @@ Repo To Keep Things to Learn, Resources and Code Samples Related to C#
 
 > **Warning** Test
 > Some important warning
->> ###### Note
+>> **Note**
 >> With a nested note
