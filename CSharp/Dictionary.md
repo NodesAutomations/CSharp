@@ -25,3 +25,18 @@ for (int i = 0; i < books.Count; i++)
     Console.WriteLine($"{book.Key},{book.Value}");
 }
 ```
+### Find Key in Dictionary
+```csharp
+if (!AuthorList.ContainsKey("Mahesh Chand"))
+{
+    AuthorList["Mahesh Chand"] = 20;
+}
+```
+
+### Find Value in Dictionary
+```csharp
+if (!AuthorList.ContainsValue(9))
+{
+    Console.WriteLine("Item found");
+}
+```
