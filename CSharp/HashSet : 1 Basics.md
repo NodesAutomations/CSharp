@@ -5,7 +5,7 @@
  
 > 📢 Note : that the HashSet<T>.Add(T item) method returns a bool -- true if the item was added to the collection; false if the item was already present.
  
-
+- [Different Collection Type](https://github.com/NodesAutomations/CSharp/blob/master/Concepts/Different%20Collection%20Type.md)
 ```csharp
 namespace HashSetDemo {  
     class Program {  
