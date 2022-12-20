@@ -1,4 +1,5 @@
 ### Basic Syntax
+- [Different Collection Type](https://github.com/NodesAutomations/CSharp/blob/master/Concepts/Different%20Collection%20Type.md)
 ```csharp
 Dictionary<int,string> books= new Dictionary<int,string>();
 books.Add(1, "The Way of Kings");
