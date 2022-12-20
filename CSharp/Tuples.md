@@ -85,3 +85,25 @@ Console.WriteLine($"Limits of [{string.Join(" ", ys)}] are {minimum} and {maximu
     return (min, max);
 }
 ```
+### Work with List of Tuples
+```csharp
+(int Id, string Name, int Pages) Book1 = (1, "The Way of King", 1200);
+(int Id, string Name, int Pages) Book2 = (2, "Words of Radiance", 1100);
+
+var books = new List<(int Id, string Name, int Pages)>();
+books.Add(Book1);
+books.Add(Book2);
+books.Add((3,"Oathbringer",1000));
+
+//Loop through list of tuple
+for (int i = 0; i < books.Count; i++)
+{
+    Console.WriteLine($"{books[i].Id}-{books[i].Name}-{books[i].Pages}");
+}
+
+//Loop using for each
+foreach (var book in books)
+{
+    Console.WriteLine($"{book.Id}-{book.Name}-{book.Pages}");
+}
+```
