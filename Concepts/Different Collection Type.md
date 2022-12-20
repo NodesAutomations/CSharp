@@ -1,4 +1,6 @@
 ```mermaid
 graph TD;
-A-->B
+Collection-->List
+Collection-->Hashset
+Collection-->Dictionary
 ```
