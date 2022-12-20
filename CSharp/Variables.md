@@ -36,7 +36,7 @@
 ```
 
 ### Strings
-```
+```csharp
     //String Variables
     string aFriend = "Bill";
     Console.WriteLine(aFriend);
