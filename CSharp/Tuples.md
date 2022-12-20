@@ -1,7 +1,7 @@
 ### Basics
 - Tuples Type Provide way to group multiple Data elements into light weight structure
 
-#### Tuples without Field names
+#### Example Tuples without Field names
 ```csharp
 (int, string, int) Book;
 
