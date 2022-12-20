@@ -30,7 +30,12 @@ Book.Pages = 1200;
 
 Console.WriteLine($"{Book.Id}-{Book.Name}-{Book.Pages}");
 ```
-
+```csharp
+var sum = 4.5;
+var count = 3;
+var t = (sum, count);
+Console.WriteLine($"Sum of {t.count} elements is {t.sum}.");
+```
 #### Example: Method with Tuple Return
 ```csharp
 var xs = new[] { 4, 7, 9 };
