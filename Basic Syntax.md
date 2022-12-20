@@ -56,27 +56,7 @@
         Console.WriteLine(num);
     }
     ```
-    
-- List
-    
-    ```csharp
-    var names = new List<String> { "Vivek", "Ketul" };
-    foreach (var name in names)
-    {
-        Console.WriteLine(name);
-    }
-    var names = new List<string> { };
-                names.Add("Vivek");
-                names.Add("Nodes Automations");
-    
-                foreach(var name in names)
-                {
-                    Console.WriteLine(name);
-                }
-    
-                Console.WriteLine(names.Find(x=>x.Contains("V")));
-    ```
-    
+     
 - Methods and Function
     
     
