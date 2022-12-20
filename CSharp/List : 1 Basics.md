@@ -1,5 +1,5 @@
 ### Basic Syntax
-
+- [Different Collection Type](https://github.com/NodesAutomations/CSharp/blob/master/Concepts/Different%20Collection%20Type.md)
 ```csharp
  //Create New List
 var books = new List<String> { "The Way of Kings", "Words of Radiance","Oathbringer","Rhythm of War" };
