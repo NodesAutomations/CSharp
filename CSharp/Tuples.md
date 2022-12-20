@@ -2,7 +2,7 @@
 - Tuples Type Provide way to group multiple Data elements into light weight structure
 - Tuples are very usefull as method return type, when you need to return multiple value instead of one
 - Tuples can also implemented as replacement for light classes to reduce code clutter and simplicity
-- One of my favorite use case is storing Tabular data using List of Tuple with Field Names
+- One of my favorite use case is storing Tabular data using List of Tuple with Field Names. for Example storing List of books, with each book having Unique ID, Name, no of pages, Author... etc
 
 #### Example Tuples without Field names
 ```csharp
