@@ -8,3 +8,5 @@
   - Change Target Dir
   - Change Upgrade Code
   - Update Component Detail
+- You can Change Name and Path of Generated installer in wix build events
+- You'll also need add wix Custom Action dll file to Release Folder, download it from [Here](https://github.com/NodesAutomations/CSharp/blob/master/WixInstaller_VSTO/WixCustomAction.CA.dll)
