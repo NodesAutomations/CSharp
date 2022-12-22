@@ -22,3 +22,9 @@
     netload
     C:\Users\Ryzen2600x\source\repos\FirstAutoCADApp\FirstAutoCADApp\bin\Debug\FirstAutoCADApp.dll
     ```
+
+### Modification when you're Using AutoCAD Template
+- Open your Visual studio project
+- From Solution Explorer, switch to Folder View
+- Open `StartUp.scr` and Update Dll file Path
+- Open `CadApp.csproj.user` file and Update AutoCAD Script file path in Command line Arguments
