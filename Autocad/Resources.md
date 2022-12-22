@@ -1,3 +1,6 @@
+### Courses for Beginners
+- [AutoCAD Programming using C#.NET](https://www.udemy.com/course/autocad-programming-using-csharp-beginner-course)
+
 ### Bookmarks
 - [Custom Ribbon with Menu](https://forums.autodesk.com/t5/net/custom-menu-and-ribbon-with-code/m-p/10511529#M69850)
 
