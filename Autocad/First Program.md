@@ -32,3 +32,4 @@
 - Compile this app to generate dll file
 - Open AutoCAD app and Enter `netload` command and Select this dll file to load
 - Try `Hello` command to see if it’s working as expected
+- Next Do [Debug Setup](https://github.com/NodesAutomations/CSharp/blob/master/Autocad/AutoCAD%20Debugging%20Setup.md) for easier Testing
