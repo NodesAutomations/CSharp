@@ -3,7 +3,7 @@
 - Create new C# Class library targetting `.NET Framework 4.8`
 - Add AutoCAD Reference : `AcCoreMgd.dll`, `AcDBMgd.dll`, `AcMgd.dll`
     - You can Add this autocad Reference manually and setting property Copy to local to false
-    - My favourite method is just add nuget package `[AutoCAD.NET](http://AutoCAD.NET)`  from [Nuget.org](http://Nuget.org) or Nodes Nuget Repo
+    - My favourite method is just add nuget package `AutoCAD.NET`  from [Nuget.org](http://Nuget.org) or Nodes Nuget Repo
 - Now Delete existing class from C# project and Add new Hello.cs with below code, make sure class will remain public
     
     ```csharp
