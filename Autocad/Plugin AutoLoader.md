@@ -25,7 +25,7 @@
 - `<ComponentEntry AppName="CadApp" ModuleName="/CadApp.dll" AppDescription="CadApp" />`
    - you can specify your main Dll file here, You only need to specify your starting dll file, all other dependent dll file will load automatically
    - Additionally you can also use `LoadOnCommandInvocation="True"` argument to only active plugin when required using specific command
-
+- for Product Code and Upgrade Code, match it with installer if possible otherwise create new one from Visual studio
 
 ### Xml Package to Load Dll file
 ```xml
