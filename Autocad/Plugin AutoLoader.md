@@ -43,3 +43,5 @@
    </Components>
 </ApplicationPackage>
 ```
+### Simplified version of Package xml
+![image](https://user-images.githubusercontent.com/60865708/209293207-25a07f6e-e8f6-4e19-aeae-b8e2e29da5f7.png)
