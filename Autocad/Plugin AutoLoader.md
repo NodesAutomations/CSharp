@@ -88,3 +88,4 @@ Additional References
 - [Autodesk Autoloader](https://adndevblog.typepad.com/autocad/2013/01/autodesk-autoloader-white-paper.html)
 - [AutoCAD Package Contents.xml Reference](https://help.autodesk.com/view/ACD/2023/ENU/?guid=GUID-BC76355D-682B-46ED-B9B7-66C95EEF2BD0)
 - [Develop your own command in AutoCAD e09: AutoLoader mechanism (part 1)](https://youtu.be/w_SQ-b72jUw)
+- [About Installing and Uninstalling Plug-In Applications](http://docs.autodesk.com/ACD/2013/ENU/index.html?url=files/GUID-5E50A846-C80B-4FFD-8DD3-C20B22098008.htm,topicNumber=d30e503195)
