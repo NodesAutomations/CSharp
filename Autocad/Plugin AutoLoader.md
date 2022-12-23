@@ -11,6 +11,9 @@
 ### Xml Package
 - `<RuntimeRequirements OS="Win64" SeriesMin="20.0" SeriesMax="R23.0" />`
    - specify Os and Min and Max AutoCAD version for your Plugin, if this requirement is not met plugin won't load
+- `<ComponentEntry AppName="CadApp" ModuleName="/CadApp.dll" AppDescription="CadApp" />`
+   - you can specify your main Dll file here, You only need to specify your starting dll file, all other dependent dll file will load automatically
+   - Additionally you can also use `LoadOnCommandInvocation="True"` argument to only active plugin when required using specific command
 
 
 ### Xml Package to Load Dll file
