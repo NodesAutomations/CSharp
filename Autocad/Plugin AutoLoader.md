@@ -4,9 +4,20 @@
 
 ### Build your Plugin Bundle
 - Just Create new folder in Application Plugin with `AppName.bundle`
+- A plug-in can be deployed by placing it in one of the ApplicationPlugins or ApplicationAddins folders on a local drive.
+	- General Installation folder
+		- Windows: %PROGRAMFILES%\Autodesk\ApplicationPlugins
+		- Mac OS: /Applications/Autodesk/ApplicationAddins
+	- All Users Profile folders
+		- Windows: %ALLUSERSPROFILE%\Autodesk\ApplicationPlugins
+		- Mac OS: N/A
+	- User Profile folders
+		- Windows: %APPDATA%\Autodesk\ApplicationPlugins
+		- Mac OS: ~/Library/Application Support/Autodesk/ApplicationAddins
 - Create Package.xml file using below Code snippets
 - Add your application dll files and package.xml file in this folder
 - Start AutoCAD and Your package should be loaded automatically
+ 
 
 ### Xml Package
 - `<RuntimeRequirements OS="Win64" SeriesMin="20.0" SeriesMax="R23.0" />`
