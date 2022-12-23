@@ -72,3 +72,6 @@
 </ApplicationPackage>
 ```
 ![image](https://user-images.githubusercontent.com/60865708/209293207-25a07f6e-e8f6-4e19-aeae-b8e2e29da5f7.png)
+
+Additional References
+- [Autodesk Autoloader](https://adndevblog.typepad.com/autocad/2013/01/autodesk-autoloader-white-paper.html)
