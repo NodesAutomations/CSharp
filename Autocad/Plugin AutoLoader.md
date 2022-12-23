@@ -86,3 +86,4 @@
 
 Additional References
 - [Autodesk Autoloader](https://adndevblog.typepad.com/autocad/2013/01/autodesk-autoloader-white-paper.html)
+- [AutoCAD Package Contents.xml Reference](https://help.autodesk.com/view/ACD/2023/ENU/?guid=GUID-BC76355D-682B-46ED-B9B7-66C95EEF2BD0)
