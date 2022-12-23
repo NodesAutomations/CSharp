@@ -2,6 +2,12 @@
 - AutoCAD has functionality to Automatically load Plugings without using any registery editing or Modifying it's Starup Lisp File
 - This Involves creating application bundle packgage and puttint it in Application Plugin Folder
 
+### Build your Plugin Bundle
+- Just Create new folder in Application Plugin with `AppName.bundle`
+- Create Package.xml file using below Code snippets
+- Add your application dll files and package.xml file in this folder
+- Start AutoCAD and Your package should be loaded automatically
+
 ### Xml Package to Load Dll file
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
