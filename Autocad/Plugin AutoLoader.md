@@ -13,9 +13,6 @@
    <CompanyDetails Name="Autodesk University" Phone="+1 (123) 345-6789" Url="http://www.au.autodesk.com" Email="joshua.modglin@inmotioncon.com" />
    <Components>
       <RuntimeRequirements OS="Win64" SeriesMin="20.0" SeriesMax="R23.0" />
-      <ComponentEntry ModuleName="/CadApp.dll" AppName="CadApp" AppType="Dependency">
-         <RuntimeRequirements SupportPath=".\Contents\" />
-      </ComponentEntry>
       <ComponentEntry AppName="CadApp" ModuleName="/CadApp.dll" AppDescription="AU Solutions" LoadOnCommandInvocation="True">
          <Commands GroupName="NodesAutomations">
             <Command Global="LoadCadApp" Local="LoadCadApp" />
