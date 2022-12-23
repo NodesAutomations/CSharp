@@ -1,5 +1,6 @@
 ### Basics
-
+- AutoCAD has functionality to Automatically load Plugings without using any registery editing or Modifying it's Starup Lisp File
+- This Involves creating application bundle packgage and puttint it in Application Plugin Folder
 
 ### Xml Package to Load Dll file
 
