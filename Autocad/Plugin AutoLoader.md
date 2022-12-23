@@ -8,6 +8,11 @@
 - Add your application dll files and package.xml file in this folder
 - Start AutoCAD and Your package should be loaded automatically
 
+### Xml Package
+- `<RuntimeRequirements OS="Win64" SeriesMin="20.0" SeriesMax="R23.0" />`
+   - specify Os and Min and Max AutoCAD version for your Plugin, if this requirement is not met plugin won't load
+
+
 ### Xml Package to Load Dll file
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
