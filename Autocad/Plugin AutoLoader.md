@@ -60,12 +60,12 @@
    <CompanyDetails Name="Nodes Automations" Url="https://linktr.ee/NodesAutomations" Email="vivek@nodesautomations.com" />
    <Components>
       <RuntimeRequirements OS="Win64" SeriesMin="20.0" SeriesMax="R23.0" />
-      <ComponentEntry AppName="CadApp" Version="1.0.0" ModuleName="./CadApp.dll" AppDescription="CadApp" LoadOnCommandInvocation="True">
+      <ComponentEntry AppName="CadApp" Version="1.0.0" ModuleName="./Contents/CadApp.dll" AppDescription="CadApp" LoadOnCommandInvocation="True">
       <Commands GroupName="NodesAutomations">
             <Command Global="LoadCadApp" Local="LoadCadApp" />
          </Commands>
       </ComponentEntry>
-      <ComponentEntry AppName="CadAppUI" Version="1.0.0" ModuleName="./CadApp.cuix" AppDescription="Customization description" LoadOnCommandInvocation="True"/>
+      <ComponentEntry AppName="CadAppUI" Version="1.0.0" ModuleName="./Contents/CadApp.cuix" AppDescription="Customization description" LoadOnAppearance="False" LoadOnAutoCADStartup="True" />
    </Components>
 </ApplicationPackage>
 ```
