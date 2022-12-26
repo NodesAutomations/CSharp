@@ -28,3 +28,4 @@
 - From Solution Explorer, switch to Folder View
 - Open `StartUp.scr` and Update Dll file Path
 - Open `CadApp.csproj.user` file and Update AutoCAD Script file path in Command line Arguments
+- Unload and reload whole Project to update Project Properties
