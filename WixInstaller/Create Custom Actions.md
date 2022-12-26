@@ -72,7 +72,7 @@ In my last article where we discussed [how to implement a WiX installer upgrade]
 
 In order to create a WiX custom action, we first need to add a new **C# Custom Action project** to our solution. You’ll find the project template for this under Windows Installer XML:
 
-![How%20to%20create%20WiX%20custom%20actions%204b9618a03b1d46cab4b20d5c501b5136/csharp-custom-action.png](How%20to%20create%20WiX%20custom%20actions%204b9618a03b1d46cab4b20d5c501b5136/csharp-custom-action.png)
+![csharp-custom-action](https://user-images.githubusercontent.com/60865708/209531477-e1886408-2c7b-4ca6-b971-34f5cd1dcca4.png)
 
 Adding a C# Custom Action Project template to the solution.
 
@@ -96,11 +96,11 @@ This code will cause the license information form to be shown once the custom ac
 
 Since, we want to display a dialog to prompt the user to enter registration information, we first need to create the user interface. Start by adding a new Windows Form to your project.
 
-![How%20to%20create%20WiX%20custom%20actions%204b9618a03b1d46cab4b20d5c501b5136/windows-form.png](How%20to%20create%20WiX%20custom%20actions%204b9618a03b1d46cab4b20d5c501b5136/windows-form.png)
+![windows-form](https://user-images.githubusercontent.com/60865708/209531489-0eba2866-b1db-467c-986c-cff2e88d5891.png)
 
 The design of the form should resemble the following image:
 
-![How%20to%20create%20WiX%20custom%20actions%204b9618a03b1d46cab4b20d5c501b5136/winform-design.png](How%20to%20create%20WiX%20custom%20actions%204b9618a03b1d46cab4b20d5c501b5136/winform-design.png)
+![winform-design](https://user-images.githubusercontent.com/60865708/209531505-11fbb9bf-30ff-4dfd-bd4b-2f64ea357af8.png)
 
 The design of the Windows form
 
@@ -158,7 +158,7 @@ Before you can reference it in the WiX source file, we first need to add a refer
 
 In the Add Reference dialog, select the **Projects** tab and add the MyCustomAction project to the list of selected projects and components.
 
-![How%20to%20create%20WiX%20custom%20actions%204b9618a03b1d46cab4b20d5c501b5136/my-custom-action-project.png](How%20to%20create%20WiX%20custom%20actions%204b9618a03b1d46cab4b20d5c501b5136/my-custom-action-project.png)
+![my-custom-action-project](https://user-images.githubusercontent.com/60865708/209531522-eea6fef3-44e1-4ec1-963e-9654141887b6.png)
 
 Adding the MyCustomAction project to the list of selected projects and components
 
