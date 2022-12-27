@@ -36,3 +36,46 @@
             }
         }
 ```
+### Identifying block Name from the block reference
+Reference : https://adndevblog.typepad.com/autocad/2012/05/identifying-block-name-from-the-block-reference.html
+```csharp
+        [CommandMethod("blockName")]
+        static public void blockName()
+        {
+            Document doc = Application.DocumentManager.MdiActiveDocument;
+
+            Database db = doc.Database;
+
+            Editor ed = doc.Editor;
+
+            PromptEntityOptions options = new PromptEntityOptions("\nSelect block reference");
+
+            options.SetRejectMessage("\nSelect only block reference");
+
+            options.AddAllowedClass(typeof(BlockReference), false);
+
+            PromptEntityResult acSSPrompt = ed.GetEntity(options);
+
+            using (Transaction tx = db.TransactionManager.StartTransaction())
+            {
+                BlockReference blockRef = tx.GetObject(acSSPrompt.ObjectId, OpenMode.ForRead) as BlockReference;
+
+                BlockTableRecord block = null;
+
+                if (blockRef.IsDynamicBlock)
+                {
+                    //get the real dynamic block name.
+                    block = tx.GetObject(blockRef.DynamicBlockTableRecord, OpenMode.ForRead) as BlockTableRecord;
+                }
+                else
+                {
+                    block = tx.GetObject(blockRef.BlockTableRecord, OpenMode.ForRead) as BlockTableRecord;
+                }
+                if (block != null)
+                {
+                    ed.WriteMessage("Block name is : " + block.Name + "\n");
+                }
+                tx.Commit();
+            }
+        }
+```
