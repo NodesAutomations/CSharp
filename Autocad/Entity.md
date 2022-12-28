@@ -79,3 +79,44 @@ Reference : https://adndevblog.typepad.com/autocad/2012/05/identifying-block-nam
             }
         }
 ```
+
+### Code to Edit Block Attribute Value
+```csharp
+public static void SetBlockData()
+        {
+            //Using Specific Block Name
+            //var data = new BlockDataList();
+            //data.LoadBlockDataFromExcel();
+
+            Database database = HostApplicationServices.WorkingDatabase;
+            //Start Transaction
+            var cadTransaction = new CadTransaction();
+            BlockTableRecord btRecord = (BlockTableRecord)cadTransaction.Transaction.GetObject(SymbolUtilityServices.GetBlockModelSpaceId(database), OpenMode.ForRead);
+            foreach (ObjectId id in btRecord)
+            {
+                Entity entity = (Entity)cadTransaction.Transaction.GetObject(id, OpenMode.ForRead);
+
+                //Filter Block Entity
+                if (entity.Handle.ToString() == "2A3")
+                {
+                    BlockReference blockRef = cadTransaction.Transaction.GetObject(entity.ObjectId, OpenMode.ForRead) as BlockReference;
+                    var attributeCollection = blockRef.AttributeCollection;
+                    foreach (ObjectId attributeId in attributeCollection)
+                    {
+                        AttributeReference attributeReference = (AttributeReference)cadTransaction.Transaction.GetObject(attributeId, OpenMode.ForRead);
+
+                        if (attributeReference.Tag == "SIZE")
+                        {
+                            attributeReference.UpgradeOpen();
+                            attributeReference.TextString = "1000000";
+                            attributeReference.DowngradeOpen();
+                        }
+                    }
+
+                }
+            }
+
+            //End Transaction
+            cadTransaction.Commit();
+        }
+```
