@@ -81,6 +81,7 @@ Reference : https://adndevblog.typepad.com/autocad/2012/05/identifying-block-nam
 ```
 
 ### Code to Edit Block Attribute Value
+Refer : https://www.keanw.com/2007/07/updating-a-spec.html
 ```csharp
 public static void SetBlockData()
         {
