@@ -17,12 +17,15 @@
 - `/t Acad` will make sure that new Drawing is Created with Acad Template, You can change your Template as per your Requirement here
 - `/b "C:\Users\Ryzen2600x\source\repos\FirstAutoCADApp\FirstAutoCADApp\StartUp.scr"`  command will automatically run Startup script after creating new drawing
     - Startup Script automatically netload your dll file for testing, you have to adjust dll file path
-    
+#### Startup Script
     ```
     netload
     C:\Users\Ryzen2600x\source\repos\FirstAutoCADApp\FirstAutoCADApp\bin\Debug\FirstAutoCADApp.dll
     ```
-
+### Open Specific Drawing For Testing
+```cmd
+"C:\Users\Ryzen2600x\source\repos\Template_AutoCAD_BasicApp_CSharp\CadApp\Sample Blocks.dwg" /nologo /b  "C:\Users\Ryzen2600x\source\repos\Template_AutoCAD_BasicApp_CSharp\CadApp\StartUp.scr"
+```
 ### Modification when you're Using AutoCAD Template
 - Open your Visual studio project
 - From Solution Explorer, switch to Folder View
