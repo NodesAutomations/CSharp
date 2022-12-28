@@ -23,8 +23,9 @@
     C:\Users\Ryzen2600x\source\repos\FirstAutoCADApp\FirstAutoCADApp\bin\Debug\FirstAutoCADApp.dll
     ```
 ### Open Specific Drawing For Testing
+- You have to specify file path for that drawing and remove template arguments
 ```cmd
-"C:\Users\Ryzen2600x\source\repos\Template_AutoCAD_BasicApp_CSharp\CadApp\Sample Blocks.dwg" /nologo /b  "C:\Users\Ryzen2600x\source\repos\Template_AutoCAD_BasicApp_CSharp\CadApp\StartUp.scr"
+"C:\Users\Ryzen2600x\source\repos\Template_AutoCAD_BasicApp_CSharp\CadApp\Sample Blocks.dwg" /nologo /b "C:\Users\Ryzen2600x\source\repos\Template_AutoCAD_BasicApp_CSharp\CadApp\StartUp.scr"
 ```
 ### Modification when you're Using AutoCAD Template
 - Open your Visual studio project
