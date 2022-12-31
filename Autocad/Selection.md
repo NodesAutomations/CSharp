@@ -1,17 +1,19 @@
 ### Code for object selection
 ```csharp
-[CommandMethod(nameof(ObjectSelection))]
+        [CommandMethod(nameof(ObjectSelection))]
         public void ObjectSelection()
         {
-            PromptEntityResult per = Application.DocumentManager.MdiActiveDocument.Editor.GetEntity("Select Object");
+            Editor editor = Application.DocumentManager.MdiActiveDocument.Editor;
 
-            if (per.Status==PromptStatus.OK)
+            PromptEntityResult per = editor.GetEntity("Select Object");
+
+            if (per.Status == PromptStatus.OK)
             {
-                Application.DocumentManager.MdiActiveDocument.Editor.WriteMessage("An Object is selected");
+                editor.WriteMessage("An Object is selected");
             }
             else
             {
-                Application.DocumentManager.MdiActiveDocument.Editor.WriteMessage("You fool, you have to do it again");
+                editor.WriteMessage("You fool, you have to do it again");
             }
         }
 ```
