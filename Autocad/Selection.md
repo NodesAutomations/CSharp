@@ -17,3 +17,20 @@
             }
         }
 ```
+### Code to mutiple object Selection
+```csharp
+// Method for multi Select
+        [CommandMethod(nameof(MultipleObjectSelection))]
+        public void MultipleObjectSelection()
+        {
+            Editor editor = Application.DocumentManager.MdiActiveDocument.Editor;
+
+            PromptStatus status = PromptStatus.OK;
+            while (status==PromptStatus.OK)
+            {
+                PromptEntityResult prompt = editor.GetEntity("\nSelect Object");
+                editor.WriteMessage("\nAn object is selected");
+                status = prompt.Status;
+            }
+        }
+```
