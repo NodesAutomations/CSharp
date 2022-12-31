@@ -28,3 +28,4 @@ Once an Object Id is obtained, the GetObject function is used to open the object
 - Write : Opens an object for write if it's not already open
 - Notify : Opens an object for notification when it's closed, open for read, or open for write, but not when it is already open for notify.
 
+> You should open an object in the mode that is best for the situation in which the object will be accessed. Opening an object for write introduces additional overhead than you might need due to the creation of undo records. If you are unsure if the object you are opening is the one you want to work with, you should open it for read and then use the UpgradeOpen function to change from read to write mode.
