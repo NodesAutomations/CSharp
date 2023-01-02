@@ -1,6 +1,9 @@
 ### Code to insert Table of Blocks
 ```csharp
-[CommandMethod("CBT")]
+        private const double rowHeight = 3.0, colWidth = 5.0;
+        private const double textHeight = rowHeight * 0.25;
+        
+        [CommandMethod("CBT")]
         static public void CreateBlockTable()
         {
             var doc = Application.DocumentManager.MdiActiveDocument;
