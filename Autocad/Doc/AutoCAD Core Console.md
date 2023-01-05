@@ -4,3 +4,6 @@
 - It's very much suited for any batch operation
 - Path : `C:\Program Files\Autodesk\AutoCAD 2015\accoreconsole.exe`
 - ![image](https://user-images.githubusercontent.com/60865708/210784675-3b13e4bc-80e9-4a39-8991-990451e5300b.png)
+
+### Reference
+- https://www.keanw.com/2012/02/the-autocad-2013-core-console.html
