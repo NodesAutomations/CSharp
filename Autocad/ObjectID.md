@@ -26,3 +26,4 @@ static public void SelectByID()
     transaction.Commit();
 }
 ```
+Refer: https://forums.autodesk.com/t5/net/get-and-object-as-implied-selection-by-its-handle/td-p/5767852
