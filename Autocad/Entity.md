@@ -121,3 +121,48 @@ public static void SetBlockData()
             cadTransaction.Commit();
         }
 ```
+
+### Code to Highlight entity by entityHandle
+```csharp
+[CommandMethod("TEST")]
+        public static void Test()
+        {
+            var doc = Application.DocumentManager.MdiActiveDocument;
+            var db = doc.Database;
+            var ed = doc.Editor;
+            var pr = ed.GetString("\nEnter Handle: ");
+            if (pr.Status != PromptStatus.OK)
+                return;
+            if (long.TryParse(
+                pr.StringResult,
+                System.Globalization.NumberStyles.HexNumber,
+                System.Globalization.CultureInfo.CurrentCulture,
+                out long value))
+            {
+                if (db.TryGetObjectId(new Handle(value), out ObjectId id))
+                {
+                    if (id.ObjectClass.IsDerivedFrom(RXObject.GetClass(typeof(Entity))))
+                    {
+                        using (var tr = db.TransactionManager.StartTransaction())
+                        {
+                            var entity = (Entity)tr.GetObject(id, OpenMode.ForWrite);
+                            entity.Highlight();
+                            tr.Commit();
+                        }
+                    }
+                    else
+                    {
+                        ed.WriteMessage("\nNot an entity Handle.");
+                    }
+                }
+                else
+                {
+                    ed.WriteMessage("\nInvalid Handle.");
+                }
+            }
+            else
+            {
+                ed.WriteMessage("\nNot an hex number");
+            }
+        }
+```
