@@ -12,6 +12,28 @@
               Console.WriteLine("B is bigger");
           }
 ```
+### Nested If Else
+```csharp
+if (boolean-expression-1)
+{
+	// statements executed if boolean-expression-1 is true
+}
+else if (boolean-expression-2)
+{
+	// statements executed if boolean-expression-2 is true
+}
+else if (boolean-expression-3)
+{
+	// statements executed if boolean-expression-3 is true
+}
+.
+.
+.
+else
+{
+	// statements executed if all above expressions are false
+}
+```
 
 ### Switch
 ### Overview
