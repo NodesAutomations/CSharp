@@ -14,24 +14,19 @@
 ```
 ### Nested If Else
 ```csharp
-if (boolean-expression-1)
+int number = 12;
+
+if (number < 5)
 {
-	// statements executed if boolean-expression-1 is true
+	Console.WriteLine("{0} is less than 5", number);
 }
-else if (boolean-expression-2)
+else if (number > 5)
 {
-	// statements executed if boolean-expression-2 is true
+	Console.WriteLine("{0} is greater than 5", number);
 }
-else if (boolean-expression-3)
-{
-	// statements executed if boolean-expression-3 is true
-}
-.
-.
-.
 else
 {
-	// statements executed if all above expressions are false
+	Console.WriteLine("{0} is equal to 5");
 }
 ```
 
