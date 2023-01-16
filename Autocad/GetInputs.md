@@ -24,3 +24,17 @@
       property.Value = inputPrompt.Value;
   }
 ```
+### Code to get Point from user
+```csharp
+ public static Point2D GetPoint2D(string message = "\nSpecify Base Point")
+        {
+            var doc = DocumentUtil.GetActiveDocument();
+            var pPtRes = doc.Editor.GetPoint(new PromptPointOptions(message));
+            // Exit if the user presses ESC or cancels the command
+            if (pPtRes.Status == PromptStatus.Cancel)
+            {
+                return null;
+            }
+            return new Point2D(pPtRes.Value.X, pPtRes.Value.Y);
+        }
+```
