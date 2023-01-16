@@ -35,3 +35,57 @@
             } // <- end using: disposing the transaction and all objects opened with it (block table) or added to it (block reference)
         }
 ```
+
+### Code to Update Dynamic Property of selected block
+```csharp
+[CommandMethod("TEST")]
+public void Test()
+{
+    var doc = Application.DocumentManager.MdiActiveDocument;
+    var dataBase = doc.Database;
+    var editor = doc.Editor;
+
+    //Code to select Block
+    PromptEntityResult prompt = editor.GetEntity("Select one Dynamic Block To Update");
+
+    if (prompt.Status != PromptStatus.OK)
+    {
+        editor.WriteMessage("nothing selected");
+        return;
+    }
+
+    //Get Block From object Id
+
+    using (Transaction transaction = dataBase.TransactionManager.StartTransaction())
+    {
+        //Get entity using object id
+        Entity entity = (Entity)transaction.GetObject(prompt.ObjectId, OpenMode.ForRead);
+
+        BlockReference blockRef = transaction.GetObject(entity.ObjectId, OpenMode.ForRead) as BlockReference;
+        BlockTableRecord block = null;
+
+        if (blockRef.IsDynamicBlock)
+        {
+            block = transaction.GetObject(blockRef.DynamicBlockTableRecord, OpenMode.ForRead) as BlockTableRecord;
+
+            editor.WriteMessage($"\n{block.Name} Dynamic Block selected");
+
+            foreach (DynamicBlockReferenceProperty property in blockRef.DynamicBlockReferencePropertyCollection)
+            {
+                //Only Focus on visible properties
+                if (property.Show)
+                {
+                    //Code to update property
+                    var inputPrompt = editor.GetDouble(new PromptDoubleOptions($"\nEnter New Value for {property.PropertyName}"));
+
+                    if (inputPrompt.Status == PromptStatus.OK)
+                    {
+                        property.Value = inputPrompt.Value;
+                    }
+                }
+            }
+        }
+        transaction.Commit();
+    }
+}
+```
