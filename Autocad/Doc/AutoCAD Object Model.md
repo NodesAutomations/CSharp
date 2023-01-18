@@ -75,7 +75,7 @@ public static void ListEntities()
 
     using (Transaction transaction = doc.TransactionManager.StartTransaction())
     {
-        // Open the Block table record for read
+        // Open the Block table for read
         BlockTable blockTable = transaction.GetObject(doc.Database.BlockTableId, OpenMode.ForRead) as BlockTable;
 
         // Open the Block table record Model space for read
