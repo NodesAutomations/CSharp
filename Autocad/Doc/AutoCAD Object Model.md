@@ -1,6 +1,8 @@
 ### AutoCAD Object Model As per my personal Understanding
 ```mermaid
 graph TD
-A-->B
-B-->C
+A[ACADApplication]-->B[DocumentManager]
+B-->C[ActiveDocument]
+C-->D[DataBase]
+C-->E[Editor]
 ```
