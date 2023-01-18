@@ -23,6 +23,6 @@ The Document object, which is actually an AutoCAD drawing, is part of the Docume
 graph LR
 Document-->Database
 Document-->Editor
-Document-->Transaction Manager
+Document-->TransactionManager
 Document-->StatusBar
 ```
