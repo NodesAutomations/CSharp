@@ -64,3 +64,46 @@ LayoutDictionary-->Object
 - To modify or query objects, obtain a reference to the object from the appropriate block table record, and then use the methods or properties of the object itself. Each graphical object has methods that perform most of the same functionality as the AutoCAD editing commands such as Copy, Erase, Move, Mirror, and so forth.
 - Nongraphical objects are the invisible (informational) objects that are part of a drawing, such as Layers, Linetypes, Dimension styles, Table styles, and so forth.
 - To create a new symbol table records, use the Add method on the owner table or use the SetAt method to add a dictionary to the named object dictionary. To modify or query these objects, use the methods or properties of the object itself.
+
+### Sample code to understand AutoCAD object hierarchy
+```csharp
+[CommandMethod("ListEntities")]
+public static void ListEntities()
+{
+    // Get the current document and database, and start a transaction
+    Document doc = Application.DocumentManager.MdiActiveDocument;
+
+    using (Transaction acTrans = doc.TransactionManager.StartTransaction())
+    {
+        // Open the Block table record for read
+        BlockTable acBlkTbl;
+        acBlkTbl = acTrans.GetObject(doc.Database.BlockTableId,
+                                     OpenMode.ForRead) as BlockTable;
+
+        // Open the Block table record Model space for read
+        BlockTableRecord acBlkTblRec;
+        acBlkTblRec = acTrans.GetObject(acBlkTbl[BlockTableRecord.ModelSpace],
+                                        OpenMode.ForRead) as BlockTableRecord;
+
+        int nCnt = 0;
+        doc.Editor.WriteMessage("\nModel space objects: ");
+
+        // Step through each object in Model space and
+        // display the type of object found
+        foreach (ObjectId acObjId in acBlkTblRec)
+        {
+            doc.Editor.WriteMessage("\n" + acObjId.ObjectClass.DxfName);
+
+            nCnt = nCnt + 1;
+        }
+
+        // If no objects are found then display a message
+        if (nCnt == 0)
+        {
+            doc.Editor.WriteMessage("\n No objects found");
+        }
+
+        // Dispose of the transaction
+    }
+}
+```
