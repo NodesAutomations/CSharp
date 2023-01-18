@@ -40,9 +40,15 @@ Document-->StatusBar
 - Entities in the database represent graphical objects within a drawing. Lines, circles, arcs, text, hatch, and polylines are examples of entities. A user can see an entity on the screen and can manipulate it.
 ```mermaid
 graph TD
-Database-->|Tables|BlockTable
+Database-->|Symbol Tables|BlockTable
 BlockTable-->BlockTableRecord
 BlockTableRecord-->Entity
 Database-->|Named Dictionaries|LayoutDictionary
 LayoutDictionary-->Object
 ```
+- Symbol table and dictionary objects provide access to nongraphical objects (blocks, layers, linetypes, layouts, and so forth).
+- Each drawing contains a set of nine fixed symbol tables, whereas the number of dictionaries in a drawing can vary based on the features and types of applications used in AutoCAD. New symbol tables cannot be added to a database.
+- Examples of symbol tables are the layer table (LayerTable), which contains layer table records, and the block table (BlockTable), which contains block table records.
+- All graphical entities (lines, circles, arcs, and so forth) are owned by a block table record. 
+- A dictionary is a container object which can contain any AutoCAD object or an XRecord. Dictionaries are stored either in the database under the named object dictionary or as an extension dictionary of a table record or graphical entity. The named object dictionary is the master table for all of the dictionaries associated with a database. Unlike symbol tables, new dictionaries can be created and added to the named object dictionary.
+> Dictionary objects cannot contain drawing entities.
