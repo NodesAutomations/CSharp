@@ -9,9 +9,14 @@ C-->|All data in sepearate tables|D[DataBase]
 D-->|Contain all Entities|F[BLock Table]
 D-->G[Layer Table]
 D-->H[DimStyle Table]
-F-->F1[Line]
-F-->F2[Circle]
-F-->F3[PolyLine]
+F-->F1[Model Space]
+F-->F2[Paper Space]
+F1-->F11[Line]
+F1-->F12[Circle]
+F1-->F13[PolyLine]
+F2-->F21[Line]
+F2-->F22[Circle]
+F2-->F23[PolyLine]
 ```
 - Reference : [Official Docs](http://docs.autodesk.com/ACD/2010/ENU/AutoCAD%20.NET%20Developer%27s%20Guide/index.html?url=WS73099cc142f48755-5c83e7b1120018de8c0-233d.htm,topicNumber=d0e1788)
 
