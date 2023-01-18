@@ -39,6 +39,7 @@ Document-->StatusBar
 - Contains all graphical and nongraphical objects. Some of the objects contained in the database are entities, symbol tables, and named dictionaries. 
 - Entities in the database represent graphical objects within a drawing. Lines, circles, arcs, text, hatch, and polylines are examples of entities. A user can see an entity on the screen and can manipulate it.
 ```mermaid
+graph TD
 Database-->|Tables|BlockTable
 BlockTable-->BlockTableRecord
 BlockTableRecord-->Entity
