@@ -16,7 +16,7 @@ Each object contain within a database is assigned a several unique ids. The uniq
 - Entity Handles stays persistent between AutoCAD sessions.
 - if you close your drawing and reopen it again even after few years, each object entity handles wills stays sames
 - so entity handles are best way if you need to transfer entity data to external files, you can reuse this handle to update data again if required
-
+> The handles of objects change the value when you copy and past a entity to another drawing, for example. (You can do a simple test to confirm).
 ### Obtain an ObjectId
 As you work with objects, you will need to obtain an ObjectId first before you can open the object to query or edit it. An ObjectId is assigned to an existing object in the database when the drawing file is opened, and new objects are assigned an ObjectId when they are first created. An ObjectId is commonly obtained for an existing object in the database by:
 - Using a member property of the Database object, such as Clayer which retrieves the Object ID for the current layer
