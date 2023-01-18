@@ -13,7 +13,25 @@
             return pStrRes.StringResult;
         }
 ```
+### Code to Get Keyword from User
+```csharp
+[CommandMethod("GetKeywordFromUser")]
+public static void GetKeywordFromUser()
+{
+    Document doc = Application.DocumentManager.MdiActiveDocument;
 
+    PromptKeywordOptions keywordPromptOptions = new PromptKeywordOptions("");
+    keywordPromptOptions.Message = "\nEnter an option ";
+    keywordPromptOptions.Keywords.Add("Line");
+    keywordPromptOptions.Keywords.Add("Circle");
+    keywordPromptOptions.Keywords.Add("Arc");
+    keywordPromptOptions.AllowNone = false;
+
+    PromptResult pKeyRes = doc.Editor.GetKeywords(keywordPromptOptions);
+
+    Application.ShowAlertDialog("Entered keyword: " + pKeyRes.StringResult);
+}
+```
 ### Code to Get Double value from User
 ```csharp
   //Code to update property
