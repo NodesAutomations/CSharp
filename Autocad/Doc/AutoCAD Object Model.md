@@ -1,6 +1,6 @@
 ### AutoCAD Object Model As per my personal Understanding
 ```mermaid
-graph LR
+graph TD
 A[ACAD Application]-->B[Document Manager]
 B-->C[Active Document]
 C-->E[Editor]
