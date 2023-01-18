@@ -17,7 +17,15 @@ F-->F3[PolyLine]
 ### Application Object
 - From the Application object, you can access the main window as well as any open drawing.
 - For example, the Application object has a DocumentManager property that returns the DocumentCollection object. This object provides access to the the drawings that are currently open in AutoCAD and allows you to create, save and open drawing files. Other properties of the Application object provide access to the application-specific data such as InfoCenter, the main window, and the status bar.The MainWindow property allows access to the application name, size, location, and visibility.
-
+```mermaid
+graph LR
+Application-->DocumentManager
+Application-->MainWindow
+Application-->Menubar
+Application-->Preferences
+Application-->StatusBar
+Application-->UserConfiguration
+```
 ### Document Object
 The Document object, which is actually an AutoCAD drawing, is part of the DocumentCollection object and provides access to the Database object which is associated with the Document object. The Database object contains all of the graphical and most of the nongraphical AutoCAD objects.
 ```mermaid
