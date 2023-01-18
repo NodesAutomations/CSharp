@@ -1,5 +1,42 @@
 ### Code to loop through each entity
 ```csharp
+[CommandMethod("ListEntities")]
+public static void ListEntities()
+{
+    // Get the current document and database, and start a transaction
+    Document doc = Application.DocumentManager.MdiActiveDocument;
+
+    using (Transaction transaction = doc.TransactionManager.StartTransaction())
+    {
+        // Open the Block table for read
+        BlockTable blockTable = transaction.GetObject(doc.Database.BlockTableId, OpenMode.ForRead) as BlockTable;
+
+        // Open the Block table record Model space for read
+        BlockTableRecord blockTableRecord = transaction.GetObject(blockTable[BlockTableRecord.ModelSpace], OpenMode.ForRead) as BlockTableRecord;
+
+        int nCnt = 0;
+        doc.Editor.WriteMessage("\nModel space objects: ");
+
+        // Step through each object in Model space and
+        // display the type of object found
+        foreach (ObjectId objectId in blockTableRecord)
+        {
+            doc.Editor.WriteMessage("\n" + objectId.ObjectClass.DxfName);
+
+            nCnt = nCnt + 1;
+        }
+
+        // If no objects are found then display a message
+        if (nCnt == 0)
+        {
+            doc.Editor.WriteMessage("\n No objects found");
+        }
+
+        // Dispose of the transaction
+    }
+}
+```
+```csharp
 [CommandMethod("ModelSpaceIterator")]
         public static void ModelSpaceIterator_Method()
         {
