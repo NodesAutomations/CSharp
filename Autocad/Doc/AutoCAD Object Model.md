@@ -8,4 +8,7 @@ C-->E[Editor]
 D-->|Contain all Entities|F[BLock Table]
 D-->G[Layer Table]
 D-->H[DimStyle Table]
+F-->F1[Line]
+F-->F2[Circle]
+F-->F3[PolyLine]
 ```
