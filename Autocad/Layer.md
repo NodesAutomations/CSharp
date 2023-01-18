@@ -25,27 +25,27 @@ public static void IterateLayers()
 ### Check if Layer Exist
 ```csharp
 [CommandMethod("FindMyLayer")]
-        public static void FindMyLayer()
+public static void FindMyLayer()
+{
+    // Get the current document and database, and start a transaction
+    Document doc = Application.DocumentManager.MdiActiveDocument;
+
+    using (Transaction transaction = doc.TransactionManager.StartTransaction())
+    {
+        // Returns the layer table for the current database
+        LayerTable layerTable = transaction.GetObject(doc.Database.LayerTableId, OpenMode.ForRead) as LayerTable;
+
+        // Check to see if MyLayer exists in the Layer table
+        if (layerTable.Has("MyLayer") != true)
         {
-            // Get the current document and database, and start a transaction
-            Document doc = Application.DocumentManager.MdiActiveDocument;
-
-            using (Transaction transaction = doc.TransactionManager.StartTransaction())
-            {
-                // Returns the layer table for the current database
-                LayerTable layerTable = transaction.GetObject(doc.Database.LayerTableId, OpenMode.ForRead) as LayerTable;
-
-                // Check to see if MyLayer exists in the Layer table
-                if (layerTable.Has("MyLayer") != true)
-                {
-                    doc.Editor.WriteMessage("\n'MyLayer' does not exist");
-                }
-                else
-                {
-                    doc.Editor.WriteMessage("\n'MyLayer' exists");
-                }
-
-                // Dispose of the transaction
-            }
+            doc.Editor.WriteMessage("\n'MyLayer' does not exist");
         }
+        else
+        {
+            doc.Editor.WriteMessage("\n'MyLayer' exists");
+        }
+
+        // Dispose of the transaction
+    }
+}
 ```
