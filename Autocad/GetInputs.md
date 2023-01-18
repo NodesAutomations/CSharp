@@ -25,6 +25,7 @@ public static void GetKeywordFromUser()
     keywordPromptOptions.Keywords.Add("Line");
     keywordPromptOptions.Keywords.Add("Circle");
     keywordPromptOptions.Keywords.Add("Arc");
+    keywordPromptOptions.Keywords.Default = "Arc";
     keywordPromptOptions.AllowNone = false;
 
     PromptResult pKeyRes = doc.Editor.GetKeywords(keywordPromptOptions);
