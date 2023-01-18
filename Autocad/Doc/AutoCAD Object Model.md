@@ -4,6 +4,7 @@ graph TD
 A[ACAD Application]-->B[Document Manager]
 B-->C[Active Document]
 C-->E[Editor]
+C-->C3[Transaction Manager]
 C-->|All data in sepearate tables|D[DataBase]
 D-->|Contain all Entities|F[BLock Table]
 D-->G[Layer Table]
