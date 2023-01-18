@@ -73,26 +73,22 @@ public static void ListEntities()
     // Get the current document and database, and start a transaction
     Document doc = Application.DocumentManager.MdiActiveDocument;
 
-    using (Transaction acTrans = doc.TransactionManager.StartTransaction())
+    using (Transaction transaction = doc.TransactionManager.StartTransaction())
     {
         // Open the Block table record for read
-        BlockTable acBlkTbl;
-        acBlkTbl = acTrans.GetObject(doc.Database.BlockTableId,
-                                     OpenMode.ForRead) as BlockTable;
+        BlockTable blockTable = transaction.GetObject(doc.Database.BlockTableId, OpenMode.ForRead) as BlockTable;
 
         // Open the Block table record Model space for read
-        BlockTableRecord acBlkTblRec;
-        acBlkTblRec = acTrans.GetObject(acBlkTbl[BlockTableRecord.ModelSpace],
-                                        OpenMode.ForRead) as BlockTableRecord;
+        BlockTableRecord blockTableRecord = transaction.GetObject(blockTable[BlockTableRecord.ModelSpace], OpenMode.ForRead) as BlockTableRecord;
 
         int nCnt = 0;
         doc.Editor.WriteMessage("\nModel space objects: ");
 
         // Step through each object in Model space and
         // display the type of object found
-        foreach (ObjectId acObjId in acBlkTblRec)
+        foreach (ObjectId objectId in blockTableRecord)
         {
-            doc.Editor.WriteMessage("\n" + acObjId.ObjectClass.DxfName);
+            doc.Editor.WriteMessage("\n" + objectId.ObjectClass.DxfName);
 
             nCnt = nCnt + 1;
         }
