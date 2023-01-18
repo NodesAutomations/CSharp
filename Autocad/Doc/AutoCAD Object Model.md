@@ -1,6 +1,6 @@
 ### AutoCAD Object Model As per my personal Understanding
 ```mermaid
-graph TD
+graph LR
 A[ACAD Application]-->B[Document Manager]
 B-->C[Active Document]
 C-->|All data in sepearate tables|D[DataBase]
