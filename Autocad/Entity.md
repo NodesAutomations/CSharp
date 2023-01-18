@@ -22,7 +22,6 @@ public static void ListEntities()
         foreach (ObjectId objectId in blockTableRecord)
         {
             doc.Editor.WriteMessage("\n" + objectId.ObjectClass.DxfName);
-
             nCnt = nCnt + 1;
         }
 
