@@ -18,6 +18,11 @@
         }
 ```
 ### Code to use Existing Selection
+The PickFirst selection set is created when you select objects prior to starting a command. Several conditions must be present in order to obtain the objects of a PickFirst selection set, these conditions are:
+- PICKFIRST system variable must be set to 1
+- UsePickSet command flag must be defined with the command that should use the Pickfirst selection set
+- Call the SelectImplied method to obtain the PickFirst selection set
+The SetImpliedSelection method is used to clear the current PickFirst selection set.
 ```csharp
 [CommandMethod("TEST", CommandFlags.UsePickSet)]
         public void Test()
