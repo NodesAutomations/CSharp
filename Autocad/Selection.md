@@ -1,4 +1,50 @@
-### Code for object selection
+### Code to Select Object On Screen
+```csharp
+ [CommandMethod("SelectObjectsOnscreen")]
+public static void SelectObjectsOnscreen()
+{
+    // Get the current document and database
+    Document doc = Application.DocumentManager.MdiActiveDocument;
+
+    // Start a transaction
+    using (Transaction transaction = doc.TransactionManager.StartTransaction())
+    {
+        // Request for objects to be selected in the drawing area
+        PromptSelectionResult selectionPromptResult = doc.Editor.GetSelection();
+
+        // If the prompt status is OK, objects were selected
+        if (selectionPromptResult.Status == PromptStatus.OK)
+        {
+            SelectionSet selectionSet = selectionPromptResult.Value;
+
+            // Step through the objects in the selection set
+            foreach (SelectedObject selectedObj in selectionSet)
+            {
+                // Check to make sure a valid SelectedObject object was returned
+                if (selectedObj != null)
+                {
+                    // Open the selected object for write
+                    Entity entity = transaction.GetObject(selectedObj.ObjectId,
+                                                     OpenMode.ForWrite) as Entity;
+
+                    if (entity != null)
+                    {
+                        // Change the object's color to Green
+                        entity.ColorIndex = 3;
+                    }
+                }
+            }
+
+            // Save the new object to the database
+            transaction.Commit();
+        }
+
+        // Dispose of the transaction
+    }
+}
+```
+
+### Code for Single Entity selection
 ```csharp
         [CommandMethod(nameof(ObjectSelection))]
         public void ObjectSelection()
