@@ -43,7 +43,29 @@ public static void SelectObjectsOnscreen()
     }
 }
 ```
+### Select Objects in specific region/window
+```csharp
+ [CommandMethod("SelectObjectsByCrossingWindow")]
+ public static void SelectObjectsByCrossingWindow()
+ {
+     // Get the current document editor
+     Editor editor = Application.DocumentManager.MdiActiveDocument.Editor;
 
+     // Create a crossing window from (2,2,0) to (10,8,0)
+     PromptSelectionResult  selectionPromptResult = editor.SelectCrossingWindow(new Point3d(2, 2, 0), new Point3d(100, 100, 0));
+
+     // If the prompt status is OK, objects were selected
+     if (selectionPromptResult.Status == PromptStatus.OK)
+     {
+         SelectionSet acSSet = selectionPromptResult.Value;
+         Application.ShowAlertDialog("Number of objects selected: " + acSSet.Count.ToString());
+     }
+     else
+     {
+         Application.ShowAlertDialog("Number of objects selected: 0");
+     }
+ }
+```
 ### Code for Single Entity selection
 ```csharp
         [CommandMethod(nameof(ObjectSelection))]
