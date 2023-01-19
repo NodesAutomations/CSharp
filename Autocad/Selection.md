@@ -126,6 +126,59 @@ The SetImpliedSelection method is used to clear the current PickFirst selection 
 
         }
 ```
+### Code to Merge Selection
+```csharp
+ [CommandMethod("MergeSelectionSets")]
+ public static void MergeSelectionSets()
+ {
+     // Get the current document editor
+     Editor editor = Application.DocumentManager.MdiActiveDocument.Editor;
+
+     // Request for objects to be selected in the drawing area
+     PromptSelectionResult selectionPromptResult = editor.GetSelection();
+
+     SelectionSet selectionSet1;
+     ObjectIdCollection objectIdCollection = new ObjectIdCollection();
+
+     // If the prompt status is OK, objects were selected
+     if (selectionPromptResult.Status == PromptStatus.OK)
+     {
+         // Get the selected objects
+         selectionSet1 = selectionPromptResult.Value;
+
+         // Append the selected objects to the ObjectIdCollection
+         objectIdCollection = new ObjectIdCollection(selectionSet1.GetObjectIds());
+     }
+
+     // Request for objects to be selected in the drawing area
+     selectionPromptResult = editor.GetSelection();
+
+     SelectionSet selectionSet2;
+
+     // If the prompt status is OK, objects were selected
+     if (selectionPromptResult.Status == PromptStatus.OK)
+     {
+         selectionSet2 = selectionPromptResult.Value;
+
+         // Check the size of the ObjectIdCollection, if zero, then initialize it
+         if (objectIdCollection.Count == 0)
+         {
+             objectIdCollection = new ObjectIdCollection(selectionSet2.GetObjectIds());
+         }
+         else
+         {
+             // Step through the second selection set
+             foreach (ObjectId acObjId in selectionSet2.GetObjectIds())
+             {
+                 // Add each object id to the ObjectIdCollection
+                 objectIdCollection.Add(acObjId);
+             }
+         }
+     }
+
+     Application.ShowAlertDialog("Number of objects selected: " + objectIdCollection.Count.ToString());
+ }
+```
 ### Code to mutiple object Selection
 ```csharp
 // Method for multi Select
