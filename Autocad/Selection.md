@@ -17,6 +17,42 @@
             }
         }
 ```
+### Code to use Existing Selection
+```csharp
+[CommandMethod("TEST", CommandFlags.UsePickSet)]
+        public void Test()
+        {
+            var doc = Application.DocumentManager.MdiActiveDocument;
+
+            // Check if objects are already selected
+            PromptSelectionResult selectionPrompt = doc.Editor.SelectImplied();
+
+            SelectionSet selectionSet;
+
+            // If the prompt status is OK, objects were selected before
+            // the command was started
+            if (selectionPrompt.Status == PromptStatus.OK)
+            {
+                selectionSet = selectionPrompt.Value;
+
+                Application.ShowAlertDialog("Number of objects in Pickfirst selection: " +
+                                            selectionSet.Count.ToString());
+            }
+            else
+            {
+                // Code to select Block
+                PromptEntityResult prompt = doc.Editor.GetEntity("Select Any Block");
+
+                if (prompt.Status != PromptStatus.OK)
+                {
+                    doc.Editor.WriteMessage("nothing selected");
+                    return;
+                }
+                
+            }
+
+        }
+```
 ### Code to mutiple object Selection
 ```csharp
 // Method for multi Select
