@@ -21,7 +21,19 @@ private static void Main()
     Console.ReadLine();
 }
 ```
+### Check if String Contain Match or not
+```csharp
+string Inputs = "Test,Test@,Test#,Test|,<Test>,*Test,Test\\T,=Test";
 
+foreach (var input in Inputs.Split(new char[] { ',' }))
+{
+	var match = Regex.IsMatch(input, @"[\\<>/?"":;*|,=`]");
+	if (match)
+	{
+	    Console.WriteLine("Invalid Name:" + input);
+	}
+}
+```
 ### Main Class
 
 ```csharp
