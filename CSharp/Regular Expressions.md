@@ -27,7 +27,7 @@ string Inputs = "Test,Test@,Test#,Test|,<Test>,*Test,Test\\T,=Test";
 
 foreach (var input in Inputs.Split(new char[] { ',' }))
 {
-	var match = Regex.IsMatch(input, @"[\\<>/?"":;*|,=`]");
+	var match = System.Text.RegularExpressions.Regex.IsMatch(input, @"[\\<>/?"":;*|,=`]");
 	if (match)
 	{
 	    Console.WriteLine("Invalid Name:" + input);
