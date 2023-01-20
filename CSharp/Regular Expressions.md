@@ -1,3 +1,27 @@
+### sample code to find all words that start with letter "M"
+```csharp
+private static void Main()
+{
+    // Create a pattern for a word that starts with letter "M"
+    string pattern = @"\b[M]\w+";
+    // Create a Regex
+    Regex rg = new Regex(pattern);
+
+    // Long string
+    string authors = "Mahesh Chand, Raj Kumar, Mike Gold, Allen O'Neill, Marshal Troll";
+
+    // Get all matches
+    MatchCollection matchedAuthors = rg.Matches(authors);
+    // Print all matched authors
+    for (int i = 0; i < matchedAuthors.Count; i++)
+    {
+	Console.WriteLine(matchedAuthors[i].Value);
+    }
+
+    Console.ReadLine();
+}
+```
+
 ### Main Class
 
 ```csharp
