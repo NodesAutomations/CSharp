@@ -60,3 +60,21 @@ public void Test()
 
 }
 ```
+### Code to get distance from user
+```csharp
+[CommandMethod("TEST")]
+public void Test()
+{
+    var doc = Application.DocumentManager.MdiActiveDocument;
+
+    PromptDistanceOptions promptDistanceOptions = new PromptDistanceOptions("Pick  Distance : ");
+    PromptDoubleResult promptDoubleResult = doc.Editor.GetDistance(promptDistanceOptions);
+
+    if (promptDoubleResult.Status == PromptStatus.OK)
+    {
+
+        doc.Editor.WriteMessage($"\nDistance:{promptDoubleResult.Value}");
+    }
+
+}
+```
