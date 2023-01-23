@@ -45,15 +45,18 @@ if (inputPrompt.Status == PromptStatus.OK)
 ```
 ### Code to get Point from user
 ```csharp
- public static Point2D GetPoint2D(string message = "\nSpecify Base Point")
- {
-     var doc = DocumentUtil.GetActiveDocument();
-     var pPtRes = doc.Editor.GetPoint(new PromptPointOptions(message));
-     // Exit if the user presses ESC or cancels the command
-     if (pPtRes.Status == PromptStatus.Cancel)
-     {
-         return null;
-     }
-     return new Point2D(pPtRes.Value.X, pPtRes.Value.Y);
- }
+[CommandMethod("TEST")]
+public void Test()
+{
+    var doc = Application.DocumentManager.MdiActiveDocument;
+
+    PromptPointOptions promptPointOptions = new PromptPointOptions("Pick Origin Point");
+    PromptPointResult pointResult = doc.Editor.GetPoint(promptPointOptions);
+    if (pointResult.Status==PromptStatus.OK)
+    {
+        Point3d point = pointResult.Value;
+        doc.Editor.WriteMessage($"\nPoint:{point.X},{point.Y},{point.Z}");
+    }
+
+}
 ```
