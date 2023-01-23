@@ -3,13 +3,36 @@ Overview
 - Struct is almost same as class type, it supports access modifiers, constructors, indexers, fields, nested types , operatores and properties.
 - Struct Don't support Inheritance like class
 
-### Define new Struct
+### Sample Code
 ```csharp
-public struct Student {  
-    int id;  
-    int zipcode;  
-    double salary;  
-}  
+using System;
+namespace CsharpStruct {
+ 
+  // defining struct
+  struct Employee {
+    public int id;
+
+    public void getId(int id) {
+      Console.WriteLine("Employee Id: " + id);
+    }
+  }
+ 
+  class Program {
+    static void Main(string[] args) {
+ 
+      // declare emp of struct Employee
+      Employee emp;
+      
+      // accesses and sets struct field
+      emp.id = 1;
+
+      // accesses struct methods
+      emp.getId(emp.id);
+
+      Console.ReadLine();
+    }
+  }
+}
 ```
 
 ### Difference between structs and classes
