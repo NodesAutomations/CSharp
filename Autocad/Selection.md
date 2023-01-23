@@ -66,22 +66,26 @@ public static void SelectObjectsOnscreen()
      }
  }
 ```
-### Code for Single Entity selection
+### Code for Single but specific type of Entity selection
+- Here in this code we need to specify type of entity that we need to select
 ```csharp
-        [CommandMethod(nameof(ObjectSelection))]
-        public void ObjectSelection()
+      [CommandMethod("TEST")]
+        public void Test()
         {
-            Editor editor = Application.DocumentManager.MdiActiveDocument.Editor;
+            var doc = Application.DocumentManager.MdiActiveDocument;
 
-            PromptEntityResult per = editor.GetEntity("Select Object");
-
-            if (per.Status == PromptStatus.OK)
+            var options = new PromptEntityOptions("\nSelect line: ");
+            options.SetRejectMessage("\nSelected entity is not a line.");
+            options.AddAllowedClass(typeof(Line), true);
+            var result = doc.Editor.GetEntity(options);
+            if (result.Status != PromptStatus.OK)
             {
-                editor.WriteMessage("An Object is selected");
+                return;
             }
-            else
+
+            using (var tr = doc.TransactionManager.StartTransaction())
             {
-                editor.WriteMessage("You fool, you have to do it again");
+                var line = (Line)tr.GetObject(result.ObjectId, OpenMode.ForRead);
             }
         }
 ```
