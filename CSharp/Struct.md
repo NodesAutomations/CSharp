@@ -34,7 +34,7 @@ namespace CsharpStruct {
   }
 }
 ```
-
+- We can also instantiate a struct using the new keyword
 ### Difference between structs and classes
 | structs | classes |
 | --- | --- |
