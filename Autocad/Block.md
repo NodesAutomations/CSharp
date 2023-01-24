@@ -95,3 +95,55 @@ public void Test()
 
 }
 ```
+### Code to Insert new block reference
+```csharp
+[CommandMethod("TEST")]
+public void Test()
+{
+    var doc = ActiveUtil.Document;
+
+    using (Transaction transaction = doc.TransactionManager.StartTransaction())
+    {
+        //Open block table
+        BlockTable blockTable = transaction.GetObject(doc.Database.BlockTableId, OpenMode.ForRead) as BlockTable;
+
+        //Create new Block if block didn't exist
+        if (!blockTable.Has("CircleBlock")) 
+        { //Create new block
+            BlockTableRecord blocktableRecord = new BlockTableRecord();
+            blocktableRecord.Name = "CircleBlock";
+
+            Circle circle = new Circle();
+            circle.Center = new Autodesk.AutoCAD.Geometry.Point3d(0, 0, 0);
+            circle.Radius = 2;
+
+            //Add geometry to block table record
+            blocktableRecord.AppendEntity(circle);
+
+            //Open Block table for Write and add block table record
+            blockTable.UpgradeOpen();
+            blockTable.Add(blocktableRecord);
+
+            //Add Blocktable record to current transaction
+            transaction.AddNewlyCreatedDBObject(blocktableRecord, true);
+        }
+
+        //Open Current Active space for writing
+        BlockTableRecord currentActiveSpaceBlockTableRecord = transaction.GetObject(doc.Database.CurrentSpaceId ,OpenMode.ForWrite) as BlockTableRecord;
+
+        //Get Access to CircleBlock
+        BlockTableRecord blockTableRecord = transaction.GetObject(blockTable["CircleBlock"], OpenMode.ForRead) as BlockTableRecord;
+
+        //Create new block reference using BlockTableRecord
+        BlockReference blockReference = new BlockReference(new Autodesk.AutoCAD.Geometry.Point3d(0, 0, 0), blockTableRecord.ObjectId);
+
+        //Add block reference to active space
+        currentActiveSpaceBlockTableRecord.AppendEntity(blockReference);
+
+        //Add blockReference to current transaction
+        transaction.AddNewlyCreatedDBObject(blockReference,true);
+
+        transaction.Commit();
+    }
+}
+```
