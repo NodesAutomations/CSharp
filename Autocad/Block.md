@@ -52,3 +52,46 @@ foreach (ObjectId attId in attCol)
     string value = attRef.TextString;
 }
 ```
+### Code to create new block
+```csharp
+[CommandMethod("TEST")]
+public void Test()
+{
+    var doc = ActiveUtil.Document;
+
+    using (Transaction transaction=doc.TransactionManager.StartTransaction())
+    {
+        //Open block table
+        BlockTable blockTable = transaction.GetObject(doc.Database.BlockTableId,OpenMode.ForRead) as BlockTable;
+
+        //Check if Block already exist
+        if (blockTable.Has("CircleBlock"))
+        {
+            transaction.Commit();
+            transaction.Dispose();
+            return;
+        }
+
+        //Create new block
+        BlockTableRecord blocktableRecord = new BlockTableRecord();
+        blocktableRecord.Name = "CircleBlock";
+
+        Circle circle = new Circle();
+        circle.Center=new Autodesk.AutoCAD.Geometry.Point3d(0,0,0);
+        circle.Radius = 2;
+
+        //Add geometry to block table record
+        blocktableRecord.AppendEntity(circle);
+
+        //Open Block table for Write and add block table record
+        blockTable.UpgradeOpen();
+        blockTable.Add(blocktableRecord);
+
+        //Add Blocktable record to current transaction
+        transaction.AddNewlyCreatedDBObject(blocktableRecord, true);
+
+        transaction.Commit();
+    }
+
+}
+```
