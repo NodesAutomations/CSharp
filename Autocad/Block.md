@@ -75,6 +75,7 @@ public void Test()
         //Create new block
         BlockTableRecord blocktableRecord = new BlockTableRecord();
         blocktableRecord.Name = "CircleBlock";
+        blocktableRecord.Units = acCurDb.Insunits;
 
         Circle circle = new Circle();
         circle.Center=new Autodesk.AutoCAD.Geometry.Point3d(0,0,0);
@@ -112,6 +113,7 @@ public void Test()
         { //Create new block
             BlockTableRecord blocktableRecord = new BlockTableRecord();
             blocktableRecord.Name = "CircleBlock";
+            blocktableRecord.Units = acCurDb.Insunits;
 
             Circle circle = new Circle();
             circle.Center = new Autodesk.AutoCAD.Geometry.Point3d(0, 0, 0);
@@ -166,6 +168,7 @@ public void RedefiningABlock()
         { //Create new block
             BlockTableRecord blocktableRecord = new BlockTableRecord();
             blocktableRecord.Name = "CircleBlock";
+            blocktableRecord.Units = acCurDb.Insunits;
 
             Circle circle = new Circle();
             circle.Center = new Autodesk.AutoCAD.Geometry.Point3d(0, 0, 0);
