@@ -1,17 +1,15 @@
 ### Code to get string from user
 ```csharp
- public static string GetString(string message="\nEnter Text",bool isAllowSpaces=false)
- {
-     var doc = DocumentUtil.GetActiveDocument();
-     PromptStringOptions pStrOpts = new PromptStringOptions(message);
-     pStrOpts.AllowSpaces = isAllowSpaces;
-     PromptResult pStrRes = doc.Editor.GetString(pStrOpts);
-     if (pStrRes.Status==PromptStatus.Cancel)
-     {
-         return null;
-     }
-     return pStrRes.StringResult;
- }
+PromptStringOptions promptStringOptions = new PromptStringOptions("Hello Enter Name Name:");
+promptStringOptions.AllowSpaces = true;
+promptStringOptions.DefaultValue = "VIVEK";
+PromptResult promptResult = ActiveUtil.Editor.GetString(promptStringOptions);
+
+if (promptResult.Status==PromptStatus.OK)
+{
+    ActiveUtil.Editor.WriteMessage("This works");
+
+}
 ```
 ### Code to Get Keyword from User
 ```csharp
