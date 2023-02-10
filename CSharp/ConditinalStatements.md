@@ -12,6 +12,18 @@
               Console.WriteLine("B is bigger");
           }
 ```
+### If Else in single line
+In C#, you can write a simple if-else statement in a single line using the conditional operator ? :. The syntax for this is as follows:
+
+```
+condition ? expression1 : expression2
+```
+Here, condition is a boolean expression that is evaluated. If condition is true, then expression1 is executed, and if condition is false, then expression2 is executed.
+Here's an example of using the conditional operator in a single-line if-else statement:
+```csharp
+ public double AspectRatio => (Height >= Width) ? Height / Width : Width / Height;
+ ```
+
 ### Nested If Else
 ```csharp
 int number = 12;
