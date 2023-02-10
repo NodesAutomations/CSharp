@@ -78,3 +78,72 @@ ref : https://www.keanw.com/2015/07/creating-a-table-of-autocad-blocks-using-net
             }
         }
 ```
+
+### Chat GPT code to generate table
+```csharp
+ [CommandMethod("GENERATETABLE")]
+        public void GenerateTable()
+        {
+            Document acDoc = Application.DocumentManager.MdiActiveDocument;
+            Database acCurDb = acDoc.Database;
+            Editor acEd = acDoc.Editor;
+
+            // Start a transaction
+            using (Transaction acTrans = acCurDb.TransactionManager.StartTransaction())
+            {
+                // Open the Block table for read
+                BlockTable acBlkTbl;
+                acBlkTbl = acTrans.GetObject(acCurDb.BlockTableId, OpenMode.ForRead) as BlockTable;
+
+                // Open the Block table record Model space for write
+                BlockTableRecord acBlkTblRec;
+                acBlkTblRec = acTrans.GetObject(acBlkTbl[BlockTableRecord.ModelSpace],
+                                                 OpenMode.ForWrite) as BlockTableRecord;
+
+                // Create a new table object
+                Table acTable = new Table();
+                acTable.TableStyle = acCurDb.Tablestyle;
+                acTable.NumRows = 5;
+                acTable.NumColumns = 4;
+
+                // Set the data in the table
+                acTable.Cells[0, 0].TextString = "Product ID";
+                acTable.Cells[0, 1].TextString = "Product Name";
+                acTable.Cells[0, 2].TextString = "Unit Price";
+                acTable.Cells[0, 3].TextString = "Units In Stock";
+                acTable.Cells[1, 0].TextString = "P001";
+                acTable.Cells[1, 1].TextString = "Product 1";
+                acTable.Cells[1, 2].TextString = "$10.00";
+                acTable.Cells[1, 3].TextString = "50";
+                acTable.Cells[2, 0].TextString = "P002";
+                acTable.Cells[2, 1].TextString = "Product 2";
+                acTable.Cells[2, 2].TextString = "$20.00";
+                acTable.Cells[2, 3].TextString = "100";
+                acTable.Cells[3, 0].TextString = "P003";
+                acTable.Cells[3, 1].TextString = "Product 3";
+                acTable.Cells[3, 2].TextString = "$30.00";
+                acTable.Cells[3, 3].TextString = "200";
+                acTable.Cells[4, 0].TextString = "P004";
+                acTable.Cells[4, 1].TextString = "Product 4";
+                acTable.Cells[4, 2].TextString = "$40.00";
+                acTable.Cells[4, 3].TextString = "300";
+
+                // Append the table to the modelspace
+                acBlkTblRec.AppendEntity(acTable);
+                acTrans.AddNewlyCreatedDBObject(acTable, true);
+
+                // Calculate the table height and width
+                double dTableHeight = acTable.Rows[0].Height + acTable.Rows[1].Height +
+                                      acTable.Rows[2].Height + acTable.Rows[3].Height +
+                                      acTable.Rows[4].Height;
+                double dTableWidth = acTable.Columns[0].Width + acTable.Columns[1].Width +
+                                     acTable.Columns[2].Width + acTable.Columns[3].Width;
+
+                // Set the insertion point for the table
+                Point3d insertPoint = new Point3d(0, 0, 0);
+                acTable.Position = insertPoint;
+
+                // Commit the changes and dispose of the transaction
+                acTrans.Commit();
+            }
+```
