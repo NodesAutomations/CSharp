@@ -173,6 +173,11 @@
                                     }
                                 }
                                 tb.GenerateLayout();
+                                var row = tb.Rows[0];
+                                if (row.IsMerged.HasValue && row.IsMerged.Value)
+                                {
+                                    tb.UnmergeCells(row);
+                                }
 
                                 ms.UpgradeOpen();
                                 ms.AppendEntity(tb);
