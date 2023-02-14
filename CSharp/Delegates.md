@@ -26,7 +26,9 @@ For example, Func<int, int, int> is a Func delegate that takes two integer param
 ```
 
 ### Action Type Delegate
+In C#, the Action delegate is a built-in delegate type that represents a method that takes zero or more input parameters and returns no value (i.e., a void return type). The type parameters of an Action delegate specify the types of the input parameters.
 
+For example, Action<int, string> is an Action delegate that takes an integer and a string parameter and returns no value.
 ```csharp
  private static void Main()
         {
