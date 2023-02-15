@@ -1,7 +1,5 @@
+### Extension Method for List Of Custom Class
 ```csharp
-using System;
-using System.Collections.Generic;
-
 namespace ConsoleAppTest
 {
     internal class Program
