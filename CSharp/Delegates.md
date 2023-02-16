@@ -52,3 +52,57 @@ For example, Action<int, string> is an Action delegate that takes an integer and
             Console.WriteLine($"Good Morning, {value}");
         }
 ```
+### Predicate Type Delegates
+In C#, a Predicate is a built-in delegate type that represents a method that takes a single input parameter of a specified type and returns a boolean value indicating whether the input satisfies a certain condition.
+The Predicate delegate is commonly used to perform filtering operations on collections or sequences of data. 
+```csharp
+private static void Main()
+{
+    Console.WriteLine("Original List");
+    var list = new List<int>();
+    for (int i = 0; i < 10; i++)
+    {
+        list.Add(i);
+        Console.WriteLine(i);
+    }
+
+    Console.WriteLine("Printing Even Numbers");
+    var evenNumberList = FilterValues(IsEven, list);
+    foreach (var item in evenNumberList)
+    {
+        Console.WriteLine(item);
+    }
+
+    Console.WriteLine("Printing Odd Numbers");
+    var OddNumberList = FilterValues(IsOdd, list);
+    foreach (var item in OddNumberList)
+    {
+        Console.WriteLine(item);
+    }
+
+    Console.ReadLine();
+}
+
+private static List<int> FilterValues(Predicate<int> predicate, List<int> numbers)
+{
+    var result = new List<int>();
+    foreach (var item in numbers)
+    {
+        if (predicate(item))
+        {
+            result.Add(item);
+        }
+    }
+    return result;
+}
+
+private static bool IsEven(int value)
+{
+    return value % 2 == 0;
+}
+
+private static bool IsOdd(int value)
+{
+    return value % 2 == 1;
+}
+```
