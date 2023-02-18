@@ -20,9 +20,6 @@ using (Transaction transaction = ActiveUtil.TransactionManager.StartTransaction(
 
     // Commit the transaction
     transaction.Commit();
-
-    ActiveUtil.Editor.WriteLine(dimensionline.XLine1Point.ToString());
-    ActiveUtil.Editor.WriteLine(dimensionline.XLine2Point.ToString());
 }
 ```
 
