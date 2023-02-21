@@ -50,3 +50,20 @@ var result = names.Find(name => name.StartsWith("A"));
 ```
 - In this example, the lambda expression `name => name.StartsWith("A")` is the condition that checks whether a name starts with the letter "A". The `Find()` method returns the first element in the `names` list that satisfies the condition, which is the string "Alice".
 - Note that the `Find()` method throws an exception if no element in the collection satisfies the condition. If you want to handle this case, you can use the `FirstOrDefault()` method instead, which returns the default value (usually null) if no element is found.
+
+### FindAll method
+- The `FindAll()` method is part of the LINQ extension methods available in C#. It allows you to retrieve all elements in a sequence or collection that satisfy a specified condition, and returns a new collection that contains only those elements.
+- Here's the basic syntax of the `FindAll()` method:
+
+```
+var result = collection.FindAll(element => condition);
+```
+```
+List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6 };
+var result = numbers.FindAll(num => num % 2 == 0);
+```
+In this example, the lambda expression `num => num % 2 == 0` is the condition that checks whether a number is even or not. The `FindAll()` method returns a new `List<int>` that contains only the even numbers from the original list, which are `2`, `4`, and `6`.
+
+### Difference between FindAll and Where Method
+- Return Type: Where() method returns IEnumerable<T> while FindAll() returns a List<T>
+- Method Chaining: `Where()` can be chained with other methods like `Select()` and `OrderBy()` etc, while `FindAll()` does not support chaining with other LINQ methods.
