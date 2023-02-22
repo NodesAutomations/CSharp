@@ -67,3 +67,29 @@ In this example, the lambda expression `num => num % 2 == 0` is the condition th
 ### Difference between FindAll and Where Method
 - Return Type: Where() method returns IEnumerable<T> while FindAll() returns a List<T>
 - Method Chaining: `Where()` can be chained with other methods like `Select()` and `OrderBy()` etc, while `FindAll()` does not support chaining with other LINQ methods.
+
+ ### Linq Cast
+- In C#, the Cast method is used to convert an IEnumerable collection to a new collection of a specified type. It is part of the System.Linq namespace and is used in LINQ queries to transform one collection into another.
+- The Cast method works by iterating through each element in the source collection and attempting to cast it to the specified type. If an element cannot be cast to the desired type, an InvalidCastException will be thrown.
+- Here's an example of how to use the Cast method to convert a collection of objects to a collection of integers:
+ ```csharp
+ using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        List<object> objects = new List<object> { 1, 2, 3, "4", "5" };
+
+        IEnumerable<int> integers = objects.Cast<int>();
+
+        foreach (int i in integers)
+        {
+            Console.WriteLine(i);
+        }
+    }
+}
+```
+ 
