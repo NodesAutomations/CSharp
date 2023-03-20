@@ -1,6 +1,52 @@
 ### Overview
 - Code to Store Data
 
+### Store XRecord in Main Directory
+```csharp
+ [CommandMethod("Test", CommandFlags.UsePickSet)]
+        public static void Test()
+        {
+            try 
+            {
+                using (var transaction = ActiveUtil.TransactionManager.StartTransaction())
+                {
+                    DBDictionary namedDictionary = ActiveUtil.Database.NamedObjectsDictionaryId.GetObject<DBDictionary>();
+                    var resultBuf = new ResultBuffer(new TypedValue((int)DxfCode.Text, "Hey this is string data"));
+                    var myXrecord = new Xrecord
+                    {
+                        Data = resultBuf
+                    };
+                    namedDictionary.UpgradeOpen();
+                    namedDictionary.SetAt("MyCustomData", myXrecord);
+                    transaction.AddNewlyCreatedDBObject(myXrecord, true);
+                    transaction.Commit();
+                }
+
+                using (var transaction = ActiveUtil.TransactionManager.StartTransaction())
+                {
+                    DBDictionary namedDictionary = ActiveUtil.Database.NamedObjectsDictionaryId.GetObject<DBDictionary>();
+                    try
+                    {
+                        Xrecord xRec = namedDictionary.GetAt("MyCustomData").GetObject<Xrecord>();
+                        TypedValue[] xRecData = xRec.Data.AsArray();
+                        foreach (TypedValue tv in xRecData)
+                        { 
+                            ActiveUtil.Editor.WriteLine(tv.Value.ToString()); 
+                        }
+                    }
+                    catch (System.Exception)
+                    {
+
+                    }
+                }
+            }
+            catch (System.Exception ex)
+            {
+                Application.ShowAlertDialog($"Something went wrong error:{ex.Message}");
+            }
+        }
+```
+
 ### Set XRecord in Object
 ```csharp
 private static void SetXRecordInObject(ObjectId id, string key, ResultBuffer rb)
