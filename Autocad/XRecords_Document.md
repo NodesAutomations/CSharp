@@ -107,3 +107,65 @@ public void WriteToNOD()
 
 } // End of WriteToNOD()
 ```
+
+### Set/Get Document Level Data
+```csharp
+[CommandMethod(nameof(SetDocumentLevelData))]
+        public static void SetDocumentLevelData()
+        {
+            try
+            {
+                using (ActiveUtil.Document.LockDocument())
+                {
+                    using (var transaction = ActiveUtil.TransactionManager.StartTransaction())
+                    {
+                        DBDictionary namedDictionary = ActiveUtil.Database.NamedObjectsDictionaryId.GetObject<DBDictionary>();
+                        var resultBuf = new ResultBuffer(new TypedValue((int)DxfCode.Text, "Hey this is string data"));
+                        var myXrecord = new Xrecord
+                        {
+                            Data = resultBuf
+                        };
+                        namedDictionary.UpgradeOpen();
+                        namedDictionary.SetAt("MyCustomData", myXrecord);
+                        transaction.AddNewlyCreatedDBObject(myXrecord, true);
+                        transaction.Commit();
+                    }
+                }
+            }
+            catch (System.Exception ex)
+            {
+                Application.ShowAlertDialog($"Something went wrong error:{ex.Message}");
+            }
+        }
+
+        [CommandMethod(nameof(GetDocumentLevelData))]
+        public static void GetDocumentLevelData()
+        {
+            try
+            {
+                using (ActiveUtil.Document.LockDocument())
+                {
+                    using (var transaction = ActiveUtil.TransactionManager.StartTransaction())
+                    {
+                        DBDictionary namedDictionary = ActiveUtil.Database.NamedObjectsDictionaryId.GetObject<DBDictionary>();
+                        try
+                        {
+                            Xrecord xRec = namedDictionary.GetAt("MyCustomData").GetObject<Xrecord>();
+                            TypedValue[] xRecData = xRec.Data.AsArray();
+                            foreach (TypedValue tv in xRecData)
+                            {
+                                ActiveUtil.Editor.WriteLine(tv.Value.ToString());
+                            }
+                        }
+                        catch (System.Exception)
+                        {
+                        }
+                    }
+                }
+            }
+            catch (System.Exception ex)
+            {
+                Application.ShowAlertDialog($"Something went wrong error:{ex.Message}");
+            }
+        }
+```
