@@ -1,3 +1,8 @@
+### Vector
+- A vector is a quantity that has both magnitude and direction. It is represented by an arrow whose length represents the magnitude of the vector and whose direction represents the direction of the vector1.
+### Normal Vector
+- A normal vector is a vector that is perpendicular or orthogonal to another vector or plane. If we talk about the technical aspect of the matter, there are an infinite number of normal vectors to any given vector as the only standard for any vector to be regarded as a normal vector is that they are inclined at an angle of 90° to the vector2.
+
 ### Code to Rotate any entity along z axis passing through given point
 ```csharp
 [CommandMethod("DrawRectangle")]
