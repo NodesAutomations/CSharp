@@ -74,3 +74,74 @@ namespace ConsoleAppTest
     }
 }
 ```
+### Events which also pass some info to it's subscribers
+```csharp
+
+namespace ConsoleAppTest
+{
+    internal static class Program
+    {
+        private static void Main()
+        {
+            var video = new Video
+            {
+                Title = "Video 1"
+            };
+
+            var videoEncoder = new VideoEncoder();
+
+            var mailService = new MailService();
+            videoEncoder.VideoEncoded += mailService.OnVideoEncode;
+
+            videoEncoder.Encode(video);
+
+            Console.WriteLine("Press Any key to continue");
+            Console.ReadLine();
+        }
+    }
+
+    public class Video
+    {
+        public string Title { get; set; }
+    }
+
+    public class VideoEventArgs : EventArgs
+    {
+        public Video Video { get; set; }
+    }
+
+    public class VideoEncoder
+    {
+        //1.Define Delegate
+        //Naming of Delegage = NameOfDelgate + postfix(EventHandler)
+        public delegate void VideoEncodedEventHandler(object source, VideoEventArgs args);
+
+        //2.Define an event based on that delegate
+        public event VideoEncodedEventHandler VideoEncoded;
+
+        //3.Raise the event
+        protected virtual void OnVideoEncoded(Video video)
+        {
+            if (VideoEncoded != null)
+            {
+                VideoEncoded(this, new VideoEventArgs() { Video=video});
+            }
+        }
+
+        public void Encode(Video video)
+        {
+            Console.WriteLine("Encoding Video...");
+            Thread.Sleep(3000);
+            OnVideoEncoded(video);
+        }
+    }
+
+    public class MailService
+    {
+        public void OnVideoEncode(object source, VideoEventArgs e)
+        {
+            Console.WriteLine("Sending Mail..." + e.Video.Title);
+        }
+    }
+}
+```
