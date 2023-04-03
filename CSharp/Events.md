@@ -1,3 +1,13 @@
+### References
+- https://github.com/NodesAutomations/CSharp/issues/65
+
+### Overview
+- It's mechanism for communication between objects
+- Used in building loosly coupled applications
+- Help extending application
+- There's normally two part of this mechanism. one is publish and second is subscriber. 
+- One publish have multiple subscribers. publish also unaware of number of subscribers.
+
 ### Sample Code to Understand Creting and Subscribing to new events
 ```csharp
 
