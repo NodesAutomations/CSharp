@@ -73,7 +73,13 @@ Available in C# 8.0 and later, the unary postfix ! operator is the null-forgivin
 - Value ?? defaultValue
 - Take the value as-is if not null or use a default value (left of ??)
 - Available in C# 8.0 and later, the null-coalescing assignment operator ??= assigns the value of its right-hand operand to its left-hand operand only if the left-hand operand evaluates to null. The ??= operator doesn't evaluate its right-hand operand if the left-hand operand evaluates to non-null.
-
+- The null-coalescing operator (??) is a C# operator that is used to set the default value of a variable¹. It takes two operands, if the left operand is null, then the right operand is returned else the left operand¹. Here's an example of how you can use it in C#²:
+```
+string? nullable = null;
+string notNull = nullable ?? "Hello";
+```
+- In this example, a nullable string variable `nullable` is assigned a value of `null`. A non-nullable string variable `notNull` is assigned a default value of `"Hello"` using the null-coalescing operator².
+   
 ### Lamda (=>) operator
 
 In lambda expressions, the lambda operator => separates the input parameters on the left side from the lambda body on the right side.
