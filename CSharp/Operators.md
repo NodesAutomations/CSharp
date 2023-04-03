@@ -57,10 +57,18 @@ int b=++a; //here first a gets incremented then value of a get assign to b
 - Assign one value if true and the other if false
 
 ### Null-conditional operator (?.)
-
 - To call or not to call?
 - Call if not null
 - Doesn’t work for assignments
+In C#, you can use the null-conditional operator (?.) to check for null before accessing a member⁴. 
+
+For example, if you have an object called `person` and you want to check if the `Name` property is null before accessing it, you can use the following code:
+
+```
+string name = person?.Name;
+```
+
+This will assign `null` to `name` if `person` is null, otherwise it will assign the value of `person.Name` to `name`.
 
 ### Null Forgiving Operator(!)
 
