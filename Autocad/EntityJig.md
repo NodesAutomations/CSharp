@@ -1,3 +1,7 @@
+### References
+- https://github.com/NodesAutomations/CSharp/issues/38
+- https://spiderinnet1.typepad.com/blog/2012/03/autocad-net-entityjig-jig-line-by-start-and-end-points.html
+
 ### Overview
 - Entity Gig provide more interactive way to get input from user rather than autocad usual getting input from editor
 - Entity Jig automatically update autocad active graphics depending on user live input, make it much more visual than regular autocad commands where you can only see all changes when command is done
