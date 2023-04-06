@@ -85,7 +85,82 @@
         }
     }
 ```
+```csharp
+public static class Commands
+    {
+        [CommandMethod("Test", CommandFlags.UsePickSet)]
+        public static void Test()
+        {
+            try
+            {
+                using (Transaction transaction = ActiveUtil.Document.TransactionManager.StartTransaction())
+                {
+                    var circle = new CadCircle(new Geometry.Entities.Point2D(),50);
+                    circle.Append();
 
+                    //Code for jig
+                    var textJig = new EntityPositionJig(circle.Entity);
+
+                    // Loop as we run our jig, as we may have keywords
+                    PromptStatus stat = PromptStatus.Keyword;
+
+                    while (stat == PromptStatus.Keyword)
+                    {
+                        PromptResult jigResult = ActiveUtil.Editor.Drag(textJig);
+                        stat = jigResult.Status;
+                        if (stat != PromptStatus.OK && stat != PromptStatus.Keyword)
+                        {
+                            return;
+                        }
+                    }
+
+                    transaction.Commit();
+                }
+            }
+            catch (System.Exception ex)
+            {
+                Application.ShowAlertDialog($"Something went wrong error:{ex.Message}");
+            }
+        }
+    }
+
+    public class EntityPositionJig : EntityJig
+    {
+        private Point3d _position;
+
+        public EntityPositionJig(Entity entity) : base(entity)
+        {
+        }
+
+        // Method for user interaction with entity
+        protected override SamplerStatus Sampler(JigPrompts prompts)
+        {
+            JigPromptPointOptions jigPointPrompt = new JigPromptPointOptions("\nPosition of entity");
+            jigPointPrompt.UserInputControls = (UserInputControls.Accept3dCoordinates | UserInputControls.NullResponseAccepted | UserInputControls.NoNegativeResponseAccepted | UserInputControls.GovernedByOrthoMode);
+
+            PromptPointResult ppr = prompts.AcquirePoint(jigPointPrompt);
+            if (ppr.Status == PromptStatus.OK)
+            {
+                // Check if it has changed or not (reduces flicker)
+                if (_position.DistanceTo(ppr.Value) < Tolerance.Global.EqualPoint)
+                {
+                    return SamplerStatus.NoChange;
+                }
+                _position = ppr.Value;
+                return SamplerStatus.OK;
+            }
+            return SamplerStatus.Cancel;
+        }
+
+        // Method to Update AutoCAD Entity depending on user interaction
+        protected override bool Update()
+        {
+            Circle entity = (Circle)Entity;
+            entity.Center = _position;
+            return true;
+        }
+    }
+```
 ### Code to get user input with custom autocad graphics
 ```csharp
     public class Main
