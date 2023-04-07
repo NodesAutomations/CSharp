@@ -15,19 +15,42 @@
 ### Sample Code to read PDF file
 ```csharp
 private static void Main()
+{
+    using (PdfDocument document = PdfDocument.Open(@"C:\Users\Ryzen2600x\Downloads\2023-03-20_JPA_Invoice.pdf"))
+    {
+        foreach (Page page in document.GetPages())
         {
-            using (PdfDocument document = PdfDocument.Open(@"C:\Users\Ryzen2600x\Downloads\2023-03-20_JPA_Invoice.pdf"))
-            {
-                foreach (Page page in document.GetPages())
-                {
-                    IReadOnlyList<Letter> letters = page.Letters;
-                    string example = string.Join(string.Empty, letters.Select(x => x.Value));
+            IReadOnlyList<Letter> letters = page.Letters;
+            string example = string.Join(string.Empty, letters.Select(x => x.Value));
 
-                    IEnumerable<Word> words = page.GetWords();
+            IEnumerable<Word> words = page.GetWords();
 
-                    IEnumerable<IPdfImage> images = page.GetImages();
-                }
-            }
+            IEnumerable<IPdfImage> images = page.GetImages();
+        }
+    }
+    Console.WriteLine("Press Any key to continue");
+    Console.ReadLine();
+}
+```
+### Sample Code to write pdf file
+```csharp
+private static void Main()
+        {
+            PdfDocumentBuilder builder = new PdfDocumentBuilder();
+
+            PdfDocumentBuilder.AddedFont helvetica = builder.AddStandard14Font(Standard14Font.Helvetica);
+            PdfDocumentBuilder.AddedFont helveticaBold = builder.AddStandard14Font(Standard14Font.HelveticaBold);
+
+            PdfPageBuilder page = builder.AddPage(PageSize.A4);
+
+            PdfPoint closeToTop = new PdfPoint(15, page.PageSize.Top - 25);
+
+            page.AddText("My first PDF document!", 12, closeToTop, helvetica);
+
+            page.AddText("Hello World!", 10, closeToTop.Translate(0, -15), helveticaBold);
+
+            File.WriteAllBytes(@"C:\Users\Ryzen2600x\Downloads\Test.pdf", builder.Build());
+
             Console.WriteLine("Press Any key to continue");
             Console.ReadLine();
         }
