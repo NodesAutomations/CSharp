@@ -35,23 +35,23 @@ private static void Main()
 ### Sample Code to write pdf file
 ```csharp
 private static void Main()
-        {
-            PdfDocumentBuilder builder = new PdfDocumentBuilder();
+{
+    PdfDocumentBuilder builder = new PdfDocumentBuilder();
 
-            PdfDocumentBuilder.AddedFont helvetica = builder.AddStandard14Font(Standard14Font.Helvetica);
-            PdfDocumentBuilder.AddedFont helveticaBold = builder.AddStandard14Font(Standard14Font.HelveticaBold);
+    PdfDocumentBuilder.AddedFont helvetica = builder.AddStandard14Font(Standard14Font.Helvetica);
+    PdfDocumentBuilder.AddedFont helveticaBold = builder.AddStandard14Font(Standard14Font.HelveticaBold);
 
-            PdfPageBuilder page = builder.AddPage(PageSize.A4);
+    PdfPageBuilder page = builder.AddPage(PageSize.A4);
 
-            PdfPoint closeToTop = new PdfPoint(15, page.PageSize.Top - 25);
+    PdfPoint closeToTop = new PdfPoint(15, page.PageSize.Top - 25);
 
-            page.AddText("My first PDF document!", 12, closeToTop, helvetica);
+    page.AddText("My first PDF document!", 12, closeToTop, helvetica);
 
-            page.AddText("Hello World!", 10, closeToTop.Translate(0, -15), helveticaBold);
+    page.AddText("Hello World!", 10, closeToTop.Translate(0, -15), helveticaBold);
 
-            File.WriteAllBytes(@"C:\Users\Ryzen2600x\Downloads\Test.pdf", builder.Build());
+    File.WriteAllBytes(@"C:\Users\Ryzen2600x\Downloads\Test.pdf", builder.Build());
 
-            Console.WriteLine("Press Any key to continue");
-            Console.ReadLine();
-        }
+    Console.WriteLine("Press Any key to continue");
+    Console.ReadLine();
+}
 ```
