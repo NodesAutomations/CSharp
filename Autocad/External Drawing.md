@@ -1,3 +1,5 @@
+### Sample Code to read External Drawing
+
 ### Copy Block References from external drawing
 ```csharp
 [CommandMethod("Test")]
