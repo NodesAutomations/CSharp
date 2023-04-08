@@ -10,3 +10,8 @@ circle.ColorIndex = 1;
 Circle circle = new Circle();
 circle.ColorIndex = (int)CadColor.Yellow;
 ```
+### USE RGB to specify Color
+```csharp
+circle.Color = Autodesk.AutoCAD.Colors.Color.FromRgb(255, 0, 0);
+```
+- (255,0,0) represent red color in rgb value
