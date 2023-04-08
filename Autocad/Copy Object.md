@@ -37,6 +37,69 @@ public static void Test()
 }
 ```
 ### Copy Item between database
+```csharp
+[CommandMethod("Test", CommandFlags.Session)]
+public static void CopyObjectsBetweenDatabases()
+{
+    ObjectIdCollection acObjIdColl = new ObjectIdCollection();
+    // Lock the current document
+    using (DocumentLock acLckDocCur = ActiveUtil.Document.LockDocument())
+    {
+        using (Transaction acTrans = ActiveUtil.TransactionManager.StartTransaction())
+        {
+            // Create a circle that is at (0,0,0) with a radius of 5
+            Circle acCirc1 = new Circle();
+            acCirc1.SetDatabaseDefaults();
+            acCirc1.Center = new Point3d(0, 0, 0);
+            acCirc1.Radius = 5;
+            ActiveUtil.Database.GetModelSpace(OpenMode.ForWrite).AppendEntity(acCirc1);
+            acTrans.AddNewlyCreatedDBObject(acCirc1, true);
+
+            // Create a circle that is at (0,0,0) with a radius of 7
+            Circle acCirc2 = new Circle();
+            acCirc2.SetDatabaseDefaults();
+            acCirc2.Center = new Point3d(0, 0, 0);
+            acCirc2.Radius = 7;
+            ActiveUtil.Database.GetModelSpace(OpenMode.ForWrite).AppendEntity(acCirc2);
+            acTrans.AddNewlyCreatedDBObject(acCirc2, true);
+
+            // Add all the objects to copy to the new document
+            acObjIdColl = new ObjectIdCollection
+            {
+                acCirc1.ObjectId,
+                acCirc2.ObjectId
+            };
+
+            // Save the new objects to the database
+            acTrans.Commit();
+        }
+        // Unlock the document
+    }
+    // Change the file and path to match a drawing template on your workstation
+    string sLocalRoot = Application.GetSystemVariable("LOCALROOTPREFIX") as string;
+    string sTemplatePath = sLocalRoot + "Template\\acad.dwt";
+    // Create a new drawing to copy the objects to
+    DocumentCollection acDocMgr = Application.DocumentManager;
+    Document acNewDoc = acDocMgr.Add(sTemplatePath);
+    Database acDbNewDoc = acNewDoc.Database;
+    // Lock the new document
+    using (DocumentLock acLckDoc = acNewDoc.LockDocument())
+    {
+        // Start a transaction in the new database
+        using (Transaction acTrans = acDbNewDoc.TransactionManager.StartTransaction())
+        {
+            // Clone the objects to the new database
+            IdMapping acIdMap = new IdMapping();
+            ActiveUtil.Database.WblockCloneObjects(acObjIdColl, acDbNewDoc.GetModelSpace().ObjectId, acIdMap, DuplicateRecordCloning.Ignore, false);
+            // Save the copied objects to the database
+            acTrans.Commit();
+        }
+        // Unlock the document
+    }
+    // Set the new document current
+    acDocMgr.MdiActiveDocument = acNewDoc;
+}
+```
 
 ### Copy Block References from external drawing
 ```csharp
