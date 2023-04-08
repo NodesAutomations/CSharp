@@ -1,3 +1,6 @@
+### Reference
+- http://docs.autodesk.com/ACD/2011/ESP/filesMDG/WS1a9193826455f5ff2566ffd511ff6f8c7ca-3f78.htm
+
 ### Copy item in same drawing
 ```csharp
 [CommandMethod("Test", CommandFlags.UsePickSet)]
@@ -33,3 +36,5 @@ public static void Test()
     }
 }
 ```
+### Copy Item between database
+
