@@ -1,5 +1,6 @@
 ### References
 - https://benkoshy.github.io/2018/01/24/what-is-a-jig.html
+- https://cupocadnet.blogspot.com/2009/03/jigging-multiple-entities-with-drawjig.html
 
 ### Overview
 - There are 2 kinds of jigs : entityJig and DrawJig
