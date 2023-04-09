@@ -399,97 +399,225 @@ public static class Commands
 
 ### Sample Code to Draw Line using Entity Jig
 ```csharp
-    public static class Commands
+public static class Commands
+{
+    [CommandMethod("Test")]
+    public static void TestEntityJigger12_Method()
     {
-        [CommandMethod("Test")]
-        public static void TestEntityJigger12_Method()
+        if (LineJigger.Jig())
         {
-            if (LineJigger.Jig())
-            {
-                ActiveUtil.Editor.WriteMessage("\nA line segment has been successfully jigged and added to the database.\n");
-            }
-            else
-            {
-                ActiveUtil.Editor.WriteMessage("\nIt failed to jig and add a line segment to the database.\n");
-            }
+            ActiveUtil.Editor.WriteMessage("\nA line segment has been successfully jigged and added to the database.\n");
+        }
+        else
+        {
+            ActiveUtil.Editor.WriteMessage("\nIt failed to jig and add a line segment to the database.\n");
         }
     }
+}
 
-    public class LineJigger : EntityJig
+  public class LineJigger : EntityJig
+  {
+      public Point3d mEndPoint = new Point3d();
+
+      public LineJigger(Line ent) : base(ent)
+      {
+      }
+
+      protected override bool Update()
+      {
+          (Entity as Line).EndPoint = mEndPoint;
+
+          return true;
+      }
+
+      protected override SamplerStatus Sampler(JigPrompts prompts)
+      {
+          JigPromptPointOptions prOptions1 = new JigPromptPointOptions("\nNext point:");
+          prOptions1.BasePoint = (Entity as Line).StartPoint;
+          prOptions1.UseBasePoint = true;
+          prOptions1.UserInputControls = UserInputControls.Accept3dCoordinates | UserInputControls.AnyBlankTerminatesInput
+              | UserInputControls.GovernedByOrthoMode | UserInputControls.GovernedByUCSDetect | UserInputControls.UseBasePointElevation
+              | UserInputControls.InitialBlankTerminatesInput | UserInputControls.NullResponseAccepted;
+          PromptPointResult prResult1 = prompts.AcquirePoint(prOptions1);
+          if (prResult1.Status == PromptStatus.Cancel) return SamplerStatus.Cancel;
+
+          if (prResult1.Value.Equals(mEndPoint))
+          {
+              return SamplerStatus.NoChange;
+          }
+          else
+          {
+              mEndPoint = prResult1.Value;
+              return SamplerStatus.OK;
+          }
+      }
+
+      public static bool Jig()
+      {
+          try
+          {
+              Database db = HostApplicationServices.WorkingDatabase;
+
+              PromptPointResult ppr = ActiveUtil.Editor.GetPoint("\nStart point");
+              if (ppr.Status != PromptStatus.OK) return false;
+
+              Point3d pt = ppr.Value;
+              Line ent = new Line(pt, pt);
+              ent.TransformBy(ActiveUtil.Editor.CurrentUserCoordinateSystem);
+              LineJigger jigger = new LineJigger(ent);
+              PromptResult pr = ActiveUtil.Editor.Drag(jigger);
+
+              if (pr.Status == PromptStatus.OK)
+              {
+                  using (Transaction tr = db.TransactionManager.StartTransaction())
+                  {
+                      BlockTable bt = (BlockTable)tr.GetObject(db.BlockTableId, OpenMode.ForRead);
+                      BlockTableRecord btr = (BlockTableRecord)tr.GetObject(bt[BlockTableRecord.ModelSpace], OpenMode.ForWrite);
+                      btr.AppendEntity(jigger.Entity);
+                      tr.AddNewlyCreatedDBObject(jigger.Entity, true);
+                      tr.Commit();
+                  }
+              }
+              else
+              {
+                  ent.Dispose();
+                  return false;
+              }
+
+              return true;
+          }
+          catch
+          {
+              return false;
+          }
+      }
+  }
+```
+### Sample Code to Draw entire circle using entity jig
+```csharp
+public static class Commands
+  {
+      [CommandMethod("Test", CommandFlags.UsePickSet)]
+      public static void Test()
+      {
+          if (CircleJig.Jig())
+          {
+              ActiveUtil.Editor.WriteLine("A circle has been successfully jigged and added to the database.\n");
+          }
+          else
+          {
+              ActiveUtil.Editor.WriteLine("\nIt failed to jig and add a circle to the database.\n");
+          }
+      }
+  }
+
+public class CircleJig : EntityJig
+{
+    private Circle _circle;
+    private Point3d _centerPoint = new Point3d();
+    private double _radius = 0.001;
+    public int _mCurJigFactorNumber = 1;
+
+    public CircleJig(Entity ent) : base(ent)
     {
-        public Point3d mEndPoint = new Point3d();
+        _circle = (Circle)ent;
+        _circle.Radius = _radius;
+        _circle.Center = _centerPoint;
+    }
 
-        public LineJigger(Line ent) : base(ent)
+    internal static bool Jig()
+    {
+        try
         {
-        }
+            Circle ent = new Circle();
+            CircleJig jigger = new CircleJig(ent);
 
-        protected override bool Update()
-        {
-            (Entity as Line).EndPoint = mEndPoint;
-
-            return true;
-        }
-
-        protected override SamplerStatus Sampler(JigPrompts prompts)
-        {
-            JigPromptPointOptions prOptions1 = new JigPromptPointOptions("\nNext point:");
-            prOptions1.BasePoint = (Entity as Line).StartPoint;
-            prOptions1.UseBasePoint = true;
-            prOptions1.UserInputControls = UserInputControls.Accept3dCoordinates | UserInputControls.AnyBlankTerminatesInput
-                | UserInputControls.GovernedByOrthoMode | UserInputControls.GovernedByUCSDetect | UserInputControls.UseBasePointElevation
-                | UserInputControls.InitialBlankTerminatesInput | UserInputControls.NullResponseAccepted;
-            PromptPointResult prResult1 = prompts.AcquirePoint(prOptions1);
-            if (prResult1.Status == PromptStatus.Cancel) return SamplerStatus.Cancel;
-
-            if (prResult1.Value.Equals(mEndPoint))
+            PromptResult pr;
+            do
             {
-                return SamplerStatus.NoChange;
-            }
-            else
+                pr = ActiveUtil.Editor.Drag(jigger);
+                jigger._mCurJigFactorNumber++;
+            } while (pr.Status != PromptStatus.Cancel && jigger._mCurJigFactorNumber <= 2);
+
+            if (pr.Status != PromptStatus.Cancel)
             {
-                mEndPoint = prResult1.Value;
-                return SamplerStatus.OK;
-            }
-        }
-
-        public static bool Jig()
-        {
-            try
-            {
-                Database db = HostApplicationServices.WorkingDatabase;
-
-                PromptPointResult ppr = ActiveUtil.Editor.GetPoint("\nStart point");
-                if (ppr.Status != PromptStatus.OK) return false;
-
-                Point3d pt = ppr.Value;
-                Line ent = new Line(pt, pt);
-                ent.TransformBy(ActiveUtil.Editor.CurrentUserCoordinateSystem);
-                LineJigger jigger = new LineJigger(ent);
-                PromptResult pr = ActiveUtil.Editor.Drag(jigger);
-
-                if (pr.Status == PromptStatus.OK)
+                using (Transaction tr = ActiveUtil.TransactionManager.StartTransaction())
                 {
-                    using (Transaction tr = db.TransactionManager.StartTransaction())
-                    {
-                        BlockTable bt = (BlockTable)tr.GetObject(db.BlockTableId, OpenMode.ForRead);
-                        BlockTableRecord btr = (BlockTableRecord)tr.GetObject(bt[BlockTableRecord.ModelSpace], OpenMode.ForWrite);
-                        btr.AppendEntity(jigger.Entity);
-                        tr.AddNewlyCreatedDBObject(jigger.Entity, true);
-                        tr.Commit();
-                    }
+                    ActiveUtil.Database.GetModelSpace(OpenMode.ForWrite).AppendEntity(jigger.Entity);
+                    tr.AddNewlyCreatedDBObject(jigger.Entity, true);
+                    tr.Commit();
+                }
+            }
+        }
+        catch
+        {
+            return false;
+        }
+        return true;
+    }
+
+    protected override SamplerStatus Sampler(JigPrompts prompts)
+    {
+        switch (_mCurJigFactorNumber)
+        {
+            case 1:
+                JigPromptPointOptions prOptions1 = new JigPromptPointOptions("\nCircle center:");
+                PromptPointResult prResult1 = prompts.AcquirePoint(prOptions1);
+                if (prResult1.Status == PromptStatus.Cancel) return SamplerStatus.Cancel;
+
+                if (prResult1.Value.Equals(_centerPoint))
+                {
+                    return SamplerStatus.NoChange;
                 }
                 else
                 {
-                    ent.Dispose();
-                    return false;
+                    _centerPoint = prResult1.Value;
+                    return SamplerStatus.OK;
                 }
+            case 2:
+                JigPromptDistanceOptions prOptions2 = new JigPromptDistanceOptions("\nCircle radius:");
+                prOptions2.BasePoint = _centerPoint;
+                PromptDoubleResult prResult2 = prompts.AcquireDistance(prOptions2);
+                if (prResult2.Status == PromptStatus.Cancel) return SamplerStatus.Cancel;
 
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+                if (prResult2.Value.Equals(_radius))
+                {
+                    return SamplerStatus.NoChange;
+                }
+                else
+                {
+                    if (prResult2.Value < 0.0001)  // To avoid the degeneration problem!
+                    {
+                        return SamplerStatus.NoChange;
+                    }
+                    else
+                    {
+                        _radius = prResult2.Value;
+                        return SamplerStatus.OK;
+                    }
+                }
+            default:
+                break;
         }
+        return SamplerStatus.OK;
     }
+
+    protected override bool Update()
+    {
+        switch (_mCurJigFactorNumber)
+        {
+            case 1:
+                (Entity as Circle).Center = _centerPoint;
+                break;
+
+            case 2:
+                (Entity as Circle).Radius = _radius;
+                break;
+
+            default:
+                return false;
+        }
+        return true;
+    }
+}
 ```
