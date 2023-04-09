@@ -211,3 +211,87 @@ protected override bool WorldDraw(WorldDraw draw)
 }
 }
 ```
+### Code to Create Rectangle using Two Corner Point with DrawJig
+```csharp
+public class Commands
+{
+    [CommandMethod("Test", CommandFlags.UsePickSet)]
+    public static void Test()
+    {
+        PromptPointResult pr = ActiveUtil.Editor.GetPoint("\nSelect First Corner of Rectangle:");
+        if (pr.Status != PromptStatus.OK)
+        {
+            return;
+        }
+
+        var jigger = new RectangleDrawJig(pr.Value);
+        ActiveUtil.Editor.Drag(jigger);
+
+        using (Transaction transaction = ActiveUtil.TransactionManager.StartTransaction())
+        {
+            Polyline ent = new Polyline();
+            ent.SetDatabaseDefaults();
+            var cornerPoints = jigger.GetCornerPoints();
+            var counter = new Counter(0);
+            foreach (var point in cornerPoints)
+            {
+                ent.AddVertexAt(counter.CreateId(), new Point2d(point.X, point.Y), 0, 0, 0);
+            }
+            ent.Closed = true;
+            ActiveUtil.Database.GetModelSpace(OpenMode.ForWrite).AppendEntity(ent);
+            transaction.AddNewlyCreatedDBObject(ent, true);
+            transaction.Commit();
+        }
+    }
+}
+
+public class RectangleDrawJig : DrawJig
+{
+    private Point3d _CornerPoint1;
+    private Point3d _CornerPoint2;
+
+    public RectangleDrawJig(Point3d basePt)
+    {
+        _CornerPoint1 = basePt;
+    }
+
+    public List<Point3d> GetCornerPoints()
+    {
+        var points = new List<Point3d>();
+        points.Add(_CornerPoint1);
+        points.Add(new Point3d(_CornerPoint1.X, _CornerPoint2.Y, 0));
+        points.Add(_CornerPoint2);
+        points.Add(new Point3d(_CornerPoint2.X, _CornerPoint1.Y, 0));
+        return points;
+    }
+
+    protected override SamplerStatus Sampler(JigPrompts prompts)
+    {
+        JigPromptPointOptions prOptions2 = new JigPromptPointOptions("\nCorner2:");
+        prOptions2.UseBasePoint = false;
+
+        PromptPointResult prResult2 = prompts.AcquirePoint(prOptions2);
+        if (prResult2.Status == PromptStatus.Cancel || prResult2.Status == PromptStatus.Error)
+        {
+            return SamplerStatus.Cancel;
+        }
+
+        Point3d tmpPt = prResult2.Value.TransformBy(ActiveUtil.Editor.CurrentUserCoordinateSystem.Inverse());
+        if (!_CornerPoint2.IsEqualTo(tmpPt, new Tolerance(10e-10, 10e-10)))
+        {
+            _CornerPoint2 = tmpPt;
+            return SamplerStatus.OK;
+        }
+        else
+        {
+            return SamplerStatus.NoChange;
+        }
+    }
+
+    protected override bool WorldDraw(Autodesk.AutoCAD.GraphicsInterface.WorldDraw draw)
+    {
+        draw.Geometry?.Polygon(new Point3dCollection(GetCornerPoints().ToArray()));
+        return true;
+    }
+}
+```
