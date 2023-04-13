@@ -296,3 +296,195 @@ public class RectangleDrawJig : DrawJig
     }
 }
 ```
+### Sample code to draw rectangle with two corner point or one corner point + rotation angle
+```csharp
+using Autodesk.AutoCAD.DatabaseServices;
+using Autodesk.AutoCAD.EditorInput;
+using Autodesk.AutoCAD.Geometry;
+using Autodesk.AutoCAD.Runtime;
+using static System.Math;
+using AcAp = Autodesk.AutoCAD.ApplicationServices.Core.Application;
+using AcGi = Autodesk.AutoCAD.GraphicsInterface;
+
+namespace CADHelperTest
+{
+    public class Commands
+    {
+        [CommandMethod("TEST")]
+        public void Test()
+        {
+            var doc = AcAp.DocumentManager.MdiActiveDocument;
+            var db = doc.Database;
+            var ed = doc.Editor;
+            var ppr = ed.GetPoint("\nSpecify first corner point: ");
+            if (ppr.Status != PromptStatus.OK)
+                return;
+            var pt = ppr.Value;
+            using (var tr = db.TransactionManager.StartTransaction())
+            using (var pline = new Polyline(4))
+            {
+                pline.AddVertexAt(0, new Point2d(pt.X, pt.Y), 0.0, 0.0, 0.0);
+                pline.AddVertexAt(1, new Point2d(pt.X + 1.0, pt.Y), 0.0, 0.0, 0.0);
+                pline.AddVertexAt(2, new Point2d(pt.X + 1.0, pt.Y + 1.0), 0.0, 0.0, 0.0);
+                pline.AddVertexAt(3, new Point2d(pt.X, pt.Y + 1.0), 0.0, 0.0, 0.0);
+                pline.Closed = true;
+                pline.Elevation = pt.Z;
+                var ucs = ed.CurrentUserCoordinateSystem;
+                pline.TransformBy(ucs);
+
+                // create a RectangleJig
+                var rectJig = new RectangleJig(pline, 0.0);
+
+                // Loop while the user specify other corner or cancel
+                while (true)
+                {
+                    var pr = ed.Drag(rectJig);
+                    // Other corner is specified
+                    if (pr.Status == PromptStatus.OK)
+                    {
+                        var curSpace = (BlockTableRecord)tr.GetObject(db.CurrentSpaceId, OpenMode.ForWrite);
+                        curSpace.AppendEntity(pline);
+                        tr.AddNewlyCreatedDBObject(pline, true);
+                        break;
+                    }
+                    // Rotation option
+                    if (pr.Status == PromptStatus.Keyword)
+                    {
+                        // use a RotationJig to get the rectangle rotation
+                        var rotJig = new RotationJig(pline, pline.GetPoint3dAt(0), pline.Normal);
+                        var result = ed.Drag(rotJig);
+                        if (result.Status == PromptStatus.OK)
+                            rectJig = new RectangleJig(pline, rotJig.Rotation);
+                        else
+                            break;
+                    }
+                    // Cancel
+                    else
+                        break;
+                }
+                tr.Commit();
+            }
+        }
+    }
+
+    public struct Rectangle
+    {
+        public Point2d Point0 { get; }
+        public Point2d Point1 { get; }
+        public Point2d Point2 { get; }
+        public Point2d Point3 { get; }
+
+        public Rectangle(Point2d firstCorner, Point2d oppositeCorner, double rotation)
+        {
+            Vector2d u = new Vector2d(Cos(rotation), Sin(rotation));
+            Vector2d v = new Vector2d(-Sin(rotation), Cos(rotation));
+            Vector2d diag = firstCorner.GetVectorTo(oppositeCorner);
+            Point0 = firstCorner;
+            Point1 = firstCorner + u * u.DotProduct(diag);
+            Point2 = oppositeCorner;
+            Point3 = firstCorner + v * v.DotProduct(diag);
+        }
+    }
+
+    public class RectangleJig : EntityJig
+    {
+        private Polyline pline;
+        double ucsRot, rotation;
+        Plane plane;
+        Point3d dragPt, basePt;
+        private Point2d pt2D;
+        Editor ed;
+        CoordinateSystem3d ucs;
+
+        public RectangleJig(Polyline pline, double rotation) : base(pline)
+        {
+            this.pline = pline;
+            this.rotation = rotation;
+            plane = new Plane(Point3d.Origin, pline.Normal);
+            basePt = pline.GetPoint3dAt(0);
+            pt2D = pline.GetPoint2dAt(0);
+            ed = AcAp.DocumentManager.MdiActiveDocument.Editor;
+            ucs = ed.CurrentUserCoordinateSystem.CoordinateSystem3d;
+            Matrix3d mat = Matrix3d.WorldToPlane(plane);
+            ucsRot = Vector3d.XAxis.GetAngleTo(ucs.Xaxis.TransformBy(mat), Vector3d.ZAxis);
+        }
+
+        protected override SamplerStatus Sampler(JigPrompts prompts)
+        {
+            var msg = "\nSpecify other corner point or [Rotation]: ";
+            var options = new JigPromptPointOptions(msg, "Rotation");
+            options.AppendKeywordsToMessage = true;
+            options.UseBasePoint = true;
+            options.BasePoint = basePt;
+            options.UserInputControls =
+                UserInputControls.Accept3dCoordinates |
+                UserInputControls.UseBasePointElevation;
+            PromptPointResult result = prompts.AcquirePoint(options);
+            if (result.Status == PromptStatus.Keyword)
+            {
+                pline.TransformBy(Matrix3d.Rotation(-rotation, pline.Normal, basePt));
+                return SamplerStatus.OK;
+            }
+            if (result.Value.IsEqualTo(dragPt))
+                return SamplerStatus.NoChange;
+
+            dragPt = result.Value;
+            return SamplerStatus.OK;
+        }
+
+        protected override bool Update()
+        {
+            var rectangle = new Rectangle(pt2D, dragPt.Convert2d(plane), rotation + ucsRot);
+            pline.SetPointAt(1, rectangle.Point1);
+            pline.SetPointAt(2, rectangle.Point2);
+            pline.SetPointAt(3, rectangle.Point3);
+            return true;
+        }
+    }
+
+    public class RotationJig : DrawJig
+    {
+        private Entity entity;
+        double rotation;
+        Point3d basePoint;
+        Vector3d normal;
+
+        public double Rotation => rotation;
+
+        public RotationJig(Entity entity, Point3d basePoint, Vector3d normal)
+        {
+            this.entity = entity;
+            this.basePoint = basePoint;
+            this.normal = normal;
+        }
+
+        protected override SamplerStatus Sampler(JigPrompts prompts)
+        {
+            var options = new JigPromptAngleOptions("\nSpecify rotation angle: ");
+            options.BasePoint = basePoint;
+            options.UseBasePoint = true;
+            options.Cursor = CursorType.RubberBand;
+            options.UserInputControls =
+                UserInputControls.Accept3dCoordinates |
+                UserInputControls.UseBasePointElevation;
+            var result = prompts.AcquireAngle(options);
+            if (result.Value == rotation)
+                return SamplerStatus.NoChange;
+            rotation = result.Value;
+            return SamplerStatus.OK;
+        }
+
+        protected override bool WorldDraw(AcGi.WorldDraw draw)
+        {
+            AcGi.WorldGeometry geom = draw.Geometry;
+            if (geom != null)
+            {
+                geom.PushModelTransform(Matrix3d.Rotation(rotation, normal, basePoint));
+                geom.Draw(entity);
+                geom.PopModelTransform();
+            }
+            return true;
+        }
+    }
+}
+```
