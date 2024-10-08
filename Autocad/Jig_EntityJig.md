@@ -11,7 +11,11 @@
 - All Jig code contain two class
  - Server Class : Class which contain code to take jig input from user like distance, angle, point and update entity using this inputs
  - Client Class : one who use server calss to get job done
-
+- Entity Jig Class is AutoCAD Inbuit Abstract Class, we have to write our own code to create jig using this class
+- Entity Jig Class has 3 parts Constructor, Sampler Method and Update method
+ - Constructor Basically Get entity inputs from client 
+ - Sampler Method contain code to get jig input from user and return SampleStatus as output
+ - Update Method update our Entity if successful results are given by user in Sampler Method
 
 ### Most Basic type of Entity Jig
 
