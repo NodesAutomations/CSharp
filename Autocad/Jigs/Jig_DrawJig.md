@@ -1,13 +1,3 @@
-### References
-- https://benkoshy.github.io/2018/01/24/what-is-a-jig.html
-- https://cupocadnet.blogspot.com/2009/03/jigging-multiple-entities-with-drawjig.html
-- https://spiderinnet1.typepad.com/blog/2012/05/autocad-net-use-drawjig-to-drag-and-create-rectangles.html
-
-### Overview
-- There are 2 kinds of jigs : entityJig and DrawJig
-- The EntityJig only allows us to jig one entity at the time
-- DrawJig Support multiple entity
-
 ### Moving Selected Polylines with DrawJig
 - This is equivalent of Move command in autocad
 - To Inherit DrawJig you have to override 2 Method : Sampler and WorldDraw
