@@ -9,3 +9,26 @@
 - UI is created using XML language, so it's more LLM & Git friendly.
 - More functionality compared to Windows Forms.
 - Reusable components.
+
+
+### Calling WPF form from console APP
+```csharp
+using System;
+using System.Windows;
+
+namespace ConsoleApp
+{
+    internal static class Program
+    {
+        [STAThread]
+        private static void Main()
+        {
+            // Initialize WPF Application
+            var app = new Application();
+
+            var frm = new AboutForm();
+            frm.ShowDialog();
+        }
+    }
+}
+```
