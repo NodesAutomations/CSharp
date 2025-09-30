@@ -68,6 +68,55 @@
     Click="HelloButton_Click" />
 ```
 
+### GroupBox
+- Used to group related controls together
+```xml
+<GroupBox
+    Name="PersonGroupBox"
+    Header="Personal Information"
+    Width="300"
+    Height="200"
+    FontSize="14"
+    HorizontalAlignment="Left"
+    VerticalAlignment="Top">
+    <StackPanel Margin="10">
+        <TextBox Name="FirstNameTextBox" Margin="0,0,0,10" />
+        <TextBox Name="LastNameTextBox" Margin="0,0,0,10" />
+        <Button Name="SubmitButton" Content="Submit" Width="100" />
+    </StackPanel>
+</GroupBox>
+```
+
+### Border
+- Used to display border around controls for visuals
+```xml
+<Border
+    Name="ContentBorder"
+    BorderBrush="Gray"
+    BorderThickness="2"
+    CornerRadius="5"
+    Padding="10"
+    Background="LightBlue">
+    <TextBlock
+        Text="Content inside border"
+        FontSize="16"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center" />
+</Border>
+```
+
+### Image
+- Make sure to set image as a resources from properties
+```xml
+<Image
+    Name="DisplayImage"
+    Source="Resources/Logo.png"
+    Width="200"
+    Height="150"
+    HorizontalAlignment="Center"
+    VerticalAlignment="Center" />
+```
+
 ### ListBox
 ```xml
 <ListBox
