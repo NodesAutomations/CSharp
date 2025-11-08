@@ -42,6 +42,10 @@ nav:
     - Code/Struct.md
     - Code/Tuples.md
     - Code/Variables.md
+  - Wix:
+    - Wix/Create Custom Actions.md
+    - Wix/Create wix Installer for VSTO Addin.md
+    - Wix/Use Wix Installer from Another Project.md
 
 # Theme
 theme:
