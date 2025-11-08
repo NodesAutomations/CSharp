@@ -1,0 +1,82 @@
+# Site settings
+site_name: CSharp
+site_url: https://nodesautomations.com/CSharp/
+
+# Repository Details for "Edit on GitHub" links
+repo_name: CSharp
+repo_url: https://github.com/NodesAutomations/CSharp
+edit_uri: edit/main/docs/
+
+# Navigation Tree
+nav:
+  - Home:
+    - index.md
+
+# Theme
+theme:
+  name: material
+  logo: assets/favicon.png
+  favicon: assets/favicon.png
+  palette:
+    # Palette toggle for dark mode
+    - scheme: slate
+      primary: black
+      accent: indigo
+      toggle:
+          icon: material/brightness-4
+          name: Switch to light mode
+    - scheme: default
+      primary: black
+      accent: indigo
+      toggle:
+          icon: material/brightness-7
+          name: Switch to dark mode
+  features:
+    - content.action.edit # Allows "Edit on GitHub" links
+    - content.action.view # Allows "View on GitHub" links
+    - content.code.copy # Allows code blocks to have a copy button
+    - navigation.path # Enables path navigation top of docs for smaller screens
+    - navigation.tabs # Enables tabbed navigation
+    - navigation.indexes # Enables attachment of sub section index 
+  icon:
+    repo: fontawesome/brands/git-alt 
+    edit: material/pencil 
+    view: material/eye
+
+# Extensions
+markdown_extensions:
+  - admonition # for Callout boxes
+  - pymdownx.highlight: 
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.arithmatex: # for rendering math equations
+      generic: true
+  - def_list # List extensions
+  - pymdownx.tasklist: # List extensions
+      custom_checkbox: true
+
+# Copyright
+copyright: Copyright &copy; 2025 Nodes Automations
+
+# Footer social links
+extra:
+  generator: false # remove "Generated with MkDocs" footer
+  social:
+    - icon: fontawesome/solid/globe
+      link: www.nodesautomations.com
+    - icon: fontawesome/brands/youtube
+      link: https://www.youtube.com/NodesAutomations
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/vivekpatel-nodesautomations/
+    - icon: fontawesome/brands/github
+      link: https://github.com/orgs/NodesAutomations
+
+
