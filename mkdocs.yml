@@ -11,6 +11,36 @@ edit_uri: edit/main/docs/
 nav:
   - Home:
     - index.md
+  - Code:
+    - Code/Access Modifiers.md
+    - Code/Array.md
+    - Code/Circle.md
+    - Code/Class Attributes.md
+    - Code/Class.md
+    - Code/ConditinalStatements.md
+    - Code/Constructor.md
+    - Code/Delegates.md
+    - Code/Dictionary.md
+    - Code/Enum.md
+    - Code/Events.md
+    - Code/Extension Methods.md
+    - Code/Functions.md
+    - Code/HashSet_1 Basics.md
+    - Code/HashSet_2 Use with Custom Type.md
+    - Code/Interface.md
+    - Code/Linq.md
+    - Code/List_2 Find Items.md
+    - Code/List_1 Basics.md
+    - Code/Local Functions.md
+    - Code/Loops.md
+    - Code/Methods.md
+    - Code/Operators.md
+    - Code/Regular Expressions.md
+    - Code/Resources.md
+    - Code/String.md
+    - Code/Struct.md
+    - Code/Tuples.md
+    - Code/Variables.md
 
 # Theme
 theme:
