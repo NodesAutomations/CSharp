@@ -78,6 +78,56 @@ nav:
     - WPF/1 Basics.md
     - WPF/2 Controls.md
     - WPF/3 DataBind.md
+  - AutoCAD:
+    - AutoCAD/1 First Program.md
+    - AutoCAD/AutoCAD Addins.md
+    - AutoCAD/AutoCAD Core Console.md
+    - AutoCAD/AutoCAD Debugging Setup.md
+    - AutoCAD/AutoCAD Object Model.md
+    - AutoCAD/Plugin AutoLoader.md
+    - AutoCAD/Transaction Manager.md
+    - AutoCAD/Unique Ids in AutoCAD.md
+    - AutoCAD/Update the Geometry in Document.md
+    - Code:
+      - AutoCAD/Code/Assembly.md
+      - AutoCAD/Code/Block.md
+      - AutoCAD/Code/Block_Attributes.md
+      - AutoCAD/Code/Bounds.md
+      - AutoCAD/Code/Class.md
+      - AutoCAD/Code/Clone Entity.md
+      - AutoCAD/Code/Colors.md
+      - AutoCAD/Code/Command Groups.md
+      - AutoCAD/Code/Copy Object.md
+      - AutoCAD/Code/Curve.md
+      - AutoCAD/Code/Dimension.md
+      - AutoCAD/Code/DynamicBlock.md
+      - AutoCAD/Code/Entity.md
+      - AutoCAD/Code/External Drawing.md
+      - AutoCAD/Code/Fields.md
+      - AutoCAD/Code/GetInputs.md
+      - AutoCAD/Code/Hatch.md
+      - AutoCAD/Code/Layer.md
+      - AutoCAD/Code/Object events.md
+      - AutoCAD/Code/ObjectID.md
+      - AutoCAD/Code/PointMonitorEventHandler.md
+      - AutoCAD/Code/Resources.md
+      - AutoCAD/Code/Rotation.md
+      - AutoCAD/Code/Selection Filter.md
+      - AutoCAD/Code/Selection.md
+      - AutoCAD/Code/Table.md
+      - AutoCAD/Code/Text.md
+      - AutoCAD/Code/TitleBlock.md
+      - AutoCAD/Code/UI_Context Menu.md
+      - AutoCAD/Code/UI_Side Panel.md
+      - AutoCAD/Code/XData.md
+      - AutoCAD/Code/XRecords_Document.md
+      - AutoCAD/Code/XRecords_Objects.md
+    - Jigs:
+      - AutoCAD/Jigs/1_Jigs Basics.md
+      - AutoCAD/Jigs/2_Entity Jig.md
+      - AutoCAD/Jigs/3_Draw Jig.md
+      - AutoCAD/Jigs/Jig_DrawJig.md
+      - AutoCAD/Jigs/Jig_EntityJig.md
 
 # Theme
 theme:
