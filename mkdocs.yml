@@ -128,6 +128,20 @@ nav:
       - AutoCAD/Jigs/3_Draw Jig.md
       - AutoCAD/Jigs/Jig_DrawJig.md
       - AutoCAD/Jigs/Jig_EntityJig.md
+  - Packages:
+    - Packages/CSVHelper.md
+    - Packages/Fluent Validator.md
+    - Packages/netDxf.md
+    - Packages/PdfPig.md
+    - xunit:
+      - Packages/xunit/Assert with Custom Comparer.md
+      - Packages/xunit/Matrix Data Sample.md
+      - Packages/xunit/Pass Array as input.md
+      - Packages/xunit/Print output during test.md
+      - Packages/xunit/strongly type Theory data with Theory.md
+      - Packages/xunit/Test using TheoryData.md
+      - Packages/xunit/Unit Test Sample.md
+      - Packages/xunit/Xunit Skip Test.md
 
 # Theme
 theme:
