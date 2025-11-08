@@ -47,6 +47,10 @@ nav:
     - Wix/Create Custom Actions.md
     - Wix/Create wix Installer for VSTO Addin.md
     - Wix/Use Wix Installer from Another Project.md
+  - WPF:
+    - WPF/1 Basics.md
+    - WPF/2 Controls.md
+    - WPF/3 DataBind.md
 
 # Theme
 theme:
