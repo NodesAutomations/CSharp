@@ -43,6 +43,33 @@ nav:
     - Code/Struct.md
     - Code/Tuples.md
     - Code/Variables.md
+  - Concepts:
+    - Concepts/Abstract Class.md
+    - Concepts/Boolean logical operators.md
+    - Concepts/Class with Multiple Inheritance.md
+    - Concepts/Classes.md
+    - Concepts/Coding Standards and Naming Conventions.md
+    - Concepts/Custom Formatting using IFormattable Interface.md
+    - Concepts/Different Collection Type.md
+    - Concepts/Discards.md
+    - Concepts/Escape characters.md
+    - Concepts/Fields.md
+    - Concepts/Generic Collections vs Non-Generic Collection.md
+    - Concepts/Generics.md
+    - Concepts/Implicit Explicit Type Conversion.md
+    - Concepts/Interfaces vs Abstract Class vs Composition.md
+    - Concepts/Interfaces.md
+    - Concepts/Main() and command-line arguments.md
+    - Concepts/MultiLevel NameSpace.md
+    - Concepts/Mutable And Immutable Class.md
+    - Concepts/Object Initializers.md
+    - Concepts/Objects Hierarchy.md
+    - Concepts/ref, in, out.md
+    - Concepts/Sealed Class.md
+    - Concepts/Singleton Class.md
+    - Concepts/Static Class.md
+    - Concepts/Using.md
+    - Concepts/Yield Return.md
   - Wix:
     - Wix/Create Custom Actions.md
     - Wix/Create wix Installer for VSTO Addin.md
