@@ -32,3 +32,14 @@ namespace ConsoleApp
     }
 }
 ```
+
+### To Add WPF Form to existing project 
+- Add this references
+```
+<Reference Include="System.Xaml">
+  <RequiredTargetFramework>4.0</RequiredTargetFramework>
+</Reference>
+<Reference Include="PresentationCore" />
+<Reference Include="PresentationFramework" />
+<Reference Include="WindowsBase" />
+```    
