@@ -1,4 +1,82 @@
-### Overview
+# C# String Methods Guide
+
+## Searching and Checking
+
+### Contain
+```csharp
+// Contains - Checks if a substring exists within the string
+string text = "Hello World";
+bool hasWorld = text.Contains("World"); // true
+bool hasJava = text.Contains("Java"); // false
+```
+### StartsWith
+```csharp
+// StartsWith - Checks if string begins with specified text
+string text = "Hello World";
+bool startsWithHello = text.StartsWith("Hello"); // true
+bool startsWithHi = text.StartsWith("Hi"); // false
+```
+### EndsWith
+```csharp
+// EndsWith - Checks if string ends with specified text
+string text = "Hello World";
+bool endsWithWorld = text.EndsWith("World"); // true
+bool endsWithEarth = text.EndsWith("Earth"); // false
+```
+### IndexOf
+```csharp
+// IndexOf - Returns the zero-based position of first occurrence
+string sentence = "The quick brown fox jumps over the lazy dog";
+int pos = sentence.IndexOf("fox"); // 16
+int notFound = sentence.IndexOf("cat"); // -1
+```
+### LastIndexOf
+```csharp
+// LastIndexOf - Returns position of last occurrence
+string repeated = "hello world hello";
+int lastPos = repeated.LastIndexOf("hello"); // 12
+```
+## Modifying Strings
+
+### Replace
+```csharp
+// Replace - Replaces all occurrences of a substring
+string original = "I like cats and cats like me";
+string replaced = original.Replace("cats", "dogs");
+// "I like dogs and dogs like me"
+```
+### Remove
+```csharp
+// Remove - Removes characters starting at specified position
+string phrase = "Hello World";
+string removed = phrase.Remove(5, 6); // "Hello" (removes " World")
+```
+
+## Extracting and Splitting
+
+### Substring
+```csharp
+// Substring - Extracts a portion of the string
+string fullText = "Hello World";
+string sub1 = fullText.Substring(0, 5); // "Hello"
+string sub2 = fullText.Substring(6); // "World"
+```
+
+### Split
+```csharp
+// Split - Divides string into array based on delimiter
+string csv = "apple,banana,orange";
+string[] fruits = csv.Split(',');
+// ["apple", "banana", "orange"]
+```
+
+### Format
+
+```csharp
+// Format - Static method for formatted string creation
+string formatted = string.Format("Hello {0}, you are {1} years old", "Alice", 25);
+// "Hello Alice, you are 25 years old"
+```
 
 C# String.Format() method formats strings in a desired format by inserting objects and variables with specified space and alignments into other strings. It is often used to also format strings into specific formats.
 
