@@ -202,7 +202,7 @@ extra:
   generator: false # remove "Generated with MkDocs" footer
   social:
     - icon: fontawesome/solid/globe
-      link: www.nodesautomations.com
+      link: https://www.nodesautomations.com
     - icon: fontawesome/brands/youtube
       link: https://www.youtube.com/NodesAutomations
     - icon: fontawesome/brands/linkedin
