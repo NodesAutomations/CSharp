@@ -23,3 +23,8 @@ expr.Parameters["y"] = Math.PI / 2;
 var result = expr.Evaluate();    // result = 2 + 3*4 - 1 = 13
 Console.WriteLine(result);
 ```
+
+## What do i think
+- Tried with `.Net framework 4.8` and it has lot of dependency
+- Dependency looks better with  new version of `.Net` 
+- Can be usable with project requires it but for minor functionality this is overkill
