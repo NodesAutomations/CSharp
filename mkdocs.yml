@@ -7,161 +7,24 @@ repo_name: CSharp
 repo_url: https://github.com/NodesAutomations/CSharp
 edit_uri: edit/main/docs/
 
-# Navigation Tree
-nav:
-  - Home:
-    - index.md
-    - NuGet.md
-    - Confuser.md
-  - Code:
-    - Code/Access Modifiers.md
-    - Code/Array.md
-    - Code/Circle.md
-    - Code/Class Attributes.md
-    - Code/Class.md
-    - Code/ConditinalStatements.md
-    - Code/Constructor.md
-    - Code/Delegates.md
-    - Code/Dictionary.md
-    - Code/Enum.md
-    - Code/Events.md
-    - Code/Extension Methods.md
-    - Code/Functions.md
-    - Code/HashSet_1 Basics.md
-    - Code/HashSet_2 Use with Custom Type.md
-    - Code/Interface.md
-    - Code/Linq.md
-    - Code/List_2 Find Items.md
-    - Code/List_1 Basics.md
-    - Code/Local Functions.md
-    - Code/Loops.md
-    - Code/Methods.md
-    - Code/Operators.md
-    - Code/Regular Expressions.md
-    - Code/Resources.md
-    - Code/String.md
-    - Code/Struct.md
-    - Code/Tuples.md
-    - Code/Variables.md
-  - Concepts:
-    - Concepts/Abstract Class.md
-    - Concepts/Boolean logical operators.md
-    - Concepts/Class with Multiple Inheritance.md
-    - Concepts/Classes.md
-    - Concepts/Coding Standards and Naming Conventions.md
-    - Concepts/Custom Formatting using IFormattable Interface.md
-    - Concepts/Different Collection Type.md
-    - Concepts/Discards.md
-    - Concepts/Escape characters.md
-    - Concepts/Fields.md
-    - Concepts/Generic Collections vs Non-Generic Collection.md
-    - Concepts/Generics.md
-    - Concepts/Implicit Explicit Type Conversion.md
-    - Concepts/Interfaces vs Abstract Class vs Composition.md
-    - Concepts/Interfaces.md
-    - Concepts/Main() and command-line arguments.md
-    - Concepts/MultiLevel NameSpace.md
-    - Concepts/Mutable And Immutable Class.md
-    - Concepts/Object Initializers.md
-    - Concepts/Objects Hierarchy.md
-    - Concepts/ref, in, out.md
-    - Concepts/Sealed Class.md
-    - Concepts/Singleton Class.md
-    - Concepts/Static Class.md
-    - Concepts/Using.md
-    - Concepts/Yield Return.md
-  - Wix:
-    - Wix/Create Custom Actions.md
-    - Wix/Create wix Installer for VSTO Addin.md
-    - Wix/Use Wix Installer from Another Project.md
-  - WPF:
-    - WPF/1 Basics.md
-    - WPF/2 Controls.md
-    - WPF/3 DataBind.md
-  - AutoCAD:
-    - AutoCAD/1 First Program.md
-    - AutoCAD/AutoCAD Addins.md
-    - AutoCAD/AutoCAD Core Console.md
-    - AutoCAD/AutoCAD Debugging Setup.md
-    - AutoCAD/AutoCAD Object Model.md
-    - AutoCAD/Plugin AutoLoader.md
-    - AutoCAD/Transaction Manager.md
-    - AutoCAD/Unique Ids in AutoCAD.md
-    - AutoCAD/Update the Geometry in Document.md
-    - Code:
-      - AutoCAD/Code/Assembly.md
-      - AutoCAD/Code/Block.md
-      - AutoCAD/Code/Block_Attributes.md
-      - AutoCAD/Code/Bounds.md
-      - AutoCAD/Code/Class.md
-      - AutoCAD/Code/Clone Entity.md
-      - AutoCAD/Code/Colors.md
-      - AutoCAD/Code/Command Groups.md
-      - AutoCAD/Code/Copy Object.md
-      - AutoCAD/Code/Curve.md
-      - AutoCAD/Code/Dimension.md
-      - AutoCAD/Code/DynamicBlock.md
-      - AutoCAD/Code/Entity.md
-      - AutoCAD/Code/External Drawing.md
-      - AutoCAD/Code/Fields.md
-      - AutoCAD/Code/GetInputs.md
-      - AutoCAD/Code/Hatch.md
-      - AutoCAD/Code/Layer.md
-      - AutoCAD/Code/Object events.md
-      - AutoCAD/Code/ObjectID.md
-      - AutoCAD/Code/PointMonitorEventHandler.md
-      - AutoCAD/Code/Resources.md
-      - AutoCAD/Code/Rotation.md
-      - AutoCAD/Code/Selection Filter.md
-      - AutoCAD/Code/Selection.md
-      - AutoCAD/Code/Table.md
-      - AutoCAD/Code/Text.md
-      - AutoCAD/Code/TitleBlock.md
-      - AutoCAD/Code/UI_Context Menu.md
-      - AutoCAD/Code/UI_Side Panel.md
-      - AutoCAD/Code/XData.md
-      - AutoCAD/Code/XRecords_Document.md
-      - AutoCAD/Code/XRecords_Objects.md
-    - Jigs:
-      - AutoCAD/Jigs/1_Jigs Basics.md
-      - AutoCAD/Jigs/2_Entity Jig.md
-      - AutoCAD/Jigs/3_Draw Jig.md
-      - AutoCAD/Jigs/Jig_DrawJig.md
-      - AutoCAD/Jigs/Jig_EntityJig.md
-  - Packages:
-    - Packages/CSVHelper.md
-    - Packages/Fluent Validator.md
-    - Packages/netDxf.md
-    - Packages/PdfPig.md
-    - xunit:
-      - Packages/xunit/Assert with Custom Comparer.md
-      - Packages/xunit/Matrix Data Sample.md
-      - Packages/xunit/Pass Array as input.md
-      - Packages/xunit/Print output during test.md
-      - Packages/xunit/strongly type Theory data with Theory.md
-      - Packages/xunit/Test using TheoryData.md
-      - Packages/xunit/Unit Test Sample.md
-      - Packages/xunit/Xunit Skip Test.md
-
 # Theme
 theme:
   name: material
   logo: assets/favicon.png
   favicon: assets/favicon.png
   palette:
-    # Palette toggle for dark mode
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+          icon: material/brightness-7
+          name: Switch to dark mode
     - scheme: slate
       primary: black
       accent: indigo
       toggle:
           icon: material/brightness-4
           name: Switch to light mode
-    - scheme: default
-      primary: black
-      accent: indigo
-      toggle:
-          icon: material/brightness-7
-          name: Switch to dark mode
   features:
     - content.action.edit # Allows "Edit on GitHub" links
     - content.action.view # Allows "View on GitHub" links
@@ -173,6 +36,10 @@ theme:
     repo: fontawesome/brands/git-alt 
     edit: material/pencil 
     view: material/eye
+
+plugins:
+  - search
+  - awesome-nav
 
 # Extensions
 markdown_extensions:
