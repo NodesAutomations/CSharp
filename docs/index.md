@@ -5,6 +5,7 @@ Repo To Keep Things to Learn, Resources and Code Samples Related to C#
 - General
     - Read me file should be for developer use to understand the project
     - Docs folder should contain documentations related to project for client use
+    - Try to keep all files related to single feature in single folder, be it code files or UI files
 - Visual studio
     - Use new version of solution file `*.slnx`
     - Treat warnings as errors
