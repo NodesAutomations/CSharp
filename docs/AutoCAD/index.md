@@ -1,5 +1,10 @@
 # AutoCAD
 
+## Resource Links
+- [AutoCAD .NET Forum](https://forums.autodesk.com/t5/net/bd-p/152)
+- [Through the Interface.](https://keanw.com/)
+- [AutoCAD 2026 Help](https://help.autodesk.com/view/OARX/2026/ENU/)
+
 ## CAD Compatibility
 
 | Software          | .NET Framework | .NET 8 |
@@ -9,3 +14,4 @@
 | ZwCAD 2015-2026   | ✅             | -      |
 | GstarCAD 2015-2025| ✅             | -      |
 | GstarCAD 2026+    | -              | ✅     |
+
