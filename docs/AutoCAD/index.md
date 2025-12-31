@@ -4,6 +4,7 @@
 - [AutoCAD .NET Forum](https://forums.autodesk.com/t5/net/bd-p/152)
 - [Through the Interface.](https://keanw.com/)
 - [AutoCAD 2026 Help](https://help.autodesk.com/view/OARX/2026/ENU/)
+- [Introduction to AutoCAD .NET API](https://www.cadtrainingonline.com/introduction-to-autocad-net-api-basics/)
 
 ## CAD Compatibility
 
