@@ -1,5 +1,4 @@
-# CSharp Documentations
-Repo To Keep Things to Learn, Resources and Code Samples Related to C#
+# CSharp Documentation
 
 ## Coding Standards
 - General
@@ -16,7 +15,7 @@ Repo To Keep Things to Learn, Resources and Code Samples Related to C#
 - Testing
     - Use xUnit for unit testing for all internal projects if it makes sense
 
-### Language Version Support Table
+## Language Version Support Table
 
 | Framework          | C# Version |
 |--------------------|------------|
