@@ -67,7 +67,6 @@ public void TestSubtract(int a, int b, int expected)
      yield return new object[] { new Point2D(-1, -1), new Point2D(2, 3), 5.0 };
  }
 ```
-
 - For class with multiple test methods, you can organize the `MemberData` like this:
 
 ```csharp
@@ -123,4 +122,3 @@ public class DistanceTestData : IEnumerable<object[]>
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }
 ```
-
