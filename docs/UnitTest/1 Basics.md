@@ -1,14 +1,14 @@
-# XUnit Basics
+# xUnit Basics
 
 ## Overview
-- XUnit is a popular open-source unit testing framework for .NET applications.
+- xUnit is a popular open-source unit testing framework for .NET applications.
 - Good support for modern .NET features and is widely adopted in the .NET community.
-- [XUnit](https://xunit.net/)
+- [xUnit](https://xunit.net/)
 
-## Setting up XUnit in your project
+## Setting up xUnit in your project
 - Create .Net 8 Class Library project with `MathUtil` class.
-- XUnit test project from Visual Studio template.
-- Remove Old XUnit package
+- xUnit test project from Visual Studio template.
+- Remove Old xUnit package
 - Add ` xunit.v3` Nuget package to test project.
 - Update `xunit.runner.visualstudio` to latest version.
 - Update `Microsoft.NET.Test.Sdk` to latest version.

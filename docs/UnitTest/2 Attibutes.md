@@ -1,7 +1,7 @@
-# Xunit Attributes
+# xUnit Attributes
 
 ## Overview
-- XUnit provides various attributes to define and control the behavior of test methods.
+- xUnit provides various attributes to define and control the behavior of test methods.
 - The most commonly used attributes are `[Fact]` and `[Theory]`.
 
 ## Fact Attribute
