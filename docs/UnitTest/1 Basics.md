@@ -58,3 +58,9 @@ public class MathUtilTest
     }
 }
 ```
+
+### Naming Conventions
+- Class Naming: Use the name of the class being tested followed by "Tests". For example, `MathUtilTests`.
+- Test Method Naming: Use descriptive names that indicate the method being tested and the expected outcome. For example
+  - `<MethodName>_Should<ExpectedBehavior>_When<Condition>`
+  - `Add_ShouldReturnSum_WhenGivenTwoIntegers`
