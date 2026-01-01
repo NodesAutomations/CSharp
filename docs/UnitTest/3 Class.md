@@ -85,7 +85,7 @@ public class DistanceTestData : TheoryData<Point2D, Point2D, double>
 }
 ```
 
-### Matrix TheoryData
+## Matrix TheoryData
 - MatrixTheoryData is a custom class that extends TheoryData to allow adding data in a matrix-like format.
 - This can make it easier to visualize and manage test data, especially when dealing with multiple parameters.
 - AddCombinations method generates all possible combinations of the provided data sets and adds them to the TheoryData.
