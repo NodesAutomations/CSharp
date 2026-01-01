@@ -81,3 +81,51 @@ public class PointFixture
 
 }
 ```
+
+## Using CollectionFixture
+- `CollectionFixture` allows sharing context across multiple test classes.
+- Define a collection fixture class and use `CollectionDefinition` attribute.
+
+```csharp title="Using CollectionFixture"
+[Collection("Point2D Collection")]
+public class Point2DTest 
+{
+    public Point2DTest(PointFixture pointFixture)
+    {
+        _Points = pointFixture.Points;
+    }
+    private List<(Point2D, Point2D, double)> _Points { get; }
+
+    [Fact]
+    public void TestDistanceTo_WithMemberData()
+    {
+        foreach (var (pointA, pointB, expectedDistance) in _Points)
+        {
+            //Act
+            var distance = pointA.DistanceTo(pointB);
+            //Assert
+            Assert.Equal(expectedDistance, distance,3);
+        }
+    }
+}
+
+public class PointFixture
+{
+    public PointFixture()
+    {
+        Points = new List<(Point2D, Point2D, double)>
+        {
+            (new Point2D(0,0), new Point2D(10,0), 10),
+            (new Point2D(0,0), new Point2D(10,10), 14.1421),
+            (new Point2D(1,2), new Point2D(3,4), 2.8284)
+        };
+    }
+    public List<(Point2D, Point2D, double)> Points { get; set; }
+
+}
+
+[CollectionDefinition("Point2D Collection")]
+public class Point2DTestCollection : ICollectionFixture<PointFixture>
+{
+}
+```
