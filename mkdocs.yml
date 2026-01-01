@@ -55,6 +55,7 @@ markdown_extensions:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
+  - attr_list # for code block titles and other attributes
   - pymdownx.arithmatex: # for rendering math equations
       generic: true
   - def_list # List extensions
