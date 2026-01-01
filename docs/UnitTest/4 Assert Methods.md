@@ -56,5 +56,8 @@
 - `Assert.NotEqual(expected, actual, precision)` - Asserts that two DateTime values are not equal within a specified precision.
 
 ## Miscellaneous Assertions
+- `Assert.Skip(message)` - Skips the test with a specified message.
+- `Assert.SkipWhen(condition, message)` - Skips the test when a specified condition is true, with a specified message.
+- `Assert.SkipUnless(condition, message)` - Skips the test unless a specified condition is true, with a specified message.
 - `Assert.fail(message)` - Fails the test with a specified message.
 - `Assert.Inconclusive(message)` - Marks the test as inconclusive with a specified message.
