@@ -84,3 +84,38 @@ public class DistanceTestData : TheoryData<Point2D, Point2D, double>
     }
 }
 ```
+
+### Matrix TheoryData
+- MatrixTheoryData is a custom class that extends TheoryData to allow adding data in a matrix-like format.
+- This can make it easier to visualize and manage test data, especially when dealing with multiple parameters.
+- AddCombinations method generates all possible combinations of the provided data sets and adds them to the TheoryData.
+
+```csharp
+public class Point2DTest
+{
+    [Theory]
+    [ClassData(typeof(DistanceTestData))]
+    public void TestDistanceTo_WithMemberData(Point2D pointA, Point2D pointB, double expectedDistance)
+    {
+        //Act
+        var distance = pointA.DistanceTo(pointB);
+        //Assert
+        Assert.Equal(expectedDistance, distance, 3);
+    }
+}
+
+ public class DistanceTestData : MatrixTheoryData<Point2D, Point2D, double>
+{
+    public DistanceTestData()
+    {
+        var points = new List<Point2D>
+        {
+            new Point2D(0, 0),
+            new Point2D(3, 4),
+            new Point2D(1, 1),
+            new Point2D(1, 0)
+        };
+        AddCombinations(points, points, (a, b) => a.DistanceTo(b));
+    }
+}
+```
