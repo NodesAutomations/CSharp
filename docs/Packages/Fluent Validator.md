@@ -120,6 +120,12 @@ else
         .SetValidator(new BarValidator());
     ```
 ### Conditional
+- The When and Unless methods can be used to specify conditions that control when the rule should execute. For example, this rule on the CustomerDiscount property will only execute when IsPreferredCustomer is true:
+    ```csharp
+    RuleFor(customer => customer.CustomerDiscount)
+        .GreaterThan(0)
+        .When(customer => customer.IsPreferredCustomer);
+    ```
 - When: Defines a conditional validation rule that only applies when a specified condition is true.
     ```csharp
     RuleFor(x => x.Cover)
@@ -135,7 +141,15 @@ else
               .WithMessage("Author is required for long titles.");
         });
     ```
-
+- Otherwise: Defines a conditional validation rule that only applies when a specified condition is false.
+    ```csharp
+    When(customer => customer.IsPreferred, () => {
+        RuleFor(customer => customer.CustomerDiscount).GreaterThan(0);
+        RuleFor(customer => customer.CreditCardNumber).NotNull();
+    }).Otherwise(() => {
+        RuleFor(customer => customer.CustomerDiscount).Equal(0);
+    });
+    ```
 ## Validation Configuration
 
 ### Custom Message
