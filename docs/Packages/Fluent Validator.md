@@ -31,6 +31,9 @@
     }
 ```
 ### Validation
+- `Validator.Validate(object)` method is used to validate an object. 
+- It returns a `ValidationResult` which contains information about whether the validation was successful and any validation errors that occurred.
+
 ```csharp
 var column = new Column();
 column.ID = "C1";
@@ -53,6 +56,26 @@ else
     }
 }
 ```
+
+## Methods 
+
+### General
+- RuleFor: Defines a validation rule for a specific property of the object being validated.
+- NotNull: Validates that a property is not null.
+- RuleForEach: Validates each element in a collection property using a specified rule.
+
+### String
+- NotEmpty: Validates that a string property is not null or empty.
+
+### Number
+- GreaterThan: Validates that a numeric property is greater than a specified value.
+- GreaterThanOrEqualTo: Validates that a numeric property is greater than or equal to a specified value.
+- LessThan: Validates that a numeric property is less than a specified value.
+- LessThanOrEqualTo: Validates that a numeric property is less than or equal to a specified value.
+
+### Class
+- SetValidator: Validates a complex property using another validator.
+
 
 
  
