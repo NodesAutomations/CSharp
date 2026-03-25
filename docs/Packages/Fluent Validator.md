@@ -1,3 +1,64 @@
+# Fluent Validation
+
+## How to use Fluent Validation
+- Assume you have column class and you'll want to validate its properties before processing it.
+- You can create validator class before processing it's data to avoid any exception
+- Install Package FluentValidation via Nuget Package Manager
+
+### Original Class
+```csharp
+ internal class Column
+ {
+     public string ID { get; set; }
+     public double Width { get; set; }
+     public double Breadth { get; set; }
+     public double Height { get; set; }
+     public double Cover { get; set; }
+ }
+```
+### Validator Class
+```csharp
+    internal class ColumnValidator:AbstractValidator<Column>
+    {
+        public ColumnValidator()
+        {
+            RuleFor(x => x.ID).NotEmpty();
+            RuleFor(x => x.Width).GreaterThanOrEqualTo(230);
+            RuleFor(x => x.Breadth).GreaterThanOrEqualTo(230);
+            RuleFor(x => x.Height).GreaterThanOrEqualTo(2800);
+            RuleFor(x => x.Cover).GreaterThanOrEqualTo(20);
+        }
+    }
+```
+### Validation
+```csharp
+var column = new Column();
+column.ID = "C1";
+column.Width = 300;
+column.Breadth = 600;
+column.Height = 3000;
+column.Cover = 25;
+
+var validator = new ColumnValidator();
+var result = validator.Validate(column);
+if (result.IsValid)
+{
+    Console.WriteLine("Column is valid.");
+}
+else
+{
+    foreach (var error in result.Errors)
+    {
+        Console.WriteLine(error.ErrorMessage);
+    }
+}
+```
+
+
+
+
+
+
 ### General Sample
 
 ```csharp
