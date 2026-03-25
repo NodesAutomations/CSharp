@@ -16,3 +16,5 @@
 | GstarCAD 2015-2025| ✅             | -      |
 | GstarCAD 2026+    | -              | ✅     |
 
+# Project References
+- [Extension Library for AutoCAD.NET ](https://github.com/ActivistInvestor/AcMgdLib)
