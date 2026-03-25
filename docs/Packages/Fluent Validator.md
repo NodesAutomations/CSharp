@@ -79,28 +79,6 @@ else
     .Must(id => id.StartsWith("C"))
     .WithMessage("Column ID must start with the letter C.");
     ```
-### Message Customization
-- WithMessage: Specifies a custom error message for a validation failure.
-    ```csharp
-    RuleFor(x => x.Width)
-    .GreaterThanOrEqualTo(230)
-    .WithMessage(x => $"Column {x.ID} width must be at least 230.");
-    ```
-- Placeholder: You can use placeholders in your custom error messages to include dynamic values. For example, {PropertyName} will be replaced with the name of the property being validated, and {PropertyValue} will be replaced with the value of that property.
-    ```csharp
-    RuleFor(x => x.Width)
-    .GreaterThanOrEqualTo(230)
-    .WithMessage("Column {PropertyName} must be at least 230. Current value: {PropertyValue}");
-    ```
-- {PropertyName}: The name of the property being validated.
-- {PropertyValue}: The value of the property being validated.
-- {MinLength}: The minimum length specified in a Length validation rule.
-- {MaxLength}: The maximum length specified in a Length validation rule.
-- {TotalLength}: The total length of a string being validated in a Length validation rule.
-- {ComparisonValue}: The value being compared against in a comparison validation rule (e.g., GreaterThan, LessThan).
-- {ComparisonProperty}: The name of the property being compared against in a comparison validation rule.
-- {CollectionCount}: The number of elements in a collection being validated when using RuleForEach.
-- {CollectionIndex}: The index of the current element being validated in a collection when using RuleForEach.
 
 ### String
 - NotEmpty: Validates that a string property is not null or empty.
@@ -158,7 +136,42 @@ else
         });
     ```
 
- 
+## Validation Configuration
+
+### Custom Message
+- WithMessage: Specifies a custom error message for a validation failure.
+    ```csharp
+    RuleFor(x => x.Width)
+    .GreaterThanOrEqualTo(230)
+    .WithMessage(x => $"Column {x.ID} width must be at least 230.");
+    ```
+
+### Placeholders
+- You can use placeholders in your custom error messages to include dynamic values. For example, {PropertyName} will be replaced with the name of the property being validated, and {PropertyValue} will be replaced with the value of that property.
+    ```csharp
+    RuleFor(x => x.Width)
+    .GreaterThanOrEqualTo(230)
+    .WithMessage("Column {PropertyName} must be at least 230. Current value: {PropertyValue}");
+    ```
+- {PropertyName}: The name of the property being validated.
+- {PropertyValue}: The value of the property being validated.
+- {MinLength}: The minimum length specified in a Length validation rule.
+- {MaxLength}: The maximum length specified in a Length validation rule.
+- {TotalLength}: The total length of a string being validated in a Length validation rule.
+- {ComparisonValue}: The value being compared against in a comparison validation rule (e.g., GreaterThan, LessThan).
+- {ComparisonProperty}: The name of the property being compared against in a comparison validation rule.
+- {CollectionCount}: The number of elements in a collection being validated when using RuleForEach.
+- {CollectionIndex}: The index of the current element being validated in a collection when using RuleForEach.
+
+### WithName
+- WithName: Specifies a custom name for the property being validated, which can be used in error messages.
+    ```csharp
+    RuleFor(x => x.Width)
+    .GreaterThanOrEqualTo(230)
+    .WithName("Column Width")
+    .WithMessage("{PropertyName} must be at least 230. Current value: {PropertyValue}");
+    ```
+
 ## Sample related to Excel Model
 
 ```csharp
