@@ -57,7 +57,7 @@ else
 }
 ```
 
-## Methods 
+## Validation Methods 
 
 ### General
 - RuleFor: Defines a validation rule for a specific property of the object being validated.
@@ -88,6 +88,10 @@ else
     ```csharp
     RuleFor(x => x.ID).NotNull();
     ```
+- Length: Validates that a string property has a length within a specified range.
+    ```csharp
+    RuleFor(x => x.ID).Length(2, 4);
+    ```
 - Matches: Validates that a string property matches a specified regular expression pattern.
     ```csharp
     RuleFor(x => x.ID)
@@ -114,8 +118,22 @@ else
     RuleFor(x => x.Set1)
         .SetValidator(new BarValidator());
     ```
-
-
+### Conditional
+- When: Defines a conditional validation rule that only applies when a specified condition is true.
+    ```csharp
+    RuleFor(x => x.Cover)
+        .GreaterThanOrEqualTo(20)
+        .When(x => x.Height > 3000)
+        .WithMessage("Cover must be at least 20 when height is greater than 3000.");
+    ```
+    ```csharp
+    When(book => book.Title.Length > 50, () =>
+        {
+            RuleFor(book => book.Author)
+              .NotEmpty()
+              .WithMessage("Author is required for long titles.");
+        });
+    ```
 
  
 ## Sample related to Excel Model
