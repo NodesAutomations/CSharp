@@ -74,7 +74,6 @@ else
     .GreaterThanOrEqualTo(230)
     .WithMessage(x => $"Column {x.ID} width must be at least 230.");
     ```
-    
 - RuleForEach: Validates each element in a collection property using a specified rule.
     ```csharp
     RuleForEach(x => x.Spacing).GreaterThan(0);
@@ -82,8 +81,20 @@ else
 
 ### String
 - NotEmpty: Validates that a string property is not null or empty.
+    ```csharp
+    RuleFor(x => x.ID).NotEmpty();
+    ```
 - NotNull: Validates that a string property is not null.
-
+    ```csharp
+    RuleFor(x => x.ID).NotNull();
+    ```
+- Matches: Validates that a string property matches a specified regular expression pattern.
+    ```csharp
+    RuleFor(x => x.ID)
+    .NotEmpty()
+    .Matches(@"^C[1-9]\d*$")
+    .WithMessage("Column ID must start with a letter C followed by digits.");
+    ```
 ### Number
 - GreaterThan: Validates that a numeric property is greater than a specified value.
 - GreaterThanOrEqualTo: Validates that a numeric property is greater than or equal to a specified value.
@@ -96,7 +107,7 @@ else
 
 
  
-### Sample related to Excel Model
+## Sample related to Excel Model
 
 ```csharp
 using FluentValidation;
