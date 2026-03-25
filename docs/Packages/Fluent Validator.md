@@ -74,9 +74,9 @@ else
     .GreaterThanOrEqualTo(230)
     .WithMessage(x => $"Column {x.ID} width must be at least 230.");
     ```
-- RuleForEach: Validates each element in a collection property using a specified rule.
+- RuleForEach: Validates each element in a collection property(List,array,Dictionary) using a specified rule. 
     ```csharp
-    RuleForEach(x => x.Spacing).GreaterThan(0);
+    RuleForEach(x => x.CollectionProperty).NotEmpty();
     ```
 
 ### String
@@ -96,13 +96,24 @@ else
     .WithMessage("Column ID must start with a letter C followed by digits.");
     ```
 ### Number
+- Number validation are most straight forward, you can use the following methods to validate numeric properties:
+    ```csharp
+        RuleFor(x => x.Width).GreaterThanOrEqualTo(230);
+        RuleFor(x => x.Breadth).GreaterThanOrEqualTo(230);
+        RuleFor(x => x.Height).GreaterThanOrEqualTo(2800);
+        RuleFor(x => x.Cover).GreaterThanOrEqualTo(20);
+    ```
 - GreaterThan: Validates that a numeric property is greater than a specified value.
 - GreaterThanOrEqualTo: Validates that a numeric property is greater than or equal to a specified value.
 - LessThan: Validates that a numeric property is less than a specified value.
 - LessThanOrEqualTo: Validates that a numeric property is less than or equal to a specified value.
 
 ### Class
-- SetValidator: Validates a complex property using another validator.
+- SetValidator: Validates a class property using another validator.
+    ```csharp
+    RuleFor(x => x.Set1)
+        .SetValidator(new BarValidator());
+    ```
 
 
 
