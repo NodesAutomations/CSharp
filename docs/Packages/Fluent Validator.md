@@ -61,11 +61,28 @@ else
 
 ### General
 - RuleFor: Defines a validation rule for a specific property of the object being validated.
+    ```csharp
+    RuleFor(x => x.ID).NotEmpty();
+    ``` 
 - NotNull: Validates that a property is not null.
+    ```csharp
+    RuleFor(x => x.ID).NotNull();
+    ```
+- WithMessage: Specifies a custom error message for a validation failure.
+    ```csharp
+    RuleFor(x => x.Width)
+    .GreaterThanOrEqualTo(230)
+    .WithMessage(x => $"Column {x.ID} width must be at least 230.");
+    ```
+    
 - RuleForEach: Validates each element in a collection property using a specified rule.
+    ```csharp
+    RuleForEach(x => x.Spacing).GreaterThan(0);
+    ```
 
 ### String
 - NotEmpty: Validates that a string property is not null or empty.
+- NotNull: Validates that a string property is not null.
 
 ### Number
 - GreaterThan: Validates that a numeric property is greater than a specified value.
