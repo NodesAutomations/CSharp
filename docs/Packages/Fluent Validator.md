@@ -64,14 +64,17 @@ else
     ```csharp
     RuleFor(x => x.ID).NotEmpty();
     ``` 
+- RuleForEach: Validates each element in a collection property(List,array,Dictionary) using a specified rule. 
+    ```csharp
+    RuleForEach(x => x.CollectionProperty).NotEmpty();
+    ```
 - NotNull: Validates that a property is not null.
     ```csharp
     RuleFor(x => x.ID).NotNull();
     ```
-
-- RuleForEach: Validates each element in a collection property(List,array,Dictionary) using a specified rule. 
+- Equal/NotEqual: Validates that a property is equal or not equal to a specified value.
     ```csharp
-    RuleForEach(x => x.CollectionProperty).NotEmpty();
+    RuleFor(x => x.ID).NotEqual("C0").WithMessage("Column ID cannot be C0.");
     ```
 - Must: Validates that a property satisfies a specified condition.
     ```csharp
@@ -113,6 +116,29 @@ else
 - LessThan: Validates that a numeric property is less than a specified value.
 - LessThanOrEqualTo: Validates that a numeric property is less than or equal to a specified value.
 
+
+### Enum
+- IsInEnum: Validates that an enum property has a value that is defined in the enum type.
+    ```csharp
+    public enum ErrorLevel 
+    {
+    Error = 1,
+    Warning = 2,
+    Notice = 3
+    }
+
+    public class Model
+    {
+    public ErrorLevel ErrorLevel { get; set; }
+    }
+
+    var model = new Model();
+    model.ErrorLevel = (ErrorLevel)4;
+    ```
+    ```csharp
+    RuleFor(x => x.ErrorLevel).IsInEnum();
+    ```
+    
 ### Class
 - SetValidator: Validates a class property using another validator.
     ```csharp
