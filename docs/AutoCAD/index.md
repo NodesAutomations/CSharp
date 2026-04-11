@@ -8,13 +8,14 @@
 
 ## CAD Compatibility
 
-| Software          | .NET Framework | .NET 8 |
-|-------------------|----------------|--------|
-| AutoCAD 2014-2024 | ✅             | -      |
-| AutoCAD 2025+     | -              | ✅     |
-| ZwCAD 2015-2026   | ✅             | -      |
-| GstarCAD 2015-2025| ✅             | -      |
-| GstarCAD 2026+    | -              | ✅     |
+| Software          | .NET Framework | .NET 8 | .NET 10 |
+|-------------------|----------------|--------|--------|
+| AutoCAD 2014-2024 | ✅             | -      | -      |
+| AutoCAD 2025-2026 | -              | ✅     | -      |
+| AutoCAD 2027+     | -              | -      | ✅     |
+| ZwCAD 2015-2026   | ✅             | -      | -      |
+| GstarCAD 2015-2025| ✅             | -      | -      |
+| GstarCAD 2026+    | -              | ✅     | -      |
 
 # Project References
 - [Extension Library for AutoCAD.NET ](https://github.com/ActivistInvestor/AcMgdLib)
