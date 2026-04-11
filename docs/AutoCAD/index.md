@@ -5,6 +5,7 @@
 - [Through the Interface.](https://keanw.com/)
 - [AutoCAD 2026 Help](https://help.autodesk.com/view/OARX/2026/ENU/)
 - [Introduction to AutoCAD .NET API](https://www.cadtrainingonline.com/introduction-to-autocad-net-api-basics/)
+- [Autodesk Developer Blog](https://blog.autodesk.io/)
 
 ## CAD Compatibility
 
