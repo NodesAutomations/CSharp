@@ -16,3 +16,4 @@
 
 ## Resources
 - [Design Patterns in C#](https://www.dofactory.com/net/design-patterns)
+- [Frustrated with learning all of the design patterns](https://www.reddit.com/r/developersIndia/comments/1mfydex/frustrated_with_learning_all_of_the_design)
