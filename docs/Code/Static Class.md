@@ -1,5 +1,6 @@
-# What?
+# Static Class
 
+## Overview
 A static class is very similar to a non-static class, however there's one difference: **a static class can’t be instantiated**. In different words, you cannot use the new keyword to make a variable of that class type. As a result, there's no instance variable, you access the static class members by using class name.
 
 ```csharp
