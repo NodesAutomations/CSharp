@@ -9,6 +9,7 @@
 ## Use case
 - When the cost of creating a new object is expensive or complicated.
 - When you want to avoid the overhead of initializing an object from scratch.
+- Avoid it when you have class with circular references.
 
 ## Code
 ```csharp
@@ -80,5 +81,9 @@ private static void Main()
     var clonedStudent = (Student)student.Clone();
     clonedStudent.Name = "Jane Smith Clone";
     Console.WriteLine(clonedStudent);
+
+    //You can create list of person and create copy of them without knowing their concrete type
+    var people = new List<Person> { teacher, student };
+    var clonedPeople = people.Select(p => p.Clone()).ToList();
 }
 ```
