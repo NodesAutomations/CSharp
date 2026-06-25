@@ -11,6 +11,12 @@
 - License Manager
 
 ## Downside
+- Violates the Single Responsibility Principle because it controls both the creation and the behavior of the instance.
+- Not suiteable for multi-threaded applications because it can create multiple instances of the class if two threads access the instance at the same time.
+- Difficult to unit test because it introduces global state into an application.
+- Can lead to tight coupling between classes because they rely on the singleton instance.
+
+## Downside
 - Don't overuse it because it can create overhead because it's instantiated once and used throughout the application. 
 It can also make unit testing difficult because it introduces global state into an application.
 
