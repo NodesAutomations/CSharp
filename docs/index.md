@@ -23,3 +23,8 @@
 | .Net Standard 2.0  | 7.3 (You can also use 8.0 with some limitations)        |
 | .Net 8.0           | 12.0       |
 | .Net 10            | 14.0       |
+
+## Learning Wishlist
+- Design Patterns
+- Dependency Injection
+- Web Authentication for licensing
