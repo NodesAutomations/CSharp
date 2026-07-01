@@ -44,6 +44,7 @@
 
 ## Resources
 - [Design Patterns in C#](https://www.dofactory.com/net/design-patterns)
+- [MilanJovanovicTech](https://www.youtube.com/@MilanJovanovicTech)
 - [Refactoring Guru](https://refactoring.guru/design-patterns/catalog)
 - [C# Design Pattern](https://www.youtube.com/playlist?list=PLOeFnOV9YBa4ary9fvCULLn7ohNKR6Ees)
 - [Frustrated with learning all of the design patterns](https://www.reddit.com/r/developersIndia/comments/1mfydex/frustrated_with_learning_all_of_the_design)
