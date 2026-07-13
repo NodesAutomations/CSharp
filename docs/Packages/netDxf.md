@@ -53,4 +53,24 @@ doc.Entities.Add(arc);
 
 ## Apply Properties
 ```csharp
+//Circle with yellow color
+Circle circle = new Circle(new Vector2(0, 0), 5);
+circle.Color = AciColor.Yellow;
+doc.Entities.Add(circle);
+
+//Circle with section layer and red color
+Layer layer = new Layer("Section");
+layer.Color = AciColor.Red;
+
+Circle circle2 = new Circle(new Vector2(10, 10), 5);
+circle2.Layer = layer;
+doc.Entities.Add(circle2);
+
+//Circle with dotted line type and blue color
+Linetype dottedLineType = new Linetype("Dotted");
+
+Circle circle3 = new Circle(new Vector2(20, 20), 5);
+circle3.Color = AciColor.Blue;
+circle3.Linetype = dottedLineType;
+doc.Entities.Add(circle3);
 ```
