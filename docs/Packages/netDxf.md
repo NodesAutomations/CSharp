@@ -46,6 +46,15 @@ rectangle.Vertexes.Add(new Polyline2DVertex(0, 100));
 rectangle.IsClosed = true;
 doc.Entities.Add(rectangle);
 
+//Rectangle with 100x100 and bulge of 180 degrees on the left and right sides
+Polyline2D rectangle = new Polyline2D();
+rectangle.Vertexes.Add(new Polyline2DVertex(0, 0));
+rectangle.Vertexes.Add(new Polyline2DVertex(100, 0, GetBuldge(180)));
+rectangle.Vertexes.Add(new Polyline2DVertex(100, 100));
+rectangle.Vertexes.Add(new Polyline2DVertex(0, 100, GetBuldge(180)));
+rectangle.IsClosed = true;
+doc.Entities.Add(rectangle);
+
 //Arc
 Arc arc = new Arc(new Vector2(0, 0), 5, 0, 90);
 doc.Entities.Add(arc);
