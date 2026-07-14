@@ -66,11 +66,32 @@ Circle circle2 = new Circle(new Vector2(10, 10), 5);
 circle2.Layer = layer;
 doc.Entities.Add(circle2);
 
-//Circle with dotted line type and blue color
-Linetype dottedLineType = new Linetype("Dotted");
-
+//Circle with dashed line type and blue color
 Circle circle3 = new Circle(new Vector2(20, 20), 5);
 circle3.Color = AciColor.Blue;
-circle3.Linetype = dottedLineType;
+circle3.Linetype = Linetype.Dashed; 
+circle3.LinetypeScale = 3;
 doc.Entities.Add(circle3);
+```
+
+## Annotations
+```csharp
+//Text with Hello World! and red color
+Text text = new Text("Hello World!", new Vector2(0, 0), 1);
+text.Alignment = TextAlignment.MiddleCenter;
+doc.Entities.Add(text);
+
+//MText with Hello World! and red color
+MText mtext = new MText("Hello World!", new Vector2(10, 0), 1.5, 10);
+mtext.AttachmentPoint = MTextAttachmentPoint.MiddleCenter;
+doc.Entities.Add(mtext);
+
+//Linear Dimension horizontal
+LinearDimension linearDimension = new LinearDimension(new Vector2(0, 0), new Vector2(10, 10), -12,90);
+doc.Entities.Add(linearDimension);
+
+//Align Dimension Horizontal
+AlignedDimension alignedDimension = new AlignedDimension(new Vector2(5, -5), new Vector2(15, -15), 2);
+doc.Entities.Add(alignedDimension);
+
 ```
