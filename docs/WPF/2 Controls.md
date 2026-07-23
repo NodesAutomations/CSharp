@@ -60,7 +60,7 @@
 </Button>
 ```
 ### GroupBox
-- Used to group related controls together
+- It's similar to what we use on windows form for grouping of similar controls
 ```xml
 <GroupBox
     Name="PersonGroupBox"
@@ -82,6 +82,9 @@
 
 ### TextBlock
 - Used to display text on the screen
+- Supports text formatting, wrapping, and inline elements
+- You can use it for headings, descriptions, status messages or read only text
+
 ```xml
 <TextBlock
     Name="NameTextBlock"
@@ -112,6 +115,15 @@
     HorizontalAlignment="Left"
     VerticalAlignment="Center" />
 ```
+
+- Label is different from TextBlock in a way that it can be associated with other controls like TextBox, ComboBox, etc. using `Target` property. When the label is clicked, it will focus on the associated control.
+
+```xml
+<TextBox Name="NameTextBox" VFontSize="16" />
+<Label Content="_Name:" Target="{Binding ElementName=NameTextBox}" />
+```
+- This Code will create a label with text "Name:" with `Alt + N` as a shortcut key to focus on the associated TextBox.
+- From practical point of view use TextBlock for displaying text and Label when you needs keyboad navigation support.
 
 ### Button
 ```xml
