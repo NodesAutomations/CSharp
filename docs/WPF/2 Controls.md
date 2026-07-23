@@ -175,9 +175,23 @@ private void HelloButton_Click(object sender, RoutedEventArgs e)
 </ListBox>
 ```
 
-### List View
+### ListView
 ```xml
-
+<ListView Name="FriendsListView" />
+```
+```csharp
+'Code to populate ListView Item
+FriendsListView.Items.Add("Deven");
+FriendsListView.Items.Add("Dhruv");
+FriendsListView.Items.Add("Yogesh");
+```
+```csharp
+//Code to display Selected item from FriendsListView
+MessageBox.Show($"{FriendsListView.SelectedItem.ToString()}");
+```
+```csharp
+//Code to remove selected item from FriendsListView
+FriendsListView.Items.Remove(FriendsListView.SelectedItem);
 ```
 
 ### DataGrid
