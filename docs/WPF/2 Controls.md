@@ -6,6 +6,7 @@
 ### Grid
 - This is sample code to create a Grid with 4 rows and 2 columns
 - You can use `Grid.Row` and `Grid.Column` properties to set your control to a specific position
+- You can also create another Grid inside a Grid cell to create complex layouts
 
 ```xml
 <Grid>
@@ -80,6 +81,7 @@
 ## Main Controls
 
 ### TextBlock
+- Used to display text on the screen
 ```xml
 <TextBlock
     Name="NameTextBlock"
@@ -100,6 +102,8 @@
 ```
 
 ### Label
+- Used to display text on the screen
+- You can use `Content` property to set the text of the label
 ```xml
 <Label
     Name="NameLabel"
@@ -120,6 +124,14 @@
     HorizontalAlignment="Left" 
     VerticalAlignment="Center" 
     Click="HelloButton_Click" />
+```
+
+- You need to add code for button click event in code behind file
+```csharp
+private void HelloButton_Click(object sender, RoutedEventArgs e)
+{
+    MessageBox.Show($"Hello!", "Greeting", MessageBoxButton.OK, MessageBoxImage.Information);
+}
 ```
 
 ### Radio Button
