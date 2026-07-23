@@ -176,6 +176,7 @@ private void HelloButton_Click(object sender, RoutedEventArgs e)
 ```
 
 ### ListView
+- List view with single column
 ```xml
 <ListView Name="FriendsListView" />
 ```
@@ -192,6 +193,49 @@ MessageBox.Show($"{FriendsListView.SelectedItem.ToString()}");
 ```csharp
 //Code to remove selected item from FriendsListView
 FriendsListView.Items.Remove(FriendsListView.SelectedItem);
+```
+
+- List view with multiple columns
+```xml
+<ListView Name="FriendsListView" Width="300" Height="150">
+    <ListView.View>
+        <GridView>
+            <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="140" />
+            <GridViewColumn Header="Age" DisplayMemberBinding="{Binding Age}" Width="80" />
+        </GridView>
+    </ListView.View>
+</ListView>
+```
+```csharp
+public class Friend
+{
+    public string Name { get; set; } = string.Empty;
+    public int Age { get; set; }
+    public override string ToString()
+    {
+        return $"{Name} ({Age})";
+    }
+}
+````
+```csharp
+//code to populate ListView Item with multiple columns
+FriendsListView.Items.Add(new Friend
+{
+    Name = "Deven",
+    Age = 25
+});
+
+FriendsListView.Items.Add(new Friend
+{
+    Name = "Dhruv",
+    Age = 28
+});
+
+FriendsListView.Items.Add(new Friend
+{
+    Name = "Yogesh",
+    Age = 30
+});
 ```
 
 ### DataGrid
