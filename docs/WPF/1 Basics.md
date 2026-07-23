@@ -45,6 +45,13 @@ namespace ConsoleApp
 
 ### XML Basics
 
+#### General Rules
+- XML is case sensitive, so `<Button>` and `<button>` are different tags.
+- All tags must be closed, either with a closing tag or self-closing tag. for example, `<Button></Button>` and `<Button />` are valid, but `<Button>` is not valid.
+- All attributes must be quoted, either with single or double quotes. For example, `<Button Content="Click Me" />` is valid, but `<Button Content=Click Me />` is not valid.
+- XML have only one root tag, so you can have only one top level tag. For example, `<Button /><TextBlock />` is not valid, but `<StackPanel><Button /><TextBlock /></StackPanel>` is valid.
+- XML is hierarchical, so you can have nested tags. For example, `<Button><TextBlock Text="Click Me" /></Button>` is valid 
+
 #### Close tag without children
 - For tag without children you can use either of the following syntax
 ```xml
@@ -67,3 +74,6 @@ namespace ConsoleApp
 </Button>
 ```
 
+#### Namespaces matter in XML
+- WPF uses XML namespaces to differentiate between different types of controls and elements. For example, the `Button` control is defined in the `http://schemas.microsoft.com/winfx/2006/xaml/presentation` namespace, while the `TextBlock` control is defined in the `http://schemas.microsoft.com/winfx/2006/xaml/presentation` namespace.
+- If namespaces are wrong, controls may not be recognized.
