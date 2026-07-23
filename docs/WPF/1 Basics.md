@@ -10,7 +10,6 @@
 - More functionality compared to Windows Forms.
 - Reusable components.
 
-
 ### Calling WPF form from console APP
 ```csharp
 using System;
@@ -43,3 +42,28 @@ namespace ConsoleApp
 <Reference Include="PresentationFramework" />
 <Reference Include="WindowsBase" />
 ```    
+
+### XML Basics
+
+#### Close tag without children
+- For tag without children you can use either of the following syntax
+```xml
+<!-- Open and Close tag -->
+<Button Content="Click Me"></Button>
+```
+```xml
+<!-- Self Closing tag -->
+<Button Content="Click Me" />
+```
+- This is more readable and preferred way to write XML tag without children
+
+#### Close tag with children
+- You must follow this syntax to close tag with children
+```xml
+<Button>
+    <Button.Content>
+        Click Me
+    </Button.Content>
+</Button>
+```
+
