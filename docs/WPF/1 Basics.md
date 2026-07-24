@@ -10,39 +10,6 @@
 - More functionality compared to Windows Forms.
 - Reusable components.
 
-### Calling WPF form from console APP
-```csharp
-using System;
-using System.Windows;
-
-namespace ConsoleApp
-{
-    internal static class Program
-    {
-        [STAThread]
-        private static void Main()
-        {
-            // Initialize WPF Application
-            var app = new Application();
-
-            var frm = new AboutForm();
-            frm.ShowDialog();
-        }
-    }
-}
-```
-
-### To Add WPF Form to existing project 
-- Add this references
-```
-<Reference Include="System.Xaml">
-  <RequiredTargetFramework>4.0</RequiredTargetFramework>
-</Reference>
-<Reference Include="PresentationCore" />
-<Reference Include="PresentationFramework" />
-<Reference Include="WindowsBase" />
-```    
-
 ### XML Basics
 
 #### General Rules
@@ -77,3 +44,85 @@ namespace ConsoleApp
 #### Namespaces matter in XML
 - WPF uses XML namespaces to differentiate between different types of controls and elements. For example, the `Button` control is defined in the `http://schemas.microsoft.com/winfx/2006/xaml/presentation` namespace, while the `TextBlock` control is defined in the `http://schemas.microsoft.com/winfx/2006/xaml/presentation` namespace.
 - If namespaces are wrong, controls may not be recognized.
+
+
+### Sample WPF Form
+```xml
+<Window x:Class="WpfApp.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:WpfApp" mc:Ignorable="d" Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+        <!-- Add Stack Panel in first column -->
+        <StackPanel Grid.Column="0" Background="White">
+            <!-- Add List View with 3 columns -->
+            <TextBlock Name="NameTextBlock" Text="Name" FontWeight="Bold" Margin="10"/>
+            <TextBox Name="NameTextBox" Margin="10"/>
+            <TextBlock Name="AgeTextBlock" Text="Age" FontWeight="Bold" Margin="10"/>
+            <TextBox Name="AgeTextBox" Margin="10"/>
+            <TextBlock Name="BalanceTextBlock" Text="Balance" FontWeight="Bold" Margin="10"/>
+            <TextBox Name="BalanceTextBox" Margin="10"/>
+
+        </StackPanel>
+        <!-- Add Stack Panel in second  column -->
+        <StackPanel Grid.Column="1" Background="LightGray">
+            <Button 
+                Name="RunButton" Content="Run" Click="RunButton_Click"
+                Margin="10"/>
+        </StackPanel>
+    </Grid>
+</Window>
+```
+```csharp
+ public partial class MainWindow : Window
+ {
+     public MainWindow()
+     {
+         InitializeComponent();
+
+     }
+     private void RunButton_Click(object sender, RoutedEventArgs e)
+     {
+         MessageBox.Show($"Name: {NameTextBox.Text}\nAge: {AgeTextBox.Text}\nBalance: {BalanceTextBox.Text}");
+     }
+ }
+```
+
+### Calling WPF form from console APP
+```csharp
+using System;
+using System.Windows;
+
+namespace ConsoleApp
+{
+    internal static class Program
+    {
+        [STAThread]
+        private static void Main()
+        {
+            // Initialize WPF Application
+            var app = new Application();
+
+            var frm = new AboutForm();
+            frm.ShowDialog();
+        }
+    }
+}
+```
+
+### To Add WPF Form to existing project 
+- Add this references
+```
+<Reference Include="System.Xaml">
+  <RequiredTargetFramework>4.0</RequiredTargetFramework>
+</Reference>
+<Reference Include="PresentationCore" />
+<Reference Include="PresentationFramework" />
+<Reference Include="WindowsBase" />
+```    
