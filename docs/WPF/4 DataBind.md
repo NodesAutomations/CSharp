@@ -1,5 +1,3 @@
-# Databinding
-
 ## Overview
 - Databinding is a powerful feature in WPF that allows you to bind UI elements to data sources, enabling automatic updates of the UI when the underlying data changes.
 - You can just

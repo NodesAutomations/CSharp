@@ -1,5 +1,3 @@
-# Custom Controls
-
 ## Overview
 - Custom controls are user-defined controls that can be created to encapsulate specific functionality or behavior.
 
@@ -15,16 +13,17 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfApp.UserControls"
              mc:Ignorable="d" 
-             Height="50" d:DesignWidth="600">
+             d:DesignWidth="600" d:DesignHeight="50">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="120"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Name="InputNameTextBlock" Grid.Column="0" Text="Name" FontSize="16" FontWeight="Bold" Margin="10"/>
-        <TextBox Name="InputValueTextBox" Grid.Column="1" Margin="10"/>
+        <TextBlock Grid.Column="0" Name="LabelTextBlock"  Text="Name" FontSize="16" FontWeight="Bold" Margin="10"/>
+        <TextBox Grid.Column="1" Name="ValueTextBox" Margin="10"/>
     </Grid>
 </UserControl>
+
 ```
 - Code behind file `InputBox.xaml.cs` will have the following code to expose the properties of the custom control.
 ```csharp
@@ -36,13 +35,13 @@ public partial class InputBox : UserControl
     }
     public string Label
     {
-        get => InputNameTextBlock.Text;
-        set => InputNameTextBlock.Text = value;
+        get => LabelTextBlock.Text;
+        set => LabelTextBlock.Text = value;
     }
     public string Text
     {
-        get => InputValueTextBox.Text;
-        set => InputValueTextBox.Text = value;
+        get => ValueTextBox.Text;
+        set => ValueTextBox.Text = value;
     }
 }
 ```
@@ -54,21 +53,32 @@ public partial class InputBox : UserControl
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:WpfApp" mc:Ignorable="d" 
-    <!-- Start -->
     xmlns:userControls="clr-namespace:WpfApp.UserControls"
-    <!-- End -->
     Title="MainWindow" Height="450" Width="800">
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+        <!-- Add Stack Panel in first column -->
+        <StackPanel Grid.Column="0" Background="White">
+            <!-- Use InputBox UserControl -->
+            <userControls:InputBox x:Name="NameInputBox" Label="Name" Text="John Doe" />
+            <userControls:InputBox x:Name="AgeInputBox" Label="Age" Text="30" />
+            <userControls:InputBox x:Name="BalanceInputBox" Label="Balance" Text="1000" />
+        </StackPanel>
+        <!-- Add Stack Panel in second  column -->
+        <StackPanel Grid.Column="1" Background="LightGray">
+            <Button Name="RunButton" Content="Run" Click="RunButton_Click" Margin="10"/>
+        </StackPanel>
+    </Grid>
+</Window>
 ```
-- How to use this
-```xml
-<!-- Use InputBox UserControl -->
-<userControls:InputBox x:Name="NameInputBox" Label="Name"/>
-<userControls:InputBox x:Name="AgeInputBox" Label="Age"/>
-<userControls:InputBox x:Name="AddressInputBox" Label="Address"/>
-```
+- Code behind to use this custom control in your main window will have the following code.
 ```csharp
 string name = NameInputBox.Text;
 string age = AgeInputBox.Text;
-string address = AddressInputBox.Text;
-MessageBox.Show($"Name: {name}\nAge: {age}\nAddress: {address}");
+string balance = BalanceInputBox.Text;
+MessageBox.Show($"Name: {name}\nAge: {age}\nBalance: {balance}");
 ```
