@@ -59,6 +59,13 @@
     </StackPanel>
 </Button>
 ```
+### Grid Splitter
+- GridSplitter is used to resize the grid columns or rows at runtime
+- You have to add extra row or column in your grid to add GridSplitter control with `5-10` thickness to make it visible and resizable
+```xml
+ <GridSplitter Grid.Column="1" Width="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+```
+
 ### GroupBox
 - It's similar to what we use on windows form for grouping of similar controls
 ```xml
