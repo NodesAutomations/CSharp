@@ -66,6 +66,18 @@
  <GridSplitter Grid.Column="1" Width="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
 ```
 
+### Expander
+- Expander is used to show/hide the content on click of header
+- You can use it to create collapsible sections in your UI
+```xml
+<Expander Header="More Options" Width="200" Height="100">
+    <StackPanel>
+        <CheckBox Content="Option 1"/>
+        <CheckBox Content="Option 2"/>
+        <CheckBox Content="Option 3"/>
+    </StackPanel>
+</Expander>
+```
 ### GroupBox
 - It's similar to what we use on windows form for grouping of similar controls
 ```xml
