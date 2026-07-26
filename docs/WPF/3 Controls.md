@@ -1,102 +1,8 @@
-## Layouts
+## Overview
+- WPF provides a wide range of controls that you can use to create your UI. 
+- In this document, we will cover some of the most commonly used controls in WPF.
 
-### Grid
-- This is sample code to create a Grid with 4 rows and 2 columns
-- You can use `Grid.Row` and `Grid.Column` properties to set your control to a specific position
-- You can also create another Grid inside a Grid cell to create complex layouts
-
-```xml
-<Grid>
-    <Grid.RowDefinitions>
-        <RowDefinition/>
-        <RowDefinition/>
-        <RowDefinition/>
-        <RowDefinition/>
-    </Grid.RowDefinitions>
-    <Grid.ColumnDefinitions>
-        <ColumnDefinition/>
-        <ColumnDefinition/>
-    </Grid.ColumnDefinitions>
-    <TextBlock  
-        Grid.Row="0" 
-        Grid.Column="0"  
-        Name="NameTextBlock" 
-        Text="Vivek Patel" 
-        FontSize="50" 
-        HorizontalAlignment="Left" 
-        VerticalAlignment="Center"/>
-</Grid>
-```
-
-### Stack Panel
-- Arranges all elements in single line vertically/horizontally
-- Perfect when you need single direction layouts like list
-```xml
-<StackPanel Orientation="Vertical" Margin="10">
-    <Button Content="Button 1" Height="40"/>
-    <Button Content="Button 2" Height="40"/>
-    <Button Content="Button 3" Height="40"/>
-</StackPanel>
-```
-```xml
-<StackPanel Orientation="Horizontal" Margin="10">
-    <Button Content="Yes" Width="75" Margin="5"/>
-    <Button Content="No" Width="75" Margin="5"/>
-    <Button Content="Cancel" Width="75" Margin="5"/>
-</StackPanel>
-```
-- You can also use with with other controls like 
-  - button with logo & Text
-  - Lable with logo & Text
-```xml
-<Button>
-    <StackPanel Orientation="Horizontal">
-        <Image Source="save.png" Width="16" Height="16"/>
-        <TextBlock Text="Save"/>
-    </StackPanel>
-</Button>
-```
-### Grid Splitter
-- GridSplitter is used to resize the grid columns or rows at runtime
-- You have to add extra row or column in your grid to add GridSplitter control with `5-10` thickness to make it visible and resizable
-```xml
- <GridSplitter Grid.Column="1" Width="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-```
-
-### Expander
-- Expander is used to show/hide the content on click of header
-- You can use it to create collapsible sections in your UI
-```xml
-<Expander Header="More Options" Width="200" Height="100">
-    <StackPanel>
-        <CheckBox Content="Option 1"/>
-        <CheckBox Content="Option 2"/>
-        <CheckBox Content="Option 3"/>
-    </StackPanel>
-</Expander>
-```
-### GroupBox
-- It's similar to what we use on windows form for grouping of similar controls
-```xml
-<GroupBox
-    Name="PersonGroupBox"
-    Header="Personal Information"
-    Width="300"
-    Height="200"
-    FontSize="14"
-    HorizontalAlignment="Left"
-    VerticalAlignment="Top">
-    <StackPanel Margin="10">
-        <TextBox Name="FirstNameTextBox" Margin="0,0,0,10" />
-        <TextBox Name="LastNameTextBox" Margin="0,0,0,10" />
-        <Button Name="SubmitButton" Content="Submit" Width="100" />
-    </StackPanel>
-</GroupBox>
-```
-
-## Main Controls
-
-### TextBlock
+## TextBlock
 - Used to display text on the screen
 - Supports text formatting, wrapping, and inline elements
 - You can use it for headings, descriptions, status messages or read only text
@@ -110,7 +16,7 @@
     VerticalAlignment="Center" />
 ```
 
-### TextBox
+## TextBox
 ```xml
 <TextBox
     Name="InputTextBox"
@@ -120,7 +26,7 @@
     Background="Transparent" />
 ```
 
-### Label
+## Label
 - Used to display text on the screen
 - You can use `Content` property to set the text of the label
 ```xml
@@ -141,7 +47,7 @@
 - This Code will create a label with text "Name:" with `Alt + N` as a shortcut key to focus on the associated TextBox.
 - From practical point of view use TextBlock for displaying text and Label when you needs keyboad navigation support.
 
-### Button
+## Button
 ```xml
 <Button 
     Name="HelloButton" 
@@ -162,13 +68,13 @@ private void HelloButton_Click(object sender, RoutedEventArgs e)
 }
 ```
 
-### Radio Button
+## Radio Button
 ```xml
 <RadioButton 
     Content="Male" 
     GroupName="Gender"/>
 ```
-### CheckBox
+## CheckBox
 ```xml
  <CheckBox 
     Content="Cooking"/>
@@ -176,7 +82,7 @@ private void HelloButton_Click(object sender, RoutedEventArgs e)
 
 ## Advance Controls
 
-### ListBox
+## ListBox
 ```xml
 <ListBox
     Name="ItemsListBox"
@@ -191,7 +97,7 @@ private void HelloButton_Click(object sender, RoutedEventArgs e)
 </ListBox>
 ```
 
-### ListView
+## ListView
 - List view with single column
 ```xml
 <ListView Name="FriendsListView" />
@@ -254,14 +160,14 @@ FriendsListView.Items.Add(new Friend
 });
 ```
 
-### DataGrid
+## DataGrid
 - DataGrid is used to display data in tabular format with rows and columns
 - Listview columns are only for presentation purpose, but DataGrid columns are editable and can be bound to data source
 ```xml
 
 ```
 
-### Menu
+## Menu
 ```xml
 <Menu
     Name="MainMenu"
@@ -285,7 +191,7 @@ FriendsListView.Items.Add(new Friend
 
 ## Media
 
-### Image
+## Image
 - Make sure to set image as a resources from properties
 ```xml
 <Image
@@ -299,7 +205,7 @@ FriendsListView.Items.Add(new Friend
 
 ## Decorator
 
-### Border
+## Border
 - Used to display border around controls for visuals
 ```xml
 <Border
