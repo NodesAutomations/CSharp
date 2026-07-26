@@ -95,4 +95,42 @@
     </StackPanel>
 </GroupBox>
 ```
+
+## Border
+- Used to display border around controls for visuals
+```xml
+<Border
+    Name="ContentBorder"
+    BorderBrush="Gray"
+    BorderThickness="2"
+    CornerRadius="5"
+    Padding="10"
+    Background="LightBlue">
+    <TextBlock
+        Text="Content inside border"
+        FontSize="16"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center" />
+</Border>
+```
  
+## Menu
+```xml
+<Menu
+    Name="MainMenu"
+    HorizontalAlignment="Stretch"
+    VerticalAlignment="Top">
+    <MenuItem Header="File">
+        <MenuItem Header="New" Click="New_Click"/>
+        <MenuItem Header="Open" Click="Open_Click"/>
+        <MenuItem Header="Save" Click="Save_Click"/>
+        <Separator/>
+        <MenuItem Header="Exit" Click="Exit_Click"/>
+    </MenuItem>
+    <MenuItem Header="Edit">
+        <MenuItem Header="Cut" Click="Cut_Click"/>
+        <MenuItem Header="Copy" Click="Copy_Click"/>
+        <MenuItem Header="Paste" Click="Paste_Click"/>
+    </MenuItem>
+</Menu>
+```
