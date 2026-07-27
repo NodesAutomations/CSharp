@@ -84,5 +84,66 @@ FriendsListView.Items.Add(new Friend
 - DataGrid is used to display data in tabular format with rows and columns
 - Listview columns are only for presentation purpose, but DataGrid columns are editable and can be bound to data source
 ```xml
+<Window x:Class="WpfApp.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:WpfApp" mc:Ignorable="d" 
+    Title="People" Height="450" Width="800">
 
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <DataGrid ItemsSource="{Binding People}"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Age" Binding="{Binding Age}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Button Name="ShowPersonButton" Content="Show Person" Click="ShowPersonButton_Click" Width="100" Height="30" Margin="0,0,10,0"/>
+        </StackPanel>
+    </Grid>
+</Window>
+```
+```csharp
+public class Person
+{
+    public string Name { get; set; } = "";
+    public int Age { get; set; }
+}
+
+/// <summary>
+/// Interaction logic for MainWindow.xaml
+/// </summary>
+public partial class MainWindow : Window
+{
+    public MainWindow()
+    {
+        InitializeComponent();
+        DataContext = this;
+    }
+
+    public List<Person> People { get; } = new()
+    {
+        new Person { Name = "Alice", Age = 30 },
+        new Person { Name = "Bob", Age = 25 },
+        new Person { Name = "Charlie", Age = 35 }
+    };
+
+    private void ShowPersonButton_Click(object sender, RoutedEventArgs e)
+    {
+        var result = new StringBuilder();
+        foreach (var person in People)
+        {
+            result.AppendLine($"Name: {person.Name}, Age: {person.Age}");
+        }
+        MessageBox.Show(result.ToString());
+    }
+}
 ```
