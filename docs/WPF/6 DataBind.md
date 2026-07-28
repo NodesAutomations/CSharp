@@ -4,7 +4,6 @@
 - For Databinding you have to implement INotifyPropertyChanged interface
 - Which contain PropertyChangedEventHandler, which we can trigger everytime we update our property
 
-
 ## Simple Data Binding
 - In this example, we will create a simple WPF application that demonstrates data binding. We will bind a TextBlock and a TextBox to a property called CompanyName in the code-behind.
 - This will work but if company name is updated in code-behind, it won't update in UI so keep that in mind.
