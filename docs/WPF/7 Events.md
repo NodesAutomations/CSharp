@@ -14,8 +14,11 @@ private void RunButton_Click(object sender, RoutedEventArgs e)
     MessageBox.Show("Run button clicked!");
 }
 ```
+## Key Press Event
+- Key press event mostly used for textbox data entry
 
 ## Key Down Event
+- Mostly used for add custom functionality for textbox data entry, like incrementing or decrementing a number in the textbox when up or down arrow key is pressed.
 - Define keydown event in xaml for textbox
 
 ```xml
@@ -93,3 +96,47 @@ public static class TextBoxUtil
 }
 ```
 
+## Preview Text Input Event
+- PreviewTextInput event is used to validate the input in the textbox, for example, we can use this event to allow only numbers and decimal point in the textbox.
+
+```xml
+<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Dia, UpdateSourceTrigger=Explicit}" Margin="0,0,0,10"
+    PreviewTextInput="DiaTextBox_PreviewTextInput" />
+```
+```csharp
+private void NosTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+{
+    // Allow only numbers and decimal point
+    if (!char.IsDigit(e.Text, e.Text.Length - 1) && e.Text != ".")
+    {
+        e.Handled = true;
+    }
+}
+```
+
+## Lost Focus Event
+- LostFocus event is used to validate the input in the textbox when the textbox loses focus, for example, we can use this event to check if the input is a valid number and within a certain range.
+- Sample code to validate Bar Diameter input in the textbox when it loses focus, and update the bound property if the input is valid.
+
+```xml
+<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Dia, UpdateSourceTrigger=Explicit}" Margin="0,0,0,10"
+    LostFocus="DiaTextBox_LostFocus" />
+```
+```csharp
+private void DiaTextBox_LostFocus(object sender, RoutedEventArgs e)
+{
+    var textBox = (TextBox)sender;
+
+    if (double.TryParse(textBox.Text, out var diameter)
+        && DesignData.AllowedDia.Contains(diameter))
+    {
+        //Update the bound property if the input is valid
+        DesignData.Dia = diameter;
+        //Update the text box value from binding to ensure it reflects the bound property
+        textBox.GetBindingExpression(TextBox.TextProperty)?.UpdateTarget();
+        return;
+    }
+    //Reset text box value from binding if the input is invalid
+    textBox.GetBindingExpression(TextBox.TextProperty)?.UpdateTarget();
+}
+```
