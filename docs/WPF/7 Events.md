@@ -3,7 +3,17 @@
 - In WPF, events are used to handle user interactions and respond to changes in the application
 
 ## Click Event
+- click event is pretty simple, we can define click event in xaml and then define the event handler in code behind
 
+```xml
+<Button Name="RunButton" Content="Run" Click="RunButton_Click" Margin="10"/>
+```
+```csharp
+private void RunButton_Click(object sender, RoutedEventArgs e)
+{
+    MessageBox.Show("Run button clicked!");
+}
+```
 
 ## Key Down Event
 - Define keydown event in xaml for textbox
