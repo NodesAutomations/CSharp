@@ -2,6 +2,11 @@
 - All controls in group help you with adjusting the layout of your application
 - You can think of it as a container for your controls, which helps you to arrange them in a specific way
  
+
+## Window
+- Title bar consule around 30-40 pixels of height so adjust your window height accordingly so all your controls are visible
+- Side border is around 8-10 pixels of width so adjust your window width accordingly so all your controls are visible
+
 ## Grid
 - This is sample code to create a Grid with 4 rows and 2 columns
 - You can use `Grid.Row` and `Grid.Column` properties to set your control to a specific position
