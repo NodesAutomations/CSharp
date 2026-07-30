@@ -2,6 +2,12 @@
 - WPF provides a wide range of controls that you can use to create your UI. 
 - In this document, we will cover some of the most commonly used controls in WPF.
 
+## Common Properties of Controls
+- `Name`: The name of the control, used to reference it in code-behind.
+- `Width`: The width of the control.
+- `Height`: The height of the control.
+- `Margin`: The space around the control. You can use a single value for uniform margin or four values for different margins (left, top, right, bottom) or multiple values for different margins like `5,10,5,10`.
+
 ## TextBlock
 - Used to display text on the screen
 - Supports text formatting, wrapping, and inline elements
