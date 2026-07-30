@@ -3,10 +3,15 @@
 - In this document, we will cover some of the most commonly used controls in WPF.
 
 ## Common Properties of Controls
-- `Name`: The name of the control, used to reference it in code-behind.
-- `Width`: The width of the control.
-- `Height`: The height of the control.
-- `Margin`: The space around the control. You can use a single value for uniform margin or four values for different margins (left, top, right, bottom) or multiple values for different margins like `5,10,5,10`.
+
+| Property | Value | Description |
+|----------|--------------|-------------|
+| Name | NameTextBlock | The name of the control, used to reference it in code-behind. |
+| Width | 200 | The width of the control. |
+| Height | 150 | The height of the control. |
+| Margin | 5,10,5,10 | The space around the control. You can use a single value for uniform margin or two values for (left-right, top-bottom) or four values for (left, top, right, bottom). |
+| HorizontalAlignment | Center | The horizontal alignment of the control within its parent container. Options are Left, Center, Right, Stretch. |
+| VerticalAlignment | Center | The vertical alignment of the control within its parent container. Options are Top, Center, Bottom, Stretch. |
 
 ## TextBlock
 - Used to display text on the screen
