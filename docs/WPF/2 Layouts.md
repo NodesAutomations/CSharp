@@ -63,6 +63,91 @@
     </StackPanel>
 </Button>
 ```
+
+## Dock Panel
+
+## Canvas
+- It's simplest layout control in WPF, Unlike Grid and StackPanel, Canvas does not have any layout logic, it just places the controls at the specified position
+- You can use `Canvas.Left`, `Canvas.Top`, `Canvas.Right` and `Canvas.Bottom` properties to set your control to a specific position
+- You can use it for drawing or visualization scenarios where you need to place controls at specific coordinates
+- Here is sample code to place button on canvas and move it on click of button
+
+```xml
+<Window x:Class="CanvasDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Canvas Demo" Height="300" Width="400">
+
+    <Canvas Name="MyCanvas" Background="LightGray">
+        <Button Name="MyButton" Content="Move Me"
+                Width="100" Height="30"
+                Canvas.Left="50" Canvas.Top="50"
+                Click="MyButton_Click"/>
+    </Canvas>
+</Window>
+```
+```csharp
+//Code behind for window with canvas
+public partial class MainWindow : Window
+{
+    private double _x = 50;
+
+    public MainWindow()
+    {
+        InitializeComponent();
+    }
+
+    private void MyButton_Click(object sender, RoutedEventArgs e)
+    {
+        _x += 20;
+
+        Canvas.SetLeft(MyButton, _x);
+    }
+}
+```
+```csharp
+//Sample code to add rectangle on canvas via code behind
+ Rectangle rect = new Rectangle
+{
+    Width = 100,
+    Height = 50,
+    Fill = Brushes.LightGreen
+};
+
+Canvas.SetLeft(rect, 100);
+Canvas.SetTop(rect, 100);
+
+MyCanvas.Children.Add(rect);
+
+//Sample code to add circle on canvas via code behind
+Ellipse circle = new Ellipse
+{
+    Width = 50,
+    Height = 50,
+    Fill = Brushes.LightBlue
+};
+Canvas.SetLeft(circle, 200);
+Canvas.SetTop(circle, 150);
+MyCanvas.Children.Add(circle);
+```
+
+| Property | Description |
+|----------|-------------|
+| `Canvas.Left` | Sets the distance between the left edge |
+| `Canvas.Top` | Sets the distance between the top edge |
+| `Canvas.Right` | Sets the distance between the right edge |
+| `Canvas.Bottom` | Sets the distance between the bottom edge |
+| `Canvas.ZIndex` | Set Zvalue of control, higher will be on top|
+
+| Method                           | Description                |
+| -------------------------------- | ---------------------- |
+| `Canvas.SetLeft(element, value)` | Set X position         |
+| `Canvas.SetTop(element, value)`  | Set Y position         |
+| `Canvas.GetLeft(element)`        | Read X position        |
+| `Canvas.GetTop(element)`         | Read Y position        |
+| `Canvas.Children.Add(element)`   | Add a control or shape |
+
+
 ## Grid Splitter
 - GridSplitter is used to resize the grid columns or rows at runtime
 - You have to add extra row or column in your grid to add GridSplitter control with `5-10` thickness to make it visible and resizable
