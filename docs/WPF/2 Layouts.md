@@ -65,6 +65,75 @@
 ```
 
 ## Dock Panel
+- DockPanel allows you to dock your controls to the top, bottom, left or right of the container
+- You can use `DockPanel.Dock` property to set your control to a specific position
+- If no dock position is specified, the control will assume the default position of `Left`
+- You can use it for setting up a header, footer, sidebar, or any other layout where you want to dock controls to the edges of the container
+
+```xml
+<DockPanel>
+    <!-- Top -->
+    <TextBlock Text="Header"
+                Background="LightBlue"
+                DockPanel.Dock="Top"
+                Padding="10"/>
+    <!-- Left -->
+    <Button Content="Menu"
+            Width="80"
+            DockPanel.Dock="Left"/>
+    <!-- Remaining space -->
+    <TextBox Text="Main Content Area"
+                AcceptsReturn="True"/>
+</DockPanel>
+```
+```
++-------------------------+
+| Header                  |
++-----+-------------------+
+|Menu |                   |
+|     | Main Content Area |
+|     |                   |
++-----+-------------------+
+```
+```xml
+<DockPanel>
+
+    <Border Background="LightBlue"
+            Height="40"
+            DockPanel.Dock="Top"/>
+
+    <Border Background="LightGreen"
+            Height="40"
+            DockPanel.Dock="Bottom"/>
+
+    <Border Background="LightCoral"
+            Width="80"
+            DockPanel.Dock="Left"/>
+
+    <Border Background="LightYellow"
+            Width="80"
+            DockPanel.Dock="Right"/>
+
+    <Border Background="White"/>
+
+</DockPanel>
+```
+```
++-----------------------+
+|        TOP            |
++----+-------------+----+
+|    |             |    |
+|LEFT|   CENTER    |RIGHT
+|    |             |    |
++----+-------------+----+
+|       BOTTOM          |
++-----------------------+
+```
+
+| Property | Description |
+|----------|-------------|
+| `LastChildFill` | occupy all remaining space if true |
+
 
 ## Canvas
 - It's simplest layout control in WPF, Unlike Grid and StackPanel, Canvas does not have any layout logic, it just places the controls at the specified position
