@@ -10,6 +10,7 @@
 | Width | 200 | The width of the control. |
 | Height | 150 | The height of the control. |
 | Margin | 5,10,5,10 | The space around the control. You can use a single value for uniform margin or two values for (left-right, top-bottom) or four values for (left, top, right, bottom). |
+| Padding | 5,10,5,10 | The space inside the control, between the content and the border. |
 | HorizontalAlignment | Center | The horizontal alignment of the control within its parent container. Options are Left, Center, Right, Stretch. |
 | VerticalAlignment | Center | The vertical alignment of the control within its parent container. Options are Top, Center, Bottom, Stretch. |
 
@@ -101,4 +102,20 @@ private void HelloButton_Click(object sender, RoutedEventArgs e)
     Height="150"
     HorizontalAlignment="Center"
     VerticalAlignment="Center" />
+```
+
+## Border
+- used to draw border around the control
+- Useful when you want to visually group or highlight controls.
+- Since a Border accepts only one child, use a layout panel inside it to add multiple controls
+
+```xml
+<Border BorderBrush="Black"
+        BorderThickness="2"
+        Background="LightBlue"
+        CornerRadius="10"
+        Padding="10">
+
+    <TextBlock Text="Hello WPF"/>
+</Border>
 ```

@@ -255,23 +255,6 @@ MyCanvas.Children.Add(circle);
 </GroupBox>
 ```
 
-## Border
-- Used to display border around controls for visuals
-```xml
-<Border
-    Name="ContentBorder"
-    BorderBrush="Gray"
-    BorderThickness="2"
-    CornerRadius="5"
-    Padding="10"
-    Background="LightBlue">
-    <TextBlock
-        Text="Content inside border"
-        FontSize="16"
-        HorizontalAlignment="Center"
-        VerticalAlignment="Center" />
-</Border>
-```
  
 ## Menu
 ```xml
