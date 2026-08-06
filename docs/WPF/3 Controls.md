@@ -119,3 +119,108 @@ private void HelloButton_Click(object sender, RoutedEventArgs e)
     <TextBlock Text="Hello WPF"/>
 </Border>
 ```
+
+## Shapes
+- Mainly used for drawing simple graphics without using lowlevel drawing APIs
+- Shapes are usally used with canvas but you can also use with other layout panels like grid, stackpanel, etc.
+
+### Line 
+```xml
+<Line X1="0"
+    Y1="0"
+    X2="200"
+    Y2="100"
+    Stroke="Blue"
+    StrokeThickness="3"/>
+```
+### Rectangle
+- You can use RadiusX and RadiusY properties to create rounded corners
+```xml
+  <Rectangle Width="100"
+               Height="60"
+               Fill="LightBlue"
+               Stroke="Black"
+               StrokeThickness="2"
+               Canvas.Left="20"
+               Canvas.Top="20"/>
+```
+### Elipse
+- You can also use `Ellipse` to create circle by setting equal width and height
+```xml
+<Ellipse Width="80"
+        Height="80"
+        Fill="Orange"
+        Stroke="Black"
+        StrokeThickness="2"
+        Canvas.Left="150"
+        Canvas.Top="20"/>
+```
+### Polygon
+- Use `Polygon` to create a shape with multiple sides. You can specify the points of the polygon using the `Points` property.
+- Points are separated by space and each point is defined by x,y coordinates separated by comma. For example, `Points="0,0 0,150 150,150"` defines a triangle with three points at (0,0), (0,150), and (150,150).
+```xml
+<Polygon Points="0,0 0,150 150,150"
+    Fill="LightGreen"
+    Stroke="Black"
+    StrokeThickness="2"/>
+```
+### Polyline
+```xml
+<Polyline Points="10,10 100,50 150,20 250,80"
+          Stroke="Blue"
+          StrokeThickness="2"/>
+```
+Dashed polyline
+```xml
+<Polyline Points="50,50 150,50 150,150"
+          Stroke="Red"
+          StrokeThickness="2"
+          StrokeDashArray="5 2"/>
+```
+### Path
+- You can draw any object you like using path
+- The `Data` property of the `Path` element defines the geometry of the shape. You can use a combination of lines, curves, and arcs to create complex shapes.
+- I can't see any practical use case right now but you can use it to create custom shapes and icons in your application. 
+```xml
+<Path Stroke="Blue"
+StrokeThickness="2"
+Data="M 10,10 L 200,100"/>
+```
+### Adding Shapes via Code Behind
+```csharp
+Rectangle rect = new Rectangle
+{
+    Width = 100,
+    Height = 50,
+    Fill = Brushes.LightBlue,
+    Stroke = Brushes.Black,
+    StrokeThickness = 2
+};
+
+Canvas.SetLeft(rect, 50);
+Canvas.SetTop(rect, 50);
+
+MyCanvas.Children.Add(rect);
+
+```
+```csharp
+//To move shape
+double x = Canvas.GetLeft(rect);
+
+Canvas.SetLeft(rect, x + 10);
+```
+```csharp
+//polyline example
+Polyline polyline = new Polyline();
+
+polyline.Stroke = Brushes.Blue;
+polyline.StrokeThickness = 2;
+
+polyline.Points.Add(new Point(50, 50));
+polyline.Points.Add(new Point(150, 50));
+polyline.Points.Add(new Point(150, 150));
+polyline.Points.Add(new Point(50, 150));
+
+MyCanvas.Children.Add(polyline);
+```
+
