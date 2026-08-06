@@ -14,3 +14,4 @@
 
 ## Resources
 - [C# WPF Tutorial](https://youtube.com/playlist?list=PLih2KERbY1HHOOJ2C6FOrVXIwg4AZ-hk1&si=7oCOEYd-MjBEx346)
+- [Siminium Youtube Channel](https://www.youtube.com/@Siminium)
