@@ -293,3 +293,44 @@ MyCanvas.Children.Add(circle);
     </MenuItem>
 </Menu>
 ```
+
+## TabControl
+- TabControl is used to group multiple pages in same window
+- Not used much in mordern apps due to side bars
+- You can use it to group related information about same object when you're space limited like settings
+
+```xml
+<TabControl>
+
+    <TabItem Header="Client">
+        <TextBlock Text="Client Information"
+                    FontSize="20"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"/>
+    </TabItem>
+
+    <TabItem Header="Project">
+        <TextBlock Text="Project Information"
+                    FontSize="20"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"/>
+    </TabItem>
+
+    <TabItem Header="Invoice">
+        <TextBlock Text="Invoice Information"
+                    FontSize="20"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"/>
+    </TabItem>
+
+</TabControl>
+```
+```
++--------------------------------+
+| Client | Project | Invoice     |
++--------------------------------+
+|                                |
+|      Client Information        |
+|                                |
++--------------------------------+
+```
