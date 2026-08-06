@@ -3,6 +3,10 @@
 - This are more interactive controls than the basic controls and use to display large amount of data in a structured way. These controls are used to create more complex and interactive user interfaces.
 
 ## ListBox
+- Simple list of items that can be selected by the user. 
+- You can use it to display a list of items and allow the user to select one or more items from the list.
+- You can use `ItemsSource` property to bind the list of items to the ListBox. You can also use `SelectedItem` property to get the selected item from the ListBox.
+- Code behind is similar to windows forms ListBox control
 ```xml
 <ListBox
     Name="ItemsListBox"
@@ -18,7 +22,11 @@
 ```
 
 ## ListView
-- List view with single column
+- ListView is similar to ListBox but it provides more functionality and flexibility. It can be used to display a list of items in a tabular format with multiple columns.
+- ListView inherits from ListBox, so you can use all the properties and methods of ListBox in ListView. 
+- You can also completely customize the layout of ListView items using DataTemplate. like using Borders, Images, Buttons in listview items.
+
+### List view with single column
 ```xml
 <ListView Name="FriendsListView" />
 ```
@@ -37,7 +45,7 @@ MessageBox.Show($"{FriendsListView.SelectedItem.ToString()}");
 FriendsListView.Items.Remove(FriendsListView.SelectedItem);
 ```
 
-- List view with multiple columns
+### List view with multiple columns
 ```xml
 <ListView Name="FriendsListView" Width="300" Height="150">
     <ListView.View>
@@ -78,6 +86,69 @@ FriendsListView.Items.Add(new Friend
     Name = "Yogesh",
     Age = 30
 });
+```
+
+### ListView with Custom layout and data binding
+```xml
+    <ListView ItemsSource="{Binding Clients}">
+
+        <ListView.ItemTemplate>
+
+            <DataTemplate>
+
+                <Border BorderBrush="LightGray"
+                    BorderThickness="1"
+                    CornerRadius="5"
+                    Margin="5"
+                    Padding="10">
+
+                    <StackPanel>
+                        <TextBlock Text="{Binding Name}"
+                               FontWeight="Bold"
+                               FontSize="16"/>
+
+                        <TextBlock Text="{Binding Rate,
+                                      StringFormat=₹{0}/hr}"/>
+                    </StackPanel>
+
+                </Border>
+
+            </DataTemplate>
+
+        </ListView.ItemTemplate>
+
+    </ListView>
+```
+```csharp
+public class Client
+{
+    public string Name { get; set; }
+    public double Rate { get; set; }
+}
+public partial class MainWindow : Window
+{
+    public MainWindow()
+    {
+        InitializeComponent();
+
+        Clients =
+        [
+            new Client
+            {
+                Name = "Client 1",
+                Rate = 100,
+            },
+            new Client
+            {
+                Name = "Client 2",
+                Rate = 200,
+            },
+        ];
+
+        DataContext = this;
+    }
+    public List<Client> Clients { get; set; }
+}
 ```
 
 ## DataGrid
