@@ -1,7 +1,7 @@
 ## Overview
 - Custom controls are user-defined controls that can be created to encapsulate specific functionality or behavior.
 
-## Sample code
+## Define Simple Custom Control
 - Let's assume we are creating custom Input Box Control for our form since we have multiple input fields in our form and we want to have same look and feel for all input fields. So we can create a custom control for input box which will have a label and a textbox.
 - So let's create new custom control `InputBox` in UserControls folder and add `User Control WPF` item to it. It will create a new `InputBox.xaml` file and `InputBox.xaml.cs` file.
 - Add this code in `InputBox.xaml` file to create a custom input box control with label and textbox.
@@ -81,4 +81,83 @@ string name = NameInputBox.Text;
 string age = AgeInputBox.Text;
 string balance = BalanceInputBox.Text;
 MessageBox.Show($"Name: {name}\nAge: {age}\nBalance: {balance}");
+```
+
+## Define event in Custom Control
+- To define an event in a custom control, you can create a public event in the code-behind file of the custom control. For example, let's say we want to raise an event when the text in the `ValueTextBox` changes. We can define an event called `TextChanged` in the `InputBox.xaml.cs` file.
+
+```csharp
+public partial class InputBox : UserControl
+{
+    public InputBox()
+    {
+        InitializeComponent();
+        ValueTextBox.TextChanged += ValueTextBox_TextChanged;
+    }
+
+    public string Label
+    {
+        get => LabelTextBlock.Text;
+        set => LabelTextBlock.Text = value;
+    }
+
+    public string Text
+    {
+        get => ValueTextBox.Text;
+        set => ValueTextBox.Text = value;
+    }
+
+    // Define the TextChanged event
+    public event EventHandler TextChanged;
+
+    private void ValueTextBox_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        // Raise the TextChanged event when the text changes
+        TextChanged?.Invoke(this, EventArgs.Empty);
+    }
+}
+```
+
+## Dependency Properties in Custom Control
+- Dependency properties are a special type of property in WPF that provide additional functionality, such as data binding, styling, triggers and animation. To define a dependency property in a custom control, you can use the `DependencyProperty.Register` method. For example, let's say we want to create a dependency property called `LabelText` in the `InputBox` control.
+
+```csharp
+public partial class InputBox : UserControl
+{
+    public InputBox()
+    {
+        InitializeComponent();
+    }
+
+    public string Label
+    {
+        get => LabelTextBlock.Text;
+        set => LabelTextBlock.Text = value;
+    }
+
+    public string Text
+    {
+        get => ValueTextBox.Text;
+        set => ValueTextBox.Text = value;
+    }
+
+    // Define the LabelText dependency property
+    public static readonly DependencyProperty LabelTextProperty =
+        DependencyProperty.Register("LabelText", typeof(string), typeof(InputBox), new PropertyMetadata(string.Empty, OnLabelTextChanged));
+
+    public string LabelText
+    {
+        get => (string)GetValue(LabelTextProperty);
+        set => SetValue(LabelTextProperty, value);
+    }
+
+    private static void OnLabelTextChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var control = d as InputBox;
+        if (control != null)
+        {
+            control.Label = e.NewValue as string;
+        }
+    }
+}
 ```
