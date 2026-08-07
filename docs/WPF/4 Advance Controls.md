@@ -151,6 +151,44 @@ public partial class MainWindow : Window
 }
 ```
 
+### Listview Data Template
+- DataTemplate allow us to specify how the data should be displayed in the ListView. 
+- This is different from style which mostly deals with visual aspects of the control. DataTemplate is used to define the visual representation of the data in the ListView.
+
+```csharp
+public class Client
+{
+    public string Name { get; set; }
+    public double Rate { get; set; }
+}
+List<Client> clients = new()
+{
+    new Client { Name = "ABC", Rate = 1500 },
+    new Client { Name = "XYZ", Rate = 2000 }
+};
+
+ClientList.ItemsSource = clients;
+```
+```xml
+<ListBox ItemsSource="{Binding Clients}">
+    <ListBox.ItemTemplate>
+        <DataTemplate>
+            <StackPanel>
+                <TextBlock Text="{Binding Name}"/>
+                <TextBlock Text="{Binding Rate}"/>
+            </StackPanel>
+        </DataTemplate>
+    </ListBox.ItemTemplate>
+</ListBox>
+```
+```
+ABC
+1500
+
+XYZ
+2000
+```
+
 ## DataGrid
 - DataGrid is used to display data in tabular format with rows and columns
 - Listview columns are only for presentation purpose, but DataGrid columns are editable and can be bound to data source
@@ -218,3 +256,4 @@ public partial class MainWindow : Window
     }
 }
 ```
+
