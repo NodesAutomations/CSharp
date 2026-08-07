@@ -216,6 +216,54 @@ MyCanvas.Children.Add(circle);
 | `Canvas.GetTop(element)`         | Read Y position        |
 | `Canvas.Children.Add(element)`   | Add a control or shape |
 
+## Content Control
+- It's placeholder that can display a single piece of content which you can swap out at runtime, such as a button, text, image, or entire layout.
+- You can use it to create dynamic UIs where the content changes based on user interaction or application state like swapping between different views or pages in a single window.
+- Perfect for sidebar navigation with different views
+- Content Control is base class for many other controls like Button, Label, ListBox, ComboBox, etc. which can hold a single piece of content.
+```xml
+<ContentControl Name="MainContent"/>
+```
+```csharp
+//Code behind to set content of ContentControl
+MainContent.Content = new Button { Content = "Click Me" };
+```
+### Content control with navigation buttons
+```
+Views
+├─ ClientsView.xaml
+├─ ProjectsView.xaml
+└─ ReportsView.xaml
+```
+```
++---------------------------+
+| Menu                      |
++-------+-------------------+
+| Home  |                   |
+|Client |    ContentControl |
+|Report |                   |
++-------+-------------------+
+```
+```xml
+<DockPanel>
+    <StackPanel DockPanel.Dock="Left">
+        <Button Content="Clients" Click="Clients_Click"/>
+        <Button Content="Projects" Click="Projects_Click"/>
+    </StackPanel>
+    <ContentControl Name="MainContent"/>
+</DockPanel>
+```
+```csharp
+private void Clients_Click(object sender, RoutedEventArgs e)
+{
+    MainContent.Content = new ClientsView();
+}
+
+private void Projects_Click(object sender, RoutedEventArgs e)
+{
+    MainContent.Content = new ProjectsView();
+}
+```
 
 ## Grid Splitter
 - GridSplitter is used to resize the grid columns or rows at runtime
