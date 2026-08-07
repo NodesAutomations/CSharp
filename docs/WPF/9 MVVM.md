@@ -18,3 +18,70 @@ graph LR
 - For small applications, MVVM can be overkill and may introduce unnecessary complexity.
 
 ## Sample Code
+
+### Model
+- Model code don't contain any logic, it is just a data structure that holds the data.
+- Also no wpf specific code is written in model, it is just a simple class with properties.
+
+```csharp
+public class Client
+{
+    public string Name { get; set; }
+    public double Rate { get; set; }
+}
+```
+
+### View
+- View is the user interface of the application, it contains XAML code that defines the layout and appearance of the UI elements.
+
+```xml
+<ListView ItemsSource="{Binding Clients}">
+    <ListView.ItemTemplate>
+        <DataTemplate>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Name}"/>
+                <TextBlock Text="{Binding Rate}" Margin="20,0,0,0"/>
+            </StackPanel>
+        </DataTemplate>
+    </ListView.ItemTemplate>
+</ListView>
+```
+```csharp
+//Code behind of the view
+public partial class MainWindow : Window
+{
+    public MainWindow()
+    {
+        InitializeComponent();
+        DataContext = new MainViewModel();
+    }
+}
+```
+
+### ViewModel
+- ViewModel is the heart of MVVM pattern, it contains all the logic and data binding.
+
+```csharp
+ public class MainViewModel 
+ {
+     public ObservableCollection<Client> Clients { get; }= new();
+
+     public MainViewModel()
+     {
+         Clients.Add(new Client
+         {
+             Name = "ABC",
+             Rate = 1500
+         });
+
+         Clients.Add(new Client
+         {
+             Name = "XYZ",
+             Rate = 2000
+         });
+     }
+ }
+ ```
+
+
+
