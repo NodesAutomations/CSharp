@@ -134,7 +134,35 @@ public partial class MainWindow : Window, INotifyPropertyChanged
 ```
 
 ## DataBinding with ObservableCollection
-- Add Some Sample code here
+- List<T> stores data but it doesn't notify the UI when items are added or removed. 
+- ObservableCollection<T> stores data and tells UI when items are added or removed, enabling automatic updates of the UI elements bound to that collection.
+
+```xml
+<StackPanel>
+    <ListBox ItemsSource="{Binding Clients}" />
+    <Button Content="Add" Click="Button_Click" />
+</StackPanel>
+```
+```csharp
+public MainWindow()
+{
+    InitializeComponent();
+    DataContext = this;
+    Clients = new ObservableCollection<string>();
+    Clients.Add("Client 1");
+}
+public ObservableCollection<string> Clients { get; private set; }
+private void Button_Click(object sender, RoutedEventArgs e)
+{
+    Clients.Add("Client 2");
+}
+```
+
+### How it's different from using INotifyPropertyChanged
+- ObservableCollection does not track everything, means if you change the value of an item in the collection, it won't notify the UI. It only notifies when items are added or removed from the collection.
+- If you want to notify the UI when an item in the collection changes, you need to implement INotifyPropertyChanged in the item class.
+- So use ObservableCollection when you're dealing with collections and INotifyPropertyChanged when you're dealing with individual properties.
+- **Use ObservableCollection<T> whenever a collection is bound to a ListBox, ListView, DataGrid, TreeView, or ComboBox and items can be added or removed while the application is running.**
 
 ## DataBinding Properties
 - Binding : Specifies the source of the binding, which can be a property, a collection, or an object.
