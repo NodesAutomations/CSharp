@@ -62,25 +62,25 @@ public partial class MainWindow : Window
 - ViewModel is the heart of MVVM pattern, it contains all the logic and data binding.
 
 ```csharp
- public class MainViewModel 
- {
-     public ObservableCollection<Client> Clients { get; }= new();
+public class MainViewModel 
+{
+    public ObservableCollection<Client> Clients { get; }= new();
 
-     public MainViewModel()
-     {
-         Clients.Add(new Client
-         {
-             Name = "ABC",
-             Rate = 1500
-         });
+    public MainViewModel()
+    {
+        Clients.Add(new Client
+        {
+            Name = "ABC",
+            Rate = 1500
+        });
 
-         Clients.Add(new Client
-         {
-             Name = "XYZ",
-             Rate = 2000
-         });
-     }
- }
+        Clients.Add(new Client
+        {
+            Name = "XYZ",
+            Rate = 2000
+        });
+    }
+}
  ```
 
 
