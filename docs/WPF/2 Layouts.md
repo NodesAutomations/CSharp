@@ -228,7 +228,7 @@ MyCanvas.Children.Add(circle);
 //Code behind to set content of ContentControl
 MainContent.Content = new Button { Content = "Click Me" };
 ```
-### Content control with navigation buttons
+**Content control with navigation buttons**
 ```
 Views
 ├─ ClientsView.xaml
@@ -264,6 +264,30 @@ private void Projects_Click(object sender, RoutedEventArgs e)
     MainContent.Content = new ProjectsView();
 }
 ```
+
+## ScrollViewer
+- Scrollviewer is used to make your content scrollable when it exceeds the available space
+- You can use it to wrap any content that might overflow, such as long lists, large images, or complex layouts.
+- Some controls like ListBox, DataGrid, and RichTextBox have built-in scrolling capabilities, but you can use ScrollViewer for custom content or layouts that require scrolling.
+```xml
+<ScrollViewer Width="300" Height="100" VerticalScrollBarVisibility="Auto">
+    <StackPanel>
+        <TextBlock Text="Item 1" FontSize="20"/>
+        <TextBlock Text="Item 2" FontSize="20"/>
+        <TextBlock Text="Item 3" FontSize="20"/>
+        <TextBlock Text="Item 4" FontSize="20"/>
+        <TextBlock Text="Item 5" FontSize="20"/>
+        <TextBlock Text="Item 6" FontSize="20"/>
+        <TextBlock Text="Item 7" FontSize="20"/>
+        <TextBlock Text="Item 8" FontSize="20"/>
+        <TextBlock Text="Item 9" FontSize="20"/>
+        <TextBlock Text="Item 10" FontSize="20"/>
+    </StackPanel>
+```
+| Property | Description |
+| ---------|-------------|
+| `HorizontalScrollBarVisibility` | Controls the visibility of the horizontal scrollbar|
+| `VerticalScrollBarVisibility` | Controls the visibility of the vertical scrollbar|
 
 ## Grid Splitter
 - GridSplitter is used to resize the grid columns or rows at runtime
