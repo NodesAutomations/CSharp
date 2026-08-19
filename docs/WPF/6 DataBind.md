@@ -169,3 +169,37 @@ private void Button_Click(object sender, RoutedEventArgs e)
 - UpdateSourceTrigger : Determines when the binding source is updated. Common values include PropertyChanged, LostFocus, and Explicit.
 - Mode : Specifies the direction of the binding. Common values include OneWay, TwoWay, and OneTime.
 - Converter : Allows you to specify a value converter that can transform the data between the source and the target.
+
+
+## Enum Data Binding
+- Simple Data binding
+```xml
+<ComboBox Name="MemberTypeComboBox" 
+ItemsSource="{Binding MemberTypes}" SelectedItem="{Binding SelectedMemberType}"
+            Width="100" Height="30"/>
+```
+```csharp
+public enum MemberType
+{
+    Beam,
+    Column,
+    Wall,
+    Slab
+}
+public partial class MainWindow : Window
+{
+    public MainWindow()
+    {
+        InitializeComponent();
+        DataContext = this;
+    }
+    public MemberType SelectedMemberType { get; set; } = MemberType.Slab;
+    public Array MemberTypes => Enum.GetValues(typeof(MemberType));
+}
+```
+
+- You can bind an enum to a ComboBox in WPF by using an ObjectDataProvider
+ ```xml
+ 
+
+ ```
