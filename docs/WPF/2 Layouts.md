@@ -1,16 +1,25 @@
 ## Overview
 - All controls in group help you with adjusting the layout of your application
 - You can think of it as a container for your controls, which helps you to arrange them in a specific way
- 
+
+## How Size of Control is determined
+- The size of a control is determined by its `Width` and `Height` properties, which can be set to a specific value or to `Auto`
+- `Width = 50` means control will be 50 pixels wide
+- `Width = Auto` means control will take as much space as it needs to display its content
+- `Width = *` means control will take all available space in the container, and if there are multiple controls with `*`, they will share the available space equally
+- You can also use `MinWidth`, `MaxWidth`, `MinHeight`, and `MaxHeight` properties to restrict the size of a control
 
 ## Window
 - Title bar consule around 30-40 pixels of height so adjust your window height accordingly so all your controls are visible
 - Side border is around 8-10 pixels of width so adjust your window width accordingly so all your controls are visible
+- You can use `WindowStyle` property to hide title bar and border of window
+- Or Can set `WindowStyle="None"` and `ResizeMode="NoResize"` to make your window borderless and non-resizable
 
 ## Grid
 - This is sample code to create a Grid with 4 rows and 2 columns
 - You can use `Grid.Row` and `Grid.Column` properties to set your control to a specific position
 - You can also create another Grid inside a Grid cell to create complex layouts
+- Additionally use can use `Grid.RowSpan` and `Grid.ColumnSpan` properties to make your control span across multiple rows or columns without creating extra rows or columns in your grid
 
 ```xml
 <Grid>
@@ -34,6 +43,12 @@
         VerticalAlignment="Center"/>
 </Grid>
 ```
+| Property | Description |
+|----------|-------------|
+| `Grid.Row` | Sets the row index of the control |
+| `Grid.Column` | Sets the column index of the control |
+| `Grid.RowSpan` | Sets the number of rows the control should span |
+| `Grid.ColumnSpan` | Sets the number of columns the control should span |
 
 ## Stack Panel
 - Arranges all elements in single line vertically/horizontally
