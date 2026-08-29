@@ -79,6 +79,15 @@ private void HelloButton_Click(object sender, RoutedEventArgs e)
     MessageBox.Show($"Hello!", "Greeting", MessageBoxButton.OK, MessageBoxImage.Information);
 }
 ```
+For Button with Icon, you can use icon package or 
+```csharp
+<Button Width="150" Height="48" HorizontalAlignment="Center" VerticalAlignment="Center" >
+    <StackPanel Orientation="Horizontal">
+        <Path Width="22" Height="26" Margin="0,0,8,0" Fill="#111827" Stretch="Uniform" Data="M448 128C554 128 640 214 640 320C640 426 554 512 448 512L192 512C86 512 0 426 0 320C0 214 86 128 192 128L448 128zM192 240C178.7 240 168 250.7 168 264L168 296L136 296C122.7 296 112 306.7 112 320C112 333.3 122.7 344 136 344L168 344L168 376C168 389.3 178.7 400 192 400C205.3 400 216 389.3 216 376L216 344L248 344C261.3 344 272 333.3 272 320C272 306.7 261.3 296 248 296L216 296L216 264C216 250.7 205.3 240 192 240zM432 336C414.3 336 400 350.3 400 368C400 385.7 414.3 400 432 400C449.7 400 464 385.7 464 368C464 350.3 449.7 336 432 336zM496 240C478.3 240 464 254.3 464 272C464 289.7 478.3 304 496 304C513.7 304 528 289.7 528 272C528 254.3 513.7 240 496 240z" />
+        <TextBlock Text="Game" VerticalAlignment="Center" />
+    </StackPanel>
+</Button>
+```
 
 ## Radio Button
 ```xml
