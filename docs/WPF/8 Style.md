@@ -168,3 +168,15 @@ Styles
     </Style>
 </ResourceDictionary>
 ```
+
+## Static vs Dynamic Resource in WPF
+- Static Resource means it will get loaded once when xaml is loaded
+    ```csharp
+    <Button Background="{StaticResource PrimaryBrush}" />
+    ```
+- Dynamic Resource means it will keep watching the resource. If it changes later, property will get auto updated
+    ```csharp
+    <Button Background="{DynamicResource PrimaryBrush}" />
+    ```
+
+- In this code sample if you change Primary Brush Color in code behind, Static button color will remain same as original but dynamic button color will get updated
