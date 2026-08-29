@@ -178,14 +178,26 @@ Dashed polyline
           StrokeDashArray="5 2"/>
 ```
 ### Path
-- You can draw any object you like using path
+- You can draw any object you like using path, like line, rectangle, polyline, arc, icons
 - The `Data` property of the `Path` element defines the geometry of the shape. You can use a combination of lines, curves, and arcs to create complex shapes.
-- I can't see any practical use case right now but you can use it to create custom shapes and icons in your application. 
+- This Data contain vector Drawing instructor is same as what we use to draw svg file
+- You can use it in place of Icons to avoid any dependcy on external package or Media
+- You can build your custom symbols like arrow, star, rebar using Path
+- You can use SVG data from icon website to regenerate that Icon in WPF
 ```xml
 <Path Stroke="Blue"
 StrokeThickness="2"
 Data="M 10,10 L 200,100"/>
 ```
+| Property          | Purpose              |
+| ----------------- | -------------------- |
+| `Data`            | Drawing instructions |
+| `Stroke`          | Outline color        |
+| `StrokeThickness` | Outline width        |
+| `Fill`            | Interior color       |
+| `Opacity`         | Transparency         |
+
+
 ### Adding Shapes via Code Behind
 ```csharp
 Rectangle rect = new Rectangle
