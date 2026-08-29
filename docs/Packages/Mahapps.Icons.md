@@ -1,6 +1,7 @@
 # Mahapps.Icons
 
 ## Install
+- [MahApps.Metro.IconPacks GitHub Repository](https://github.com/MahApps/MahApps.Metro.IconPacks)
 - `Install-Package MahApps.Icons`
 - You can also install specific version of icon like material design icons:
 - `Install-Package MahApps.Icons.MaterialDesign`
