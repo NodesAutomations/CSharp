@@ -404,3 +404,46 @@ private void Projects_Click(object sender, RoutedEventArgs e)
 |                                |
 +--------------------------------+
 ```
+
+
+## Items Control
+- Items control let you display same element multiple times with custom formatting
+- Like list of text, buttons, lables, radio buttons
+- Items control require 3 main parts
+- ItemSource : Data
+- ItemTemplate : How each item will look
+- Item Panel : how items are going to get places, in stackpanel, in card layout etc
+- You can use it to create custom visual which don't require any interaction only display
+
+```xaml
+    <ItemsControl ItemsSource="{Binding Clients}">
+        <ItemsControl.ItemTemplate>
+            <DataTemplate>
+                <TextBlock Text="{Binding Name}" />
+            </DataTemplate>
+        </ItemsControl.ItemTemplate>
+    </ItemsControl>
+```
+```csharp
+ public partial class MainWindow : Window
+ { 
+     public MainWindow()
+     {
+         InitializeComponent();
+         DataContext = this;
+         Clients = new ObservableCollection<Client> { new Client("Client 1"), new Client("Client 2"), new Client("Client 3") };
+     }
+
+     public ObservableCollection<Client> Clients { get; set; }
+ }
+
+ public class Client
+ {
+     public Client(string name)
+     {
+         Name = name;
+     }
+     public string Name { get; set; }
+ }
+```
+
