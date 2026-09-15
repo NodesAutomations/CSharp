@@ -14,6 +14,9 @@
 | HorizontalAlignment | Center | The horizontal alignment of the control within its parent container. Options are Left, Center, Right, Stretch. |
 | VerticalAlignment | Center | The vertical alignment of the control within its parent container. Options are Top, Center, Bottom, Stretch. |
 
+- Negative Padding is not allowed in WPF. If you try to set a negative value for Padding, it will throw an `ArgumentException`.
+- Negative Margin is allowed in WPF and can be used to overlap controls or extend them beyond their parent container.
+
 ## TextBlock
 - Used to display text on the screen
 - Supports text formatting, wrapping, and inline elements
