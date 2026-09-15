@@ -122,3 +122,11 @@ public class DistanceTestData : IEnumerable<object[]>
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }
 ```
+
+### Member Data vs Class Data
+| Feature | `MemberData` | `ClassData` |
+| --- | --- | --- |
+| Data source | A static property, field, or method in a class | A class that implements `IEnumerable<object[]>` |
+| Reusability | Limited to the member it is defined in | Can be reused across multiple test classes |
+| Setup | Minimal setup required within the test class | Requires a separate class to define the data |
+| Suited For | Small numbers <20 | Larger or more complex data sets |
