@@ -130,3 +130,27 @@ public class DistanceTestData : IEnumerable<object[]>
 | Reusability | Limited to the member it is defined in | Can be reused across multiple test classes |
 | Setup | Minimal setup required within the test class | Requires a separate class to define the data |
 | Suited For | Small numbers <20 | Larger or more complex data sets |
+
+
+## Trait Attribute
+- The `[Trait]` attribute allows you to add custom metadata to your tests, which can be used for filtering and categorization.
+
+```csharp
+public class MathUtilTest
+{
+    [Fact]
+    [Trait("Category", "Addition")]
+    public void TestAdd()
+    {
+        //Arrange
+        var a = 1;
+        var b = 2;
+
+        //Act
+        var result = MathUtil.Add(a, b);
+
+        //Assert
+        Assert.Equal(3, result);
+    }
+}
+```
