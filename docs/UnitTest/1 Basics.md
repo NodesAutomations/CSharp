@@ -6,12 +6,12 @@
 - [xUnit](https://xunit.net/)
 
 ## Setting up xUnit in your project
-- Create .Net 8 Class Library project with `MathUtil` class.
+- Create .Net Class Library project with `MathUtil` class.
 - xUnit test project from Visual Studio template.
 - Remove Old xUnit package
-- Add ` xunit.v3` Nuget package to test project.
-- Update `xunit.runner.visualstudio` to latest version.
-- Update `Microsoft.NET.Test.Sdk` to latest version.
+- Add ` xunit.v3` Nuget package to test project. this will provide the test framework, attributes, assertions, and xUnit execution logic.
+- Update `xunit.runner.visualstudio` to latest version. This is to use the xUnit adapter used by Visual Studio Test Explorer and the .NET test platform.
+- Update `Microsoft.NET.Test.Sdk` to latest version. This provides the test platform infrastructure, including the test host, test discovery, execution protocol, and reporting integration.
 - Add `MathUtilTest` class to test project.
 
 ```csharp title="MathUtil Class"
