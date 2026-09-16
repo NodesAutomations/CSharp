@@ -65,3 +65,12 @@ public class MathUtilTest
 - Test Method Naming: Use descriptive names that indicate the method being tested and the expected outcome. For example
   - `<MethodName>_Should<ExpectedBehavior>_When<Condition>`
   - `Add_ShouldReturnSum_WhenGivenTwoIntegers`
+
+
+### Keyboard Shortcuts
+| Action | Keyboard Shortcut | IDE |
+|---|---|---|
+| Run Selected Test | `Ctrl + R, T` | Visual Studio |
+| Debug Tests | `Ctrl + R, Ctrl + T` | Visual Studio |
+| Run Tests | `Ctrl + R, A` | Visual Studio |
+| Navigate to Test Explorer | `Ctrl + E, T` | Visual Studio |

@@ -134,6 +134,7 @@ public class DistanceTestData : IEnumerable<object[]>
 
 ## Trait Attribute
 - The `[Trait]` attribute allows you to add custom metadata to your tests, which can be used for filtering and categorization.
+- It's commonly used to categorize tests, making it easier to run specific groups of tests based on their traits.
 
 ```csharp
 public class MathUtilTest
