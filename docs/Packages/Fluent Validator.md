@@ -1,9 +1,9 @@
 # Fluent Validation
 
-## How to use Fluent Validation
+## Overview
 - Assume you have column class and you'll want to validate its properties before processing it.
 - You can create validator class before processing it's data to avoid any exception
-- Install Package FluentValidation via Nuget Package Manager
+- When you're reading large amount of Data from external sources like autocad, excel or CSV files, you can validate each input before processing it to ensure data integrity and avoid exceptions.
 
 ### Original Class
 ```csharp
