@@ -10,7 +10,7 @@
 -Serialization is the process of converting an object into a format that can be easily stored or transmitted. 
 - Newtonsoft.Json makes it simple to serialize .NET objects into JSON strings. 
 
-### Basic Example
+### Basic Serialization Example
 - To serialize an object into a JSON string, you can use the `JsonConvert.SerializeObject` method.
 ```csharp
 User user = new User
@@ -130,6 +130,51 @@ public DateTime DateOfBirth { get; set; }
 
 
 ## Deserialization of JSON to .NET Objects
+- Deserialization is the process of converting a JSON string back into an object.
+
+### Basic Deserialization Example
+- To deserialize JSON into a C# object, you can use the `JsonConvert.DeserializeObject<T>` method.
+```csharp
+string json = "{\"UserId\":12345,\"UserName\":\"john_doe\",\"Email\":\"john.doe@example.com\"}";
+User user = JsonConvert.DeserializeObject<User>(json);
+Console.WriteLine(user.UserName);
+```
+
+### Using JsonProperty Attribute
+- In some cases, JSON property names may not match the property names in your C# class. You can use the JsonProperty attribute to map JSON properties to class properties
+- This ensures that the JSON properties are correctly mapped even if their names differ from the class properties.
+```csharp
+public class User
+{
+    [JsonProperty("user_id")]
+    public int UserId { get; set; }
+
+    [JsonProperty("user_name")]
+    public string UserName { get; set; }
+
+    [JsonProperty("email")]
+    public string Email { get; set; }
+}
+```
+
+### Handling Missing or Extra Properties
+- By default, Newtonsoft.Json will ignore extra properties in the JSON that are not present in the target class. However, you can handle these scenarios explicitly using settings like `MissingMemberHandling` and `DefaultValueHandling`:
+- You can use `NullValueHandling` to control how null values are handled during deserialization. For example, you can set it to `NullValueHandling.Ignore` to ignore null values in the JSON.
+```csharp
+JsonSerializerSettings settings = new JsonSerializerSettings
+{
+    // Throw an error if a JSON property is missing in the target class
+    MissingMemberHandling = MissingMemberHandling.Error,
+    // Member will get assign default value when json is missing that property
+    DefaultValueHandling = DefaultValueHandling.Populate,
+    // Ignore null values in the JSON
+    NullValueHandling = NullValueHandling.Ignore,
+};
+
+string json = "{\"UserId\":12345,\"UserName\":\"john_doe\",\"Email\":\"john.doe@example.com\",\"ExtraProperty\":\"value\"}";
+User user = JsonConvert.DeserializeObject<User>(json, settings);
+```
+
 
 ## Json Attributes
 
