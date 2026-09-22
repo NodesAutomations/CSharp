@@ -1,6 +1,14 @@
 # NewtonSoft.Json
 
-## Serializing
+## Overview
+- It's a library for handling JSON files in .NET applications.
+- It allows us to easily serialize and deserialize .NET objects to and from JSON.
+- We can use it for store data , use it as project files, or to store configuration settings.
+- You can also use it for data exchange between different systems to transfer structured data.
+
+## Serialization of .NET Objects to JSON
+-Serialization is the process of converting an object into a format that can be easily stored or transmitted. 
+- Newtonsoft.Json makes it simple to serialize .NET objects into JSON strings. 
 
 ### Basic Example
 - To serialize an object into a JSON string, you can use the `JsonConvert.SerializeObject` method.
@@ -120,13 +128,10 @@ public DateTime DateOfBirth { get; set; }
 }
 ```
 
-## Load Data from Json file
 
+## Deserialization of JSON to .NET Objects
 
-## Serialize and Deserialize Objects
-
-
-## Attributes
+## Json Attributes
 
 ### JsonProperty
 - The `JsonProperty` attribute is used to specify the name of the property in the JSON representation.
@@ -137,3 +142,6 @@ public DateTime DateOfBirth { get; set; }
 - You can use it to exclude specific properties from the JSON representation of an object.
 - Use case is to ignore calculated properties 
 
+### JsonConverter
+- The `JsonConverter` attribute is used to specify a custom converter for a property or class.
+- You can use it to define custom serialization and deserialization logic for specific types.
