@@ -149,6 +149,22 @@
 |----------|-------------|
 | `LastChildFill` | occupy all remaining space if true |
 
+## Wrap Panel
+- WrapPanel is a layout control that arranges child elements in sequential position from left to right, you can think of it like wraping word in microsoft word.
+- When there isn't enough space on the current row, controls automatically move to the next row.
+- You can set the `Orientation` property to `Horizontal` or `Vertical` to control the direction of the wrapping.
+- You can also set the `ItemWidth` and `ItemHeight` properties to specify a uniform size for all child elements.
+- Common usecase is when you have a dynamic number of items that need to be displayed in a flowing layout, such as a toolbar or a photo gallery.
+
+```xml
+<WrapPanel Orientation="Horizontal">
+    <Button Content="Button 1" Width="100" Height="30"/>
+    <Button Content="Button 2" Width="100" Height="30"/>
+    <Button Content="Button 3" Width="100" Height="30"/>
+    <Button Content="Button 4" Width="100" Height="30"/>
+    <Button Content="Button 5" Width="100" Height="30"/>
+</WrapPanel>
+```
 
 ## Canvas
 - It's simplest layout control in WPF, Unlike Grid and StackPanel, Canvas does not have any layout logic, it just places the controls at the specified position
