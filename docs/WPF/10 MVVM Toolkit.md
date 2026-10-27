@@ -64,8 +64,9 @@ private void SaveClient(Client client)
 }
 ```
 
-
 ## ObservableObject
+
+## ObservableProperty
 
 ## ObservableRecipient
 
