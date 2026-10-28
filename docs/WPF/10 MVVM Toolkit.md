@@ -5,8 +5,6 @@
 It helps you write cleaner C# code for WPF applications, especially when working with data binding, buttons, commands, and updating the UI when values change.
 
 ## RelayCommand
-
-### Overview
 - RelayCommand is a simple way to connect a button to a method in your ViewModel without writing a click event in the code-behind.
 - This allow as to move the logic from the code-behind to the ViewModel, keeping the UI and business logic separate.
 - Relay command is not built into WPF by default. You need to implement it yourself or use a library like MVVM Light or CommunityToolkit.Mvvm.
@@ -42,8 +40,6 @@ private void SaveClient()
 ```
 
 ## RelayCommand<T>
-
-### Overview
 - RelayCommand<T> is a generic version of RelayCommand that allows you to pass a parameter to the command.
 - The parameter type is specified by the generic type T.
 
@@ -65,8 +61,37 @@ private void SaveClient(Client client)
 ```
 
 ## ObservableObject
+- ObservableObject is a base class that implements the INotifyPropertyChanged interface. and allows your ViewModel to notify the UI when a property value changes.
+```csharp
+public partial class Client : ObservableObject
+{
+    [ObservableProperty]
+    private string name = "";
 
+    [ObservableProperty]
+    private double rate;
+}
+```
+```csharp
+<StackPanel>
+    <TextBox Text="{Binding Name,
+                    UpdateSourceTrigger=PropertyChanged}" />
+
+    <TextBlock Text="{Binding Name}" />
+</StackPanel>
+```
 ## ObservableProperty
+- ObservableProperty is an attribute that you can apply to a private field in a class that inherits from ObservableObject. It automatically generates a public property with getter and setter, and raises the PropertyChanged event when the value changes.
+```csharp
+public partial class Client : ObservableObject
+{
+    [ObservableProperty]
+    private string name = "";
+
+    [ObservableProperty]
+    private double rate;
+}
+```
 
 ## ObservableRecipient
 
