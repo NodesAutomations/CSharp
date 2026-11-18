@@ -1,0 +1,50 @@
+[project]
+site_name = "C#"
+site_url = "https://nodesautomations.com/CSharp/"
+repo_name = "C#"
+repo_url = "https://github.com/NodesAutomations/CSharp"
+edit_uri = "edit/main/docs/"
+copyright = "Copyright &copy; 2027 Nodes Automations"
+
+[project.extra]
+generator = false
+
+[project.theme]
+variant = "modern"
+logo = "Images/favicon.png"
+favicon = "Images/favicon.png"
+features = [
+  "content.action.edit",
+  "content.action.view",
+  "content.code.copy",
+  "navigation.path",
+  "navigation.tabs",
+  "navigation.tabs.sticky", # Keep main tabs to remain visible while scrolling
+  "navigation.indexes",
+  "navigation.top",   # Back-to-top button on long pages
+  "toc.follow",       # Keeps the active heading visible in the right sidebar
+  "search.highlight", # Highlights search terms on the destination page
+]
+palette = [
+  { scheme = "default", primary = "indigo", accent = "indigo", toggle = { icon = "material/brightness-7", name = "Switch to dark mode" } },
+  { scheme = "slate", primary = "black", accent = "indigo", toggle = { icon = "material/brightness-4", name = "Switch to light mode" } },
+]
+
+[project.theme.icon]
+repo = "fontawesome/brands/github"
+
+[project.plugins.awesome-nav]
+
+[project.markdown_extensions]
+admonition = {}
+pymdownx.highlight.anchor_linenums = true
+pymdownx.highlight.line_spans = "__span"
+pymdownx.highlight.pygments_lang_class = true
+pymdownx.inlinehilite = {}
+pymdownx.snippets = {}
+pymdownx.superfences.custom_fences = [
+  { name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format" },
+]
+pymdownx.arithmatex.generic = true
+def_list = {}
+pymdownx.tasklist.custom_checkbox = true
